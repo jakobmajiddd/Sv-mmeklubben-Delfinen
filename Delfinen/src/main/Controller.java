@@ -1,3 +1,5 @@
+package main;
+
 import member.Member;
 
 import java.util.ArrayList;
