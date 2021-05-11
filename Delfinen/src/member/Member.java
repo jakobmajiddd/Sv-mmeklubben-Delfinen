@@ -25,7 +25,7 @@ public abstract class Member {
     public abstract String toFileFormat();
 
     public String convertDateToString(Date date) {
-        DateFormat df = new SimpleDateFormat("d:MM:y");
+        DateFormat df = new SimpleDateFormat("d/MM/y");
         Date today = Calendar.getInstance().getTime();
         return df.format(today);
     }

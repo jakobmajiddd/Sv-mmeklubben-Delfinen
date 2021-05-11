@@ -39,7 +39,7 @@ public class CompetitiveMember extends Member {
                 + "_" + getAGE()
                 + "_" + getEMAIL()
                 + "_" + getLastPaymentDate()
-                + "_" + coach
+                + "_" + coach.toString()
                 + "_" + nextCompetition;
     }
 }
