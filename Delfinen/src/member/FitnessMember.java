@@ -3,7 +3,7 @@ package member;
 import java.util.Date;
 
 public class FitnessMember extends Member {
-    FitnessMember(String name, int age, String email, Date date) {
+    FitnessMember(String name, int age, String email, String date) {
         super("fm", name, age, email, date);
     }
 
