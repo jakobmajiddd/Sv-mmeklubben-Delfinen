@@ -11,6 +11,18 @@ public class Chairman {
 
   ArrayList<Member> members = new ArrayList<>();
 
+  public void chairmanText(String text) {
+    System.out.println(text);
+  }
+
+  public void menuDisplay() {
+    chairmanText ("1. Add member\n" +
+        "2. Remove member\n" +
+        "3. Edit member data\n" +
+        "4. Print list of members\n" +
+        "5. Log out\n");
+  }
+
 
 
   // Jakob
