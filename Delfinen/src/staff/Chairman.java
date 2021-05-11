@@ -1,27 +1,59 @@
 package staff;
 
 import member.Member;
+import member.PassiveMember;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Chairman {
 
+  ArrayList<Member> members = new ArrayList<>();
 
 
 
   // Jakob
-  public Member createMember() {
+  public void createMember() {
+    // TODO switch
 
 
-
-    return createMember() ;
   }
+
+  public void createPassivMember() {
+    String name;
+    int age;
+    String email;
+    Date date;
+
+    // TODO Vent til UI er færdig
+
+    //member.add(new PassiveMember(name, age, email, date));
+
+
+
+  }
+
+
+
 
   // Jakob
   public void deleteMember() {
+    boolean active = false;
+
+    System.out.println("Enter your ID: ");
+    while (!active) {
+      for (int i = 0; i < members.size(); i++) {
+
+        System.out.println("Are you sure you want to delete it \n" + members.get(i));
+        System.out.println("y/n");
+
+
+      }
+    }
 
 
 
   }
-
 
 }
