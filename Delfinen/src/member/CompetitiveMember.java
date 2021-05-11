@@ -10,7 +10,7 @@ public class CompetitiveMember extends Member {
     private double bestTime;
     private Competition nextCompetition;
 
-    CompetitiveMember(String name, int age, String email, Date date, Coach coach, Competition nextCompetition) {
+    CompetitiveMember(String name, int age, String email, String date, Coach coach, Competition nextCompetition) {
         super("cm", name, age, email, date);
         this.coach = coach;
         this.nextCompetition = nextCompetition;

@@ -3,7 +3,7 @@ package member;
 import java.util.Date;
 
 public class PassiveMember extends Member {
-    PassiveMember(String name, int age, String email, Date date) {
+    PassiveMember(String name, int age, String email, String date) {
         super("pm", name, age, email, date);
     }
 

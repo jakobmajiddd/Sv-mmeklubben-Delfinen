@@ -14,20 +14,28 @@ public abstract class Member {
     private final String EMAIL;
     private String lastPaymentDate;
 
-    Member(String id, String name, int age, String email, Date date) {
+    Member(String id, String name, int age, String email) {
         this.FILE_ID = id;
         this.NAME = name;
         this.AGE = age;
         this.EMAIL = email;
-        this.lastPaymentDate = convertDateToString(date);
+        setDateToString();
+    }
+
+    Member(String id, String name, int age, String email, String date) {
+        this.FILE_ID = id;
+        this.NAME = name;
+        this.AGE = age;
+        this.EMAIL = email;
+        this.lastPaymentDate = date;
     }
 
     public abstract String toFileFormat();
 
-    public String convertDateToString(Date date) {
+    public void setDateToString() {
         DateFormat df = new SimpleDateFormat("d/MM/y");
         Date today = Calendar.getInstance().getTime();
-        return df.format(today);
+        lastPaymentDate = df.format(today);
     }
 
     public String getFILE_ID() {
