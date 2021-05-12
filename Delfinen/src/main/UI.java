@@ -1,5 +1,5 @@
 package main;
-
+// @author Alexander
 import java.util.Scanner;
 
 public class UI {
@@ -40,8 +40,14 @@ public class UI {
         System.out.println("9. Quit");
     }
 
-    public void printFinanses(){
-        System.out.println("Finanse Menu");
-        System.out.println("");
+    public void printFinanceMenu(){
+        System.out.println("Finance Menu");
+        System.out.println("1. Access yearly expected revenue");
+        System.out.println("2. Access expected revenue for passive members");
+        System.out.println("3. Access expected revenue for junior members");
+        System.out.println("4. Access expected revenue for senior members");
+        System.out.println("5. Access expected revenue for discounted members");
+        System.out.println("6. Show members in arrears");
+        System.out.println("9. Quit");
     }
 }
