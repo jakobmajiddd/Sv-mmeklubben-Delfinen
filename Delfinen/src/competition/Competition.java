@@ -14,7 +14,7 @@ public class Competition {
 
     private ArrayList<CompetitiveMember> competitors;
 
-    Competition(String date, String location, Discipline discipline) {
+    public Competition(String date, String location, Discipline discipline) {
         this.date = date;
         this.location = location;
         this.discipline = discipline;
