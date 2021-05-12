@@ -11,14 +11,18 @@ public class UI {
         System.out.println("Pleas try agein");
     }
 
-    public int getInput(){
+    public int getInputNumber(){
         int inputNumber = scan.nextInt();
         scan.nextLine();
         return inputNumber;
     }
+    public String getInputText(){
+        String inputText = scan.toString();
+        scan.nextLine();
+        return inputText;
+    }
 
     public String getMessege(String msg){
-        System.out.println(msg);
         return msg;
     }
 
