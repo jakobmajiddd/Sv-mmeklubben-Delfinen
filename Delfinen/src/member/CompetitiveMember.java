@@ -11,14 +11,14 @@ public class CompetitiveMember extends Member {
     private Discipline discipline;
 
 
-    CompetitiveMember(String name, int age, String email, String date, Coach coach, Competition nextCompetition, Discipline discipline) {
+    public CompetitiveMember(String name, int age, String email, String date, Coach coach, Competition nextCompetition, Discipline discipline) {
         super("cm", name, age, email, date);
         this.coach = coach;
         this.nextCompetition = nextCompetition;
         this.discipline = discipline;
     }
 
-    CompetitiveMember(String name, int age, String email, Coach coach, Competition nextCompetition, Discipline discipline) {
+    public CompetitiveMember(String name, int age, String email, Coach coach, Competition nextCompetition, Discipline discipline) {
         super("cm", name, age, email);
         this.coach = coach;
         this.nextCompetition = nextCompetition;
