@@ -50,4 +50,11 @@ public class UI {
         System.out.println("6. Show members in arrears");
         System.out.println("9. Quit");
     }
+    public void printCreatMemberMenu(){
+        System.out.println("What kind of menber would u like to create?");
+        System.out.println("1. Passiv member");
+        System.out.println("2. Fitness member");
+        System.out.println("3. Competitive member");
+        System.out.println("9. Go back");
+    }
 }
