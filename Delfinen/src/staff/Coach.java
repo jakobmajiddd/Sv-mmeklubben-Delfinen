@@ -1,5 +1,7 @@
 package staff;
 
+import competition.Competition;
+import competition.Discipline;
 import main.UI;
 
 public class Coach {
@@ -39,6 +41,16 @@ public class Coach {
           isRunning = false;
       }
     } while (isRunning);
+  }
+
+  public void addCompetition(){
+    String date = ui.getInputText();
+    String location = ui.getInputText();
+    Discipline discipline = ui.getInputNumber();
+
+    Competition competition1 = new Competition(date,location, Discipline.BUTTERFLY);
+
+
   }
 
 
