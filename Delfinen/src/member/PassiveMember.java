@@ -1,10 +1,12 @@
 package member;
 
-import java.util.Date;
-
 public class PassiveMember extends Member {
-    public PassiveMember(String name, int age, String email, Date date) {
+    public PassiveMember(String name, int age, String email, String date) {
         super("pm", name, age, email, date);
+    }
+
+    public PassiveMember(String name, int age, String email) {
+        super("pm", name, age, email);
     }
 
     @Override

@@ -1,19 +1,28 @@
 package member;
 
 import competition.Competition;
+import competition.Discipline;
 import staff.Coach;
-
-import java.util.Date;
 
 public class CompetitiveMember extends Member {
     private Coach coach;
     private double bestTime;
     private Competition nextCompetition;
+    private Discipline discipline;
 
-    CompetitiveMember(String name, int age, String email, String date, Coach coach, Competition nextCompetition) {
+
+    CompetitiveMember(String name, int age, String email, String date, Coach coach, Competition nextCompetition, Discipline discipline) {
         super("cm", name, age, email, date);
         this.coach = coach;
         this.nextCompetition = nextCompetition;
+        this.discipline = discipline;
+    }
+
+    CompetitiveMember(String name, int age, String email, Coach coach, Competition nextCompetition, Discipline discipline) {
+        super("cm", name, age, email);
+        this.coach = coach;
+        this.nextCompetition = nextCompetition;
+        this.discipline = discipline;
     }
 
     public double getBestTime() {
@@ -41,5 +50,9 @@ public class CompetitiveMember extends Member {
                 + "_" + getLastPaymentDate()
                 + "_" + coach.toString()
                 + "_" + nextCompetition;
+    }
+
+    public String toString() {
+        return getNAME() + ", " + "Best time: " + bestTime + ", " + coach;
     }
 }

@@ -1,10 +1,12 @@
 package member;
 
-import java.util.Date;
-
 public class FitnessMember extends Member {
     FitnessMember(String name, int age, String email, String date) {
         super("fm", name, age, email, date);
+    }
+
+    FitnessMember(String name, int age, String email) {
+        super("fm", name, age, email);
     }
 
     @Override

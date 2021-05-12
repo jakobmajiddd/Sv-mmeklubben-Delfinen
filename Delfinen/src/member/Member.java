@@ -14,14 +14,16 @@ public abstract class Member {
     private final String EMAIL;
     private String lastPaymentDate;
 
+    // sets lastPaymentDate to the date object was created.
     Member(String id, String name, int age, String email) {
         this.FILE_ID = id;
         this.NAME = name;
         this.AGE = age;
         this.EMAIL = email;
-        setDateToString();
+        setDateToday();
     }
 
+    // used when loading from file
     Member(String id, String name, int age, String email, String date) {
         this.FILE_ID = id;
         this.NAME = name;
@@ -32,7 +34,7 @@ public abstract class Member {
 
     public abstract String toFileFormat();
 
-    public void setDateToString() {
+    public void setDateToday() {
         DateFormat df = new SimpleDateFormat("d/MM/y");
         Date today = Calendar.getInstance().getTime();
         lastPaymentDate = df.format(today);
