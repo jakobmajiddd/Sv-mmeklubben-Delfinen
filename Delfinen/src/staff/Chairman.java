@@ -12,8 +12,10 @@ import java.util.ArrayList;
 
 
 public class Chairman {
+  String membershipType;
 
   UI ui = new UI();
+  Finance finance = new Finance();
   ArrayList<Member> members = new ArrayList<>();
 
 
@@ -42,18 +44,21 @@ public class Chairman {
 
   }
 
-  // Jakob
+  // Jakob & Silke
   public void createPassivMember() {
     String name = ui.getInputText();
     int age = ui.getInputNumber();
     String email = ui.getInputText();
+    this.membershipType = "passive membership"; //enum?
 
     members.add(new PassiveMember(name, age, email));
+
+    finance.sendReceiptPassive(name, email, membershipType);
 
 
   }
 
-  // Jakob
+  // Jakob & Silke
   public void createFitnessMember() {
     String name = ui.getInputText();
     int age = ui.getInputNumber();
@@ -61,16 +66,38 @@ public class Chairman {
 
     members.add(new FitnessMember(name, age, email));
 
+    if (age < 18) {
+      String membershipType = "junior membership";
+      finance.sendReceiptJunior(name, email, membershipType);
+    } if (age < 60) {
+      String membershipType = "discounted senior membership";
+      finance.sendReceiptDiscountedSenior(name, email, membershipType);
+    } else {
+      String membershipType = "senior";
+      finance.sendReceiptSenior(name, email, membershipType);
+    }
+
 
   }
 
-  // Jakob
+  // Jakob & Silke
   public void createCompetitiveMember() {
     String name = ui.getInputText();
     int age = ui.getInputNumber();
     String email = ui.getInputText();
 
-    members.add(new CompetitiveMember(name, age, email, new Coach(), new Competition("", "", Discipline.BACKCRAWL), Discipline.BACKCRAWL));
+    //members.add(new CompetitiveMember(name, age, email, new Coach(), new Competition("", "", Discipline.BACKCRAWL), Discipline.BACKCRAWL));
+
+    if (age < 18) {
+      String membershipType = "junior membership";
+      finance.sendReceiptJunior(name, email, membershipType);
+    } if (age < 60) {
+      String membershipType = "discounted senior membership";
+      finance.sendReceiptDiscountedSenior(name, email, membershipType);
+    } else {
+      String membershipType = "senior";
+      finance.sendReceiptSenior(name, email, membershipType);
+    }
 
   }
 

@@ -3,7 +3,7 @@ package staff;
 import competition.Discipline;
 import member.CompetitiveMember;
 
-public class TEST {
+public class TEST { /*
     public static void main(String[] args) {
         Coach coach = new Coach("martin");
         CompetitiveMember m = new CompetitiveMember("a",23,"s",Discipline.BACKCRAWL);
@@ -25,5 +25,5 @@ public class TEST {
         for (CompetitiveMember c : coach.studentsSorted()) {
             System.out.println(c.getBestTime());
         }
-    }
+    }*/
 }

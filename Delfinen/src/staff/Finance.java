@@ -1,33 +1,45 @@
 package staff;
 
 import main.Controller;
+import main.UI;
 import member.CompetitiveMember;
 import member.FitnessMember;
 import member.Member;
 import member.PassiveMember;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 // @author Silke
 public class Finance {
-
+  private int passiveSubscription = 500;
+  private int juniorSubscription = 1000;
+  private double seniorSubscription = 1600;
+  private double over60DiscountPercentage = 0.25;
   private double yearlyRevenue;
   private int passiveRevenue;
   private int juniorRevenue;
   private double seniorRevenue;
   private double seniorDiscountRevenue;
-  private double over60Subscription;
+  private double seniorDiscountedSubscription;
 
-  Accountant accountant = new Accountant();
+  private File RECEIPTFILE = new File("src/files/Receipt.txt");
+  private final LocalDateTime saleTime = LocalDateTime.now();
+  DateTimeFormatter timeformat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
   Controller controller = new Controller();
+  UI ui = new UI();
 
 
   public double over60Discount() {
-    double discount = accountant.getSeniorSubscription() * accountant.getOver60DiscountPercentage();
-    over60Subscription = accountant.getSeniorSubscription() - discount;
-    System.out.println(over60Subscription);
-    return over60Subscription;
+    double discount = seniorSubscription * over60DiscountPercentage;
+    seniorDiscountedSubscription = seniorSubscription - discount;
+    System.out.println(seniorDiscountedSubscription);
+    return seniorDiscountedSubscription;
   }
 
 
@@ -41,24 +53,24 @@ public class Finance {
 
     for (Member m : members) {
       if (m instanceof PassiveMember) {
-        passiveRevenue += accountant.getPassiveSubscription();
+        passiveRevenue += passiveSubscription;
         System.out.println(passiveRevenue);
       } else if (m instanceof FitnessMember) {
         if (m.getAGE() < 18) {
-          juniorRevenue += accountant.getJuniorSubscription();
+          juniorRevenue += juniorSubscription;
         } else if (m.getAGE() < 60) {
-          seniorDiscountRevenue += over60Subscription;
+          seniorDiscountRevenue += seniorDiscountedSubscription;
         } else {
-          seniorRevenue += accountant.getSeniorSubscription();
+          seniorRevenue += seniorSubscription;
         }
 
       } else if (m instanceof CompetitiveMember) {
         if (m.getAGE() < 18) {
-          juniorRevenue += accountant.getJuniorSubscription();
+          juniorRevenue += juniorSubscription;
         } else if (m.getAGE() < 60) {
-          seniorDiscountRevenue += over60Subscription;
+          seniorDiscountRevenue += seniorDiscountedSubscription;
         } else {
-          seniorRevenue += accountant.getSeniorSubscription();
+          seniorRevenue += seniorSubscription;
         }
       }
     }
@@ -87,13 +99,103 @@ public class Finance {
     System.out.println(seniorDiscountRevenue);
   }
 
-  public void sendReceipt() {
-    /*
-    opret fil
-    member prisen
-    dato (LocalDateTime + formattering)
-     */
+  public void sendReceiptPassive(String name, String email, String membershipType) {
+    try {
+      FileWriter fileWriter = new FileWriter(RECEIPTFILE);
+
+      fileWriter.write(
+          "\n------------------------------------"
+              + "Send to: "
+              + email
+              + "\nHello "
+              + name
+              + "\nFind in this email your receipt for a "
+              + membershipType
+              + "\nPrice: "
+              + passiveSubscription
+              + "\nTime of sale: "
+              + saleTime.format(timeformat)
+              + "\n------------------------------------"
+      );
+      fileWriter.close();
+    } catch (IOException e) {
+      ui.incoraktOption(); //måske lave om til decideret error-message
+    }
   }
+
+  public void sendReceiptJunior(String name, String email, String membershipType) {
+    try {
+      FileWriter fileWriter = new FileWriter(RECEIPTFILE);
+
+      fileWriter.write(
+          "\n------------------------------------"
+              + "Send to: "
+              + email
+              + "\nHello "
+              + name
+              + "\nFind in this email your receipt for a "
+              + membershipType
+              + "\nPrice: "
+              + juniorSubscription
+              + "\nTime of sale: "
+              + saleTime.format(timeformat)
+              + "\n------------------------------------"
+      );
+      fileWriter.close();
+    } catch (IOException e) {
+      ui.incoraktOption(); //måske lave om til decideret error-message
+    }
+  }
+  public void sendReceiptDiscountedSenior(String name, String email, String membershipType) {
+    try {
+      FileWriter fileWriter = new FileWriter(RECEIPTFILE);
+
+      fileWriter.write(
+          "\n------------------------------------"
+              + "Send to: "
+              + email
+              + "\nHello "
+              + name
+              + "\nFind in this email your receipt for a "
+              + membershipType
+              + "\nPrice: "
+              + seniorDiscountedSubscription
+              + "\nTime of sale: "
+              + saleTime.format(timeformat)
+              + "\n------------------------------------"
+      );
+      fileWriter.close();
+    } catch (IOException e) {
+      ui.incoraktOption(); //måske lave om til decideret error-message
+    }
+  }
+  public void sendReceiptSenior(String name, String email, String membershipType) {
+    try {
+      FileWriter fileWriter = new FileWriter(RECEIPTFILE);
+
+      fileWriter.write(
+          "\n------------------------------------"
+              + "Send to: "
+              + email
+              + "\nHello "
+              + name
+              + "\nFind in this email your receipt for a "
+              + membershipType
+              + "\nPrice: "
+              + seniorSubscription
+              + "\nTime of sale: "
+              + saleTime.format(timeformat)
+              + "\n------------------------------------"
+      );
+      fileWriter.close();
+    } catch (IOException e) {
+      ui.incoraktOption(); //måske lave om til decideret error-message
+    }
+  }
+}
+
+
+
 
 
  /* public void arrears() { //skal tage ArrayListen som parameter
@@ -103,4 +205,4 @@ public class Finance {
         //+ send betalingspåmindelse ? fra fil?
       }
     }*/
-}
+
