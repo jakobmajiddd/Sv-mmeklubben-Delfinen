@@ -1,14 +1,14 @@
 package staff;
 
+import main.UI;
 import member.Member;
-import member.PassiveMember;
-
 import java.util.ArrayList;
 import java.util.Date;
 
 
 public class Chairman {
 
+  UI ui = new UI();
   ArrayList<Member> members = new ArrayList<>();
 
   public void chairmanText(String text) {
@@ -19,11 +19,9 @@ public class Chairman {
     chairmanText ("1. Add member\n" +
         "2. Remove member\n" +
         "3. Edit member data\n" +
-        "4. Print list of members\n" +
-        "5. Log out\n");
+        "4. Print list of members\n");
+
   }
-
-
 
   // Jakob
   public void createMember() {
@@ -37,6 +35,7 @@ public class Chairman {
     int age;
     String email;
     Date date;
+
 
     // TODO Vent til UI er færdig
 
