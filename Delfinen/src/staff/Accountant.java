@@ -39,7 +39,7 @@ public class Accountant {
 
       ui.printFinanceMenu();
 
-      switch (ui.getInput()) {
+      switch (ui.getInputNumber()) {
 
         case 1:
           System.out.println("Yearly expected total revenue");

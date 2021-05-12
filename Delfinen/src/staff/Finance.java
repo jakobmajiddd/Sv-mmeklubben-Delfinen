@@ -35,8 +35,8 @@ public class Finance {
     over60Discount();
 
     ArrayList<Member> members = controller.getMembers();
-    members.add(new PassiveMember("Jens", 29, "jenner@gmail.com", new Date()));
-    members.add(new PassiveMember("Jakob", 21, "j@gmail.com", new Date()));
+    members.add(new PassiveMember("Jens", 29, "jenner@gmail.com"));
+    members.add(new PassiveMember("Jakob", 21, "j@gmail.com"));
 
 
     for (Member m : members) {
@@ -86,6 +86,15 @@ public class Finance {
     expectedRevenue();
     System.out.println(seniorDiscountRevenue);
   }
+
+  public void sendReceipt() {
+    /*
+    opret fil
+    member prisen
+    dato (LocalDateTime + formattering)
+     */
+  }
+
 
  /* public void arrears() { //skal tage ArrayListen som parameter
     for (int i = 0; i < controller.getMembers().size(); i++) {
