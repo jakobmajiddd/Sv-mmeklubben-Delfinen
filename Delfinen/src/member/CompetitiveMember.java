@@ -18,11 +18,13 @@ public class CompetitiveMember extends Member {
         this.discipline = discipline;
     }
 
-    public CompetitiveMember(String name, int age, String email, Coach coach, Competition nextCompetition, Discipline discipline) {
+    public CompetitiveMember(String name, int age, String email, Discipline discipline) {
         super("cm", name, age, email);
-        this.coach = coach;
-        this.nextCompetition = nextCompetition;
         this.discipline = discipline;
+    }
+
+    public void assignCoach(Coach coach) {
+        this.coach = coach;
     }
 
     public double getBestTime() {
