@@ -1,6 +1,7 @@
 package staff;
 
 import competition.Discipline;
+import main.Controller;
 import main.UI;
 import member.CompetitiveMember;
 import member.FitnessMember;
@@ -8,6 +9,7 @@ import member.Member;
 import member.PassiveMember;
 import java.util.ArrayList;
 
+// @author martin
 public class Chairman {
   private UI ui = new UI();
   public static ArrayList<Member> members = new ArrayList<>();
@@ -60,7 +62,14 @@ public class Chairman {
     }
     Discipline discipline = ui.getDiscipline(d);
 
-    members.add(new CompetitiveMember(name, age, email, discipline));
+    CompetitiveMember member = new CompetitiveMember(name, age, email, discipline);
+    members.add(member);
+
+    if (age >= 18) {
+      Controller.senior.addStudent(member);
+    } else {
+      Controller.junior.addStudent(member);
+    }
   }
 
   public void viewMembers() {

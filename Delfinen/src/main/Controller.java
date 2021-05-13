@@ -1,6 +1,8 @@
 package main;
 
+import competition.Team;
 import staff.Chairman;
+import staff.Coach;
 import staff.Finance;
 
 // @author Martin
@@ -8,6 +10,8 @@ public class Controller {
   UI ui = new UI();
   private Chairman chairman = new Chairman();
   private Finance finance = new Finance();
+  public static Team junior = new Team(new Coach("XD"), "Junior Team");
+  public static Team senior = new Team(new Coach("A1"), "Senior Team");
 
   public void run() {
     new Page();
@@ -22,10 +26,9 @@ public class Controller {
     switch (choice) {
       case 1 -> administrativeMenu();
       case 2 -> financeMenu();
-      case 3 -> System.out.println("test3");
-      case 9 -> ui.display("Quitting...");
+      case 3 -> competitiveMenu();
+      case 9 -> System.exit(0);
     }
-    System.out.println(Page.mainMenu);
   }
 
   public void administrativeMenu() {
@@ -64,7 +67,36 @@ public class Controller {
       case 1 -> chairman.createPassiveMember();
       case 2 -> chairman.createFitnessMember();
       case 3 -> chairman.createCompetitiveMember();
+      case 9 -> administrativeMenu();
+    }
+  }
+
+  public void competitiveMenu() {
+    ui.display("");
+    Page.competitiveMenu.printMenu();
+    int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
+
+    switch (choice) {
+      case 1 -> teamMenu(junior);
+      case 2 -> teamMenu(senior);
+      case 3 -> System.out.println(); // Competitions
       case 9 -> mainMenu();
     }
+  }
+
+  public void teamMenu(Team team) {
+    ui.display("");
+    ui.display(team.getTeamName() + " - Coach: " + team.getCoach().getName());
+    Page.teamMenu.printMenu();
+    int choice = UI.validateChoice(1, 4, 9, "Invalid input - Try again");
+
+    switch (choice) {
+      case 1 -> team.viewStudents();
+      case 2 -> team.topStudents(5);
+      case 3 -> team.assignToCompetition();
+      case 4 -> team.changeBestTime();
+      case 9 -> competitiveMenu();
+    }
+    teamMenu(team);
   }
 }

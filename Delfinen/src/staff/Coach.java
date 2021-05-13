@@ -1,15 +1,14 @@
 package staff;
 
-
-import competition.Team;
-
 public class Coach {
     private String name;
-    private Team team;
 
-    public Coach(String name, Team team) {
+    public Coach(String name) {
         this.name = name;
-        this.team = team;
+    }
+
+    public String getName() {
+        return name;
     }
 }
 

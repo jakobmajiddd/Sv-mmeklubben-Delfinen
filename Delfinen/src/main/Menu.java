@@ -17,7 +17,6 @@ public class Menu {
     for (String s : menuItems) {
      ui.display(s);
     }
-    ui.display(leadText);
+    ui.displayAppend(leadText);
   }
-
 }

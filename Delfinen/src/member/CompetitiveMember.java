@@ -6,7 +6,7 @@ import competition.Discipline;
 import staff.Coach;
 
 
-public class CompetitiveMember extends Member implements Comparable<CompetitiveMember> {
+public class CompetitiveMember extends Member {
     private Coach coach;
     private double bestTime;
     private Competition nextCompetition;
@@ -47,7 +47,7 @@ public class CompetitiveMember extends Member implements Comparable<CompetitiveM
 
     @Override
     public String toFileFormat() {
-        return getFILE_ID()
+        return  getFILE_ID()
                 + "_" + getNAME()
                 + "_" + getAGE()
                 + "_" + getEMAIL()
@@ -66,9 +66,10 @@ public class CompetitiveMember extends Member implements Comparable<CompetitiveM
                 + ", Coach: " + coach;
     }
 
-    @Override
-    public int compareTo(CompetitiveMember c) {
-        return Double.compare(c.getAGE(), getAGE());
+    public String competitiveStats() {
+        return    "ID: #" + getID()
+                + ", Name: " + getNAME()
+                + ", Discipline: " + discipline
+                + ", Best time: " + bestTime;
     }
 }
-
