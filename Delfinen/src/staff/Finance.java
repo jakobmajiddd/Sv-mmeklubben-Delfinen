@@ -44,7 +44,7 @@ public class Finance {
   public double expectedRevenue() {
     over60Discount();
 
-    ArrayList<Member> members = null; // controller.getMembers();
+    ArrayList<Member> members = Chairman.members;
     members.add(new PassiveMember("Jens", 29, "jenner@gmail.com"));
     members.add(new PassiveMember("Jakob", 21, "j@gmail.com"));
 

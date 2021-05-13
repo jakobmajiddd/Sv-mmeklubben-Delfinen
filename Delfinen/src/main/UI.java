@@ -1,5 +1,8 @@
 package main;
 // @author Alexander
+import competition.Discipline;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
@@ -34,6 +37,24 @@ public class UI {
     }
     public void display(int msg) {
         System.out.println(msg);
+    }
+
+    public Discipline getDiscipline(String input) {
+        switch (input) {
+            case "crawl" -> {
+                return Discipline.CRAWL;
+            }
+            case "backcrawl" -> {
+                return Discipline.BACKCRAWL;
+            }
+            case "butterfly" -> {
+                return Discipline.BUTTERFLY;
+            }
+            case "breaststroke" -> {
+                return Discipline.BREASTSTROKE;
+            }
+        }
+        return null;
     }
 
     public int getValidInt(String errorMsg) {

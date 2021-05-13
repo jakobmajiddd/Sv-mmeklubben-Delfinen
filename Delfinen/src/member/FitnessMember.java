@@ -2,11 +2,12 @@ package member;
 
 public class FitnessMember extends Member {
     public FitnessMember(String name, int age, String email) {
-        super("fm", name, age, email);
+        super("FM", name, age, email);
     }
 
+    // File loading
     public FitnessMember(int ID, String name, int age, String email, String date) {
-        super(ID, "fm", name, age, email, date);
+        super(ID, "FM", name, age, email, date);
     }
 
     @Override

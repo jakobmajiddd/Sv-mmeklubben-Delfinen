@@ -71,6 +71,6 @@ public abstract class Member {
     }
 
     public String toString() {
-        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + AGE + " - Last payment date: " + lastPaymentDate;
+        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + AGE + " - Last payment date: " + lastPaymentDate + " -> Type: " + FILE_ID;
     }
 }
