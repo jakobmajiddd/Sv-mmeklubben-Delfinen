@@ -1,9 +1,12 @@
 package main;
 
 import staff.Chairman;
+import staff.Finance;
 
+// @author Martin
 public class Controller {
   private Chairman chairman = new Chairman();
+  private Finance finance = new Finance();
 
   public void mainMenu() {
     String[] mainMenuItems = new String[4];
@@ -21,7 +24,7 @@ public class Controller {
       case 1 -> administrativeMenu();
       case 2 -> financeMenu();
       case 3 -> System.out.println("test3");
-      case 9 -> System.out.println("Quitting...");
+      case 9 -> System.exit(0);
     }
   }
 
@@ -48,9 +51,9 @@ public class Controller {
 
   public void financeMenu() {
     String[] financeMenuItems = new String[4];
-    financeMenuItems[0] = "1. View yearly revenue";
-    financeMenuItems[1] = "2. X";
-    financeMenuItems[2] = "3. Y";
+    financeMenuItems[0] = "1. View total yearly revenue";
+    financeMenuItems[1] = "2. View subtotal revenue from every member type";
+    financeMenuItems[2] = "3. View members with unpaid subscriptions";
     financeMenuItems[3] = "9. Back";
     Menu financeMenu = new Menu("Finance menu", "Choose: ", financeMenuItems);
 
@@ -59,9 +62,9 @@ public class Controller {
     int choice = Menu.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
-      case 1 -> System.out.println("test1");
-      case 2 -> System.out.println("test2");
-      case 3 -> System.out.println("test3");
+      case 1 -> finance.expectedRevenue();
+      case 2 -> finance.yearlySplitRevenue();
+      case 3 -> System.out.println();//finance.findUnpaidMembers();
       case 9 -> mainMenu();
     }
   }
