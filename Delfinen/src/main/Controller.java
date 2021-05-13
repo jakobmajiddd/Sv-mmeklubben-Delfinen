@@ -15,7 +15,7 @@ public class Controller {
 
     System.out.println();
     mainMenu.printMenu();
-    int choice = Menu.validateChoice(1, 3, 9, "Invalid input - Try again");
+    int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> administrativeMenu();
@@ -35,7 +35,7 @@ public class Controller {
 
     System.out.println();
     adminMenu.printMenu();
-    int choice = Menu.validateChoice(1, 3, 9, "Invalid input - Try again");
+    int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> memberCreationMenu();
@@ -56,7 +56,7 @@ public class Controller {
 
     System.out.println();
     financeMenu.printMenu();
-    int choice = Menu.validateChoice(1, 3, 9, "Invalid input - Try again");
+    int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> System.out.println("test1");
@@ -76,7 +76,7 @@ public class Controller {
 
     System.out.println();
     memberCreationMenu.printMenu();
-    int choice = Menu.validateChoice(1, 3, 9, "Invalid input - Try again");
+    int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> chairman.createPassiveMember();

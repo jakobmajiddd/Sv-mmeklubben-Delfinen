@@ -16,7 +16,7 @@ public class Accountant {
     do {
       isRunning = true;
 
-      ui.printFinanceMenu();
+      //ui.printFinanceMenu();
 
       switch (ui.getInputNumber()) {
 

@@ -97,6 +97,7 @@ import java.util.ArrayList;
 
 
 public class Chairman {
+  UI ui = new UI();
   ArrayList<Member> members = new ArrayList<>();
 
   public FitnessMember createFitnessMember() {
@@ -113,7 +114,7 @@ public class Chairman {
 
   public void viewMembers() {
     for (Member m: members) {
-      System.out.println(m.toString());
+      ui.getMessege(m.toString());
     }
   }
 
@@ -127,7 +128,7 @@ public class Chairman {
   }
 
   public void removeMember() {
-    int id = Menu.getValidInt("Invalid input - Try again");
+    int id = UI.getValidInt("Invalid input - Try again");
     if (inMembersList(id)) {
       for (Member m : members) {
         if (m.getID() == id) {
@@ -136,7 +137,7 @@ public class Chairman {
         }
       }
     } else {
-      System.out.println("No member with the ID #" + id + " was found.");
+      ui.getMessege("No member with the ID #" + id + " was found.");
     }
   }
 }
