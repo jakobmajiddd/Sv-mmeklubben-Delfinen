@@ -1,8 +1,10 @@
 package member;
 
+
 import competition.Competition;
 import competition.Discipline;
 import staff.Coach;
+
 
 public class CompetitiveMember extends Member {
     private Coach coach;
@@ -10,16 +12,15 @@ public class CompetitiveMember extends Member {
     private Competition nextCompetition;
     private Discipline discipline;
 
-
-    public CompetitiveMember(String name, int age, String email, String date, Coach coach, Competition nextCompetition, Discipline discipline) {
-        super("cm", name, age, email, date);
-        this.coach = coach;
-        this.nextCompetition = nextCompetition;
+    public CompetitiveMember(String name, int age, String email, Discipline discipline) {
+        super("cm", name, age, email);
         this.discipline = discipline;
     }
 
-    public CompetitiveMember(String name, int age, String email, Discipline discipline) {
-        super("cm", name, age, email);
+    public CompetitiveMember(int ID, String name, int age, String email, String date, Coach coach, Competition nextCompetition, Discipline discipline) {
+        super(ID, "cm", name, age, email, date);
+        this.coach = coach;
+        this.nextCompetition = nextCompetition;
         this.discipline = discipline;
     }
 
@@ -58,3 +59,4 @@ public class CompetitiveMember extends Member {
         return getNAME() + ", " + "Best time: " + bestTime + ", " + coach;
     }
 }
+
