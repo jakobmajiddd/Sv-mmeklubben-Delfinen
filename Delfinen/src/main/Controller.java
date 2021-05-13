@@ -9,40 +9,28 @@ public class Controller {
   private Chairman chairman = new Chairman();
   private Finance finance = new Finance();
 
-  public void mainMenu() {
-    String[] mainMenuItems = new String[4];
-    mainMenuItems[0] = "1. Administrative";
-    mainMenuItems[1] = "2. Finance";
-    mainMenuItems[2] = "3. Competitions";
-    mainMenuItems[3] = "9. Quit";
-    Menu mainMenu = new Menu("Main menu", "Choose: ", mainMenuItems);
+  public void run() {
+    new Page();
+    mainMenu();
+  }
 
+  public void mainMenu() {
     ui.display("");
-    mainMenu.printMenu();
+    Page.mainMenu.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> administrativeMenu();
       case 2 -> financeMenu();
       case 3 -> System.out.println("test3");
-      case 9 -> {
-        ui.display("Quitting...");
-        break;
-      }
+      case 9 -> ui.display("Quitting...");
     }
-    System.out.println("TEST!!");
+    System.out.println(Page.mainMenu);
   }
 
   public void administrativeMenu() {
-    String[] adminMenuItems = new String[4];
-    adminMenuItems[0] = "1. Add member";
-    adminMenuItems[1] = "2. Remove member";
-    adminMenuItems[2] = "3. Show members";
-    adminMenuItems[3] = "9. Back";
-    Menu adminMenu = new Menu("Admin menu", "Choose: ", adminMenuItems);
-
     ui.display("");
-    adminMenu.printMenu();
+    Page.adminMenu.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
@@ -55,15 +43,8 @@ public class Controller {
   }
 
   public void financeMenu() {
-    String[] financeMenuItems = new String[4];
-    financeMenuItems[0] = "1. View total yearly revenue";
-    financeMenuItems[1] = "2. View subtotal revenue from every member type";
-    financeMenuItems[2] = "3. View members with unpaid subscriptions";
-    financeMenuItems[3] = "9. Back";
-    Menu financeMenu = new Menu("Finance menu", "Choose: ", financeMenuItems);
-
     ui.display("");
-    financeMenu.printMenu();
+    Page.financeMenu.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
@@ -75,15 +56,8 @@ public class Controller {
   }
 
   public void memberCreationMenu() {
-    String[] memberCreationItems = new String[4];
-    memberCreationItems[0] = "1. Passive member";
-    memberCreationItems[1] = "2. Fitness member";
-    memberCreationItems[2] = "3. Competitive member";
-    memberCreationItems[3] = "9. Back";
-    Menu memberCreationMenu = new Menu("Creation menu", "Choose: ", memberCreationItems);
-
     ui.display("");
-    memberCreationMenu.printMenu();
+    Page.memberCreationMenu.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
