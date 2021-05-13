@@ -24,8 +24,12 @@ public class Controller {
       case 1 -> administrativeMenu();
       case 2 -> financeMenu();
       case 3 -> System.out.println("test3");
-      case 9 -> System.exit(0);
+      case 9 -> {
+        System.out.println("Quitting...");
+        break;
+      }
     }
+    System.out.println("TEST!!");
   }
 
   public void administrativeMenu() {
