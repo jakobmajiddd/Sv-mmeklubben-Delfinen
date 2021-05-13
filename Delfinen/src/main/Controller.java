@@ -3,6 +3,7 @@ package main;
 import staff.Chairman;
 
 public class Controller {
+  UI ui = new UI();
   private Chairman chairman = new Chairman();
 
   public void mainMenu() {
@@ -13,7 +14,7 @@ public class Controller {
     mainMenuItems[3] = "9. Quit";
     Menu mainMenu = new Menu("Main menu", "Choose: ", mainMenuItems);
 
-    System.out.println();
+    ui.display("");
     mainMenu.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
@@ -33,7 +34,7 @@ public class Controller {
     adminMenuItems[3] = "9. Back";
     Menu adminMenu = new Menu("Admin menu", "Choose: ", adminMenuItems);
 
-    System.out.println();
+    ui.display("");
     adminMenu.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
@@ -54,7 +55,7 @@ public class Controller {
     financeMenuItems[3] = "9. Back";
     Menu financeMenu = new Menu("Finance menu", "Choose: ", financeMenuItems);
 
-    System.out.println();
+    ui.display("");
     financeMenu.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
@@ -74,7 +75,7 @@ public class Controller {
     memberCreationItems[3] = "9. Back";
     Menu memberCreationMenu = new Menu("Creation menu", "Choose: ", memberCreationItems);
 
-    System.out.println();
+    ui.display("");
     memberCreationMenu.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 

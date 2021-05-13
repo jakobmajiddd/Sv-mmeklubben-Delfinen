@@ -22,9 +22,21 @@ public class UI {
         return inputText;
     }
 
-    public String getMessege(String msg){
+    public String getMessage(String msg){
         return msg;
     }
+
+    public void display(String msg){
+        System.out.println(msg);
+    }
+    public void display(double msg) {
+        System.out.println(msg);
+    }
+    public void display(int msg) {
+        System.out.println(msg);
+    }
+
+
 
 
 

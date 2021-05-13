@@ -1,8 +1,5 @@
 package staff;
 
-import competition.Competition;
-import competition.Discipline;
-import main.Menu;
 import main.UI;
 import member.CompetitiveMember;
 import member.FitnessMember;
@@ -114,7 +111,7 @@ public class Chairman {
 
   public void viewMembers() {
     for (Member m: members) {
-      ui.getMessege(m.toString());
+      ui.display(m.toString());
     }
   }
 
@@ -137,7 +134,7 @@ public class Chairman {
         }
       }
     } else {
-      ui.getMessege("No member with the ID #" + id + " was found.");
+      ui.display("No member with the ID #" + id + " was found.");
     }
   }
 }

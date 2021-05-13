@@ -75,7 +75,7 @@ public class Finance {
       }
     }
     yearlyRevenue = passiveRevenue + juniorRevenue + seniorRevenue + seniorDiscountRevenue;
-    System.out.println(yearlyRevenue);
+    ui.display(yearlyRevenue);
     return yearlyRevenue;
   }
 

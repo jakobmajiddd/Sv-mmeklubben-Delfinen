@@ -1,7 +1,5 @@
 package main;
 
-import java.util.Scanner;
-
 public class Menu {
   UI ui = new UI();
   private String menuHeader;
@@ -15,11 +13,11 @@ public class Menu {
   }
 
   public void printMenu() {
-    ui.getMessege(menuHeader);
+    ui.display(menuHeader);
     for (String s : menuItems) {
-     ui.getMessege(s);
+     ui.display(s);
     }
-    ui.getMessege(leadText);
+    ui.display(leadText);
   }
 
 }
