@@ -81,10 +81,10 @@ public class Finance {
 
   public void yearlySplitRevenue() {
     expectedRevenue();
-    System.out.println("Yearly total revenue for passive members: " + passiveRevenue);
-    System.out.println("Yearly total revenue for junior members: " + juniorRevenue);
-    System.out.println("Yearly total revenue for senior members: " + seniorRevenue);
-    System.out.println("Yearly total revenue for senior discounted members: " + seniorDiscountRevenue);
+    ui.display("Yearly total revenue for passive members: " + passiveRevenue);
+    ui.display("Yearly total revenue for junior members: " + juniorRevenue);
+    ui.display("Yearly total revenue for senior members: " + seniorRevenue);
+    ui.display("Yearly total revenue for senior discounted members: " + seniorDiscountRevenue);
   }
 /*
   public void yearlyJuniorRevenue() {

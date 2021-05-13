@@ -26,7 +26,7 @@ public class Controller {
       case 2 -> financeMenu();
       case 3 -> System.out.println("test3");
       case 9 -> {
-        System.out.println("Quitting...");
+        ui.display("Quitting...");
         break;
       }
     }
