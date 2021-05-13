@@ -5,30 +5,30 @@ import java.util.Scanner;
 public class UI {
     Scanner scan = new Scanner(System.in);
 
-
-    public void incoraktOption(){
+    public void incorrectOption(){
         System.out.println("Not a vailed number/command");
         System.out.println("Pleas try agein");
     }
 
-    public int getInputNumber(){
-        int inputNumber = scan.nextInt();
-        scan.nextLine();
-        return inputNumber;
+    public int getInt(){
+        return scan.nextInt();
     }
-    public String getInputText(){
-        String inputText = scan.toString();
-        scan.nextLine();
-        return inputText;
+    public String getString(){
+        return scan.nextLine();
     }
 
     public String getMessage(String msg){
         return msg;
     }
 
+    public void displayAppend(String msg){
+        System.out.print(msg);
+    }
+
     public void display(String msg){
         System.out.println(msg);
     }
+
     public void display(double msg) {
         System.out.println(msg);
     }
@@ -36,11 +36,7 @@ public class UI {
         System.out.println(msg);
     }
 
-
-
-
-
-    public static int getValidInt(String errorMsg) {
+    public int getValidInt(String errorMsg) {
         Scanner in = new Scanner(System.in);
 
         boolean valid = false;

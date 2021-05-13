@@ -1,6 +1,5 @@
 package staff;
 
-import main.Controller;
 import main.UI;
 import member.CompetitiveMember;
 import member.FitnessMember;
@@ -31,7 +30,6 @@ public class Finance {
   private final LocalDateTime saleTime = LocalDateTime.now();
   DateTimeFormatter timeformat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-  Controller controller = new Controller();
   UI ui = new UI();
 
 
@@ -122,7 +120,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incoraktOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
@@ -146,7 +144,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incoraktOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
   public void sendReceiptDiscountedSenior(String name, String email, String membershipType) {
@@ -169,7 +167,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incoraktOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
   public void sendReceiptSenior(String name, String email, String membershipType) {
@@ -192,7 +190,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incoraktOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 }

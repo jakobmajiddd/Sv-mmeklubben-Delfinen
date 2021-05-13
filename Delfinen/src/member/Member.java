@@ -35,7 +35,7 @@ public abstract class Member {
         this.AGE = age;
         this.EMAIL = email;
         this.lastPaymentDate = date;
-
+        count++;
     }
 
     public abstract String toFileFormat();
@@ -68,5 +68,9 @@ public abstract class Member {
 
     public int getID() {
         return ID;
+    }
+
+    public String toString() {
+        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + AGE + " - Last payment date: " + lastPaymentDate;
     }
 }

@@ -97,8 +97,16 @@ public class Chairman {
   UI ui = new UI();
   ArrayList<Member> members = new ArrayList<>();
 
-  public FitnessMember createFitnessMember() {
-    return null;
+  public void createFitnessMember() {
+    ui.displayAppend("Name: ");
+    String name = ui.getString();
+
+    ui.displayAppend("Age: ");
+    int age = ui.getValidInt("Invalid");
+
+    ui.displayAppend("Email: ");
+    String email = ui.getString();
+    members.add(new FitnessMember(name, age, email));
   }
 
   public PassiveMember createPassiveMember() {
@@ -110,8 +118,12 @@ public class Chairman {
   }
 
   public void viewMembers() {
-    for (Member m: members) {
-      ui.display(m.toString());
+    if (members.size() > 0) {
+      for (Member m : members) {
+        ui.display(m.toString());
+      }
+    } else {
+      ui.display("There are currently 0 members.");
     }
   }
 
@@ -125,7 +137,7 @@ public class Chairman {
   }
 
   public void removeMember() {
-    int id = UI.getValidInt("Invalid input - Try again");
+    int id = ui.getValidInt("Invalid input - Try again");
     if (inMembersList(id)) {
       for (Member m : members) {
         if (m.getID() == id) {
