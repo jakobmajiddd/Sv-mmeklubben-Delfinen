@@ -79,11 +79,14 @@ public class Finance {
     return yearlyRevenue;
   }
 
-  public void yearlyPassiveRevenue() {
+  public void yearlySplitRevenue() {
     expectedRevenue();
-    System.out.println(passiveRevenue);
+    System.out.println("Yearly total revenue for passive members: " + passiveRevenue);
+    System.out.println("Yearly total revenue for junior members: " + juniorRevenue);
+    System.out.println("Yearly total revenue for senior members: " + seniorRevenue);
+    System.out.println("Yearly total revenue for senior discounted members: " + seniorDiscountRevenue);
   }
-
+/*
   public void yearlyJuniorRevenue() {
     expectedRevenue();
     System.out.println(juniorRevenue);
@@ -97,7 +100,7 @@ public class Finance {
   public void yearlySeniorDiscountRevenue() {
     expectedRevenue();
     System.out.println(seniorDiscountRevenue);
-  }
+  }*/
 
   public void sendReceiptPassive(String name, String email, String membershipType) {
     try {

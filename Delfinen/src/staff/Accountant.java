@@ -24,14 +24,8 @@ public class Accountant {
           finance.expectedRevenue();
           break;
         case 2:
-          finance.yearlyPassiveRevenue();
+          finance.yearlySplitRevenue();
           break;
-        case 3:
-          finance.yearlyJuniorRevenue();
-        case 4:
-          finance.yearlySeniorRevenue();
-        case 5:
-          finance.yearlySeniorDiscountRevenue();
         case 6:
           System.out.println("Show members in arrears");
           //TO DO
