@@ -2,12 +2,12 @@ package competition;
 
 import main.UI;
 import member.CompetitiveMember;
-import member.Member;
 import staff.Coach;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
+// @author
 public class Team {
     private UI ui = new UI();
     private String teamName;
@@ -24,6 +24,7 @@ public class Team {
     }
 
     public void viewStudents() {
+        ui.display("");
         if (students.size() > 0) {
             sortByID();
             for (CompetitiveMember c : students) {
@@ -42,22 +43,55 @@ public class Team {
         students.sort(Comparator.comparingDouble(CompetitiveMember::getID));
     }
 
+    public int occurrenceOfDiscipline(Discipline discipline) {
+        int count = 0;
+        for (CompetitiveMember student : students) {
+            if (student.getDiscipline().equals(discipline)) {
+                count ++;
+            }
+        }
+        return count;
+    }
+
     public void topStudents(int range) {
+        Discipline[] disciplines = {Discipline.CRAWL, Discipline.BUTTERFLY, Discipline.BACKCRAWL, Discipline.BREASTSTROKE};
+        int count = 0;
+
+        ui.display("");
         if (students.size() > 0) {
             sortByTime();
-            if (students.size() >= range) {
-                for (int i = 0; i < range; i++) {
-                    ui.display(students.get(i).competitiveStats());
+            for (Discipline discipline : disciplines) {
+                ui.display(discipline.toString() + ":");
+                if (occurrenceOfDiscipline(discipline) > range) {
+                    for (CompetitiveMember student : students) {
+                        if (student.getDiscipline().equals(discipline)) {
+                            ui.display(student.competitiveStats());
+                            count++;
+                            if (count == range) {
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    for (CompetitiveMember student : students) {
+                        if (student.getDiscipline().equals(discipline)) {
+                            ui.display(student.competitiveStats());
+                            count++;
+                            if (count == occurrenceOfDiscipline(discipline)) {
+                                break;
+                            }
+                        }
+                    }
                 }
-            } else {
-                for (CompetitiveMember student : students) {
-                    ui.display(student.competitiveStats());
-                }
+                ui.display("");
+                count = 0;
             }
         } else {
             ui.display("There are no members on this team");
         }
     }
+
+
 
     public boolean inStudentsList(int id) {
         for (CompetitiveMember c : students) {
@@ -69,7 +103,7 @@ public class Team {
     }
 
     public void changeBestTime() {
-        ui.displayAppend("New best time: ");
+        ui.displayAppend("Student ID: ");
         int id = ui.getValidInt("Invalid input - Try again");
         if (inStudentsList(id)) {
             for (CompetitiveMember c : students) {

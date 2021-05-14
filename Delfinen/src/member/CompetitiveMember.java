@@ -3,11 +3,12 @@ package member;
 
 import competition.Competition;
 import competition.Discipline;
+import competition.Team;
 import staff.Coach;
 
 
 public class CompetitiveMember extends Member {
-    private Coach coach;
+    private Team team;
     private double bestTime;
     private Competition nextCompetition;
     private Discipline discipline;
@@ -18,15 +19,14 @@ public class CompetitiveMember extends Member {
     }
 
     // File loading
-    public CompetitiveMember(int ID, String name, int age, String email, String date, Coach coach, Competition nextCompetition, Discipline discipline) {
+    public CompetitiveMember(int ID, String name, int age, String email, String date, Competition nextCompetition, Discipline discipline) {
         super(ID, "CM", name, age, email, date);
-        this.coach = coach;
         this.nextCompetition = nextCompetition;
         this.discipline = discipline;
     }
 
-    public void assignCoach(Coach coach) {
-        this.coach = coach;
+    public void assignTeam(Team team) {
+        this.team = team;
     }
 
     public double getBestTime() {
@@ -45,25 +45,28 @@ public class CompetitiveMember extends Member {
         this.nextCompetition = nextCompetition;
     }
 
+    public Discipline getDiscipline() {
+        return discipline;
+    }
+
     @Override
     public String toFileFormat() {
         return  getFILE_ID()
                 + "_" + getNAME()
-                + "_" + getAGE()
+                + "_" + getAge()
                 + "_" + getEMAIL()
                 + "_" + getLastPaymentDate()
-                + "_" + coach.toString()
                 + "_" + nextCompetition;
     }
 
     public String toString() {
         return    "ID: #" + getID()
                 + ", Name: " + getNAME()
-                + ", Age: " + getAGE()
+                + ", Age: " + getAge()
                 + " - Last payment date: " + getLastPaymentDate()
                 + " -> Type: " + getFILE_ID()
                 + ", Discipline: " + discipline
-                + ", Coach: " + coach;
+                + ", Team: " + team.getTeamName();
     }
 
     public String competitiveStats() {

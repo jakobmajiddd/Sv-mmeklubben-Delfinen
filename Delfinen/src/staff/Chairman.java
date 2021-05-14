@@ -14,6 +14,7 @@ public class Chairman {
   private UI ui = new UI();
   public static ArrayList<Member> members = new ArrayList<>();
 
+
   public void createFitnessMember() {
     ui.displayAppend("Name: ");
     String name = ui.getString();
@@ -62,13 +63,16 @@ public class Chairman {
     }
     Discipline discipline = ui.getDiscipline(d);
 
+
     CompetitiveMember member = new CompetitiveMember(name, age, email, discipline);
     members.add(member);
 
     if (age >= 18) {
       Controller.senior.addStudent(member);
+      member.assignTeam(Controller.senior);
     } else {
       Controller.junior.addStudent(member);
+      member.assignTeam(Controller.junior);
     }
   }
 

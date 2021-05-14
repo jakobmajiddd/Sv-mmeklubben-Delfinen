@@ -54,18 +54,18 @@ public class Finance {
         passiveRevenue += passiveSubscription;
         System.out.println(passiveRevenue);
       } else if (m instanceof FitnessMember) {
-        if (m.getAGE() < 18) {
+        if (m.getAge() < 18) {
           juniorRevenue += juniorSubscription;
-        } else if (m.getAGE() < 60) {
+        } else if (m.getAge() < 60) {
           seniorDiscountRevenue += seniorDiscountedSubscription;
         } else {
           seniorRevenue += seniorSubscription;
         }
 
       } else if (m instanceof CompetitiveMember) {
-        if (m.getAGE() < 18) {
+        if (m.getAge() < 18) {
           juniorRevenue += juniorSubscription;
-        } else if (m.getAGE() < 60) {
+        } else if (m.getAge() < 60) {
           seniorDiscountRevenue += seniorDiscountedSubscription;
         } else {
           seniorRevenue += seniorSubscription;

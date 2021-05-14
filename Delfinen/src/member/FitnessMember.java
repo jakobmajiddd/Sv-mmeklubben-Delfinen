@@ -14,7 +14,7 @@ public class FitnessMember extends Member {
     public String toFileFormat() {
         return getFILE_ID()
                 + "_" + getNAME()
-                + "_" + getAGE()
+                + "_" + getAge()
                 + "_" + getEMAIL()
                 + "_" + getLastPaymentDate();
     }

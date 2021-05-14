@@ -10,17 +10,17 @@ import java.util.Date;
 public abstract class Member {
     private final String FILE_ID;
     private final String NAME;
-    private final int AGE;
+    private int age;
     private final String EMAIL;
     private String lastPaymentDate;
-    private int ID = count;
+    private final int ID;
     private static int count;
 
     // sets lastPaymentDate to the date object was created.
     Member(String fileID, String name, int age, String email) {
         this.FILE_ID = fileID;
         this.NAME = name;
-        this.AGE = age;
+        this.age = age;
         this.EMAIL = email;
         setDateToday();
         count++;
@@ -32,7 +32,7 @@ public abstract class Member {
         this.ID = ID;
         this.FILE_ID = fileID;
         this.NAME = name;
-        this.AGE = age;
+        this.age = age;
         this.EMAIL = email;
         this.lastPaymentDate = date;
         count++;
@@ -54,8 +54,8 @@ public abstract class Member {
         return NAME;
     }
 
-    public int getAGE() {
-        return AGE;
+    public int getAge() {
+        return age;
     }
 
     public String getEMAIL() {
@@ -71,6 +71,6 @@ public abstract class Member {
     }
 
     public String toString() {
-        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + AGE + " - Last payment date: " + lastPaymentDate + " -> Type: " + FILE_ID;
+        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + age + " - Last payment date: " + lastPaymentDate + " -> Type: " + FILE_ID;
     }
 }
