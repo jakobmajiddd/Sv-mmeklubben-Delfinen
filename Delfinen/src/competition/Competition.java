@@ -5,6 +5,10 @@ import member.CompetitiveMember;
 
 import java.util.ArrayList;
 
+/**
+ * @author Martin
+ */
+
 public class Competition {
     private String date;
     private String location;

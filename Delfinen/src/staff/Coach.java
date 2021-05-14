@@ -1,5 +1,9 @@
 package staff;
 
+/**
+ * @author Martin
+ */
+
 public class Coach {
     private String name;
 

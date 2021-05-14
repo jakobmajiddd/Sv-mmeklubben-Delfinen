@@ -1,5 +1,9 @@
 package member;
 
+/**
+ * @author Martin
+ */
+
 public class FitnessMember extends Member {
     public FitnessMember(String name, int age, String email) {
         super("FM", name, age, email);

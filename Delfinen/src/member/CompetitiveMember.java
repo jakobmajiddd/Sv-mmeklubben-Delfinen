@@ -6,6 +6,9 @@ import competition.Discipline;
 import competition.Team;
 import staff.Coach;
 
+/**
+ * @author Martin
+ */
 
 public class CompetitiveMember extends Member {
     private Team team;

@@ -9,7 +9,10 @@ import member.Member;
 import member.PassiveMember;
 import java.util.ArrayList;
 
-// @author martin
+/**
+ * @author Martin
+ */
+
 public class Chairman {
   private UI ui = new UI();
   public static ArrayList<Member> members = new ArrayList<>();

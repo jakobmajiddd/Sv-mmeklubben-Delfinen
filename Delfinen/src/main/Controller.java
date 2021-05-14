@@ -6,7 +6,10 @@ import staff.Chairman;
 import staff.Coach;
 import staff.Finance;
 
-// @author Martin
+/**
+ * @author Martin
+ */
+
 public class Controller {
   UI ui = new UI();
   private Chairman chairman = new Chairman();

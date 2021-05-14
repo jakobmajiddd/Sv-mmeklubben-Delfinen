@@ -1,6 +1,8 @@
 package member;
 
-// @author Martin
+/**
+ * @author Martin
+ */
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

@@ -7,7 +7,10 @@ import staff.Coach;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-// @author
+/**
+ * @author Martin
+ */
+
 public class Team {
     private UI ui = new UI();
     private String teamName;

@@ -1,5 +1,9 @@
 package main;
 
+/**
+ * @author Martin
+ */
+
 public class Page {
     public static Menu mainMenu;
     public static Menu adminMenu;

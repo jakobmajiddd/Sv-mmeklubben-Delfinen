@@ -1,5 +1,9 @@
 package member;
 
+/**
+ * @author Martin
+ */
+
 public class PassiveMember extends Member {
     public PassiveMember(String name, int age, String email) {
         super("PM", name, age, email);
