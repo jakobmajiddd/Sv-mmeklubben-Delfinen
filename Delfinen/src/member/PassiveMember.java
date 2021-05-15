@@ -20,6 +20,6 @@ public class PassiveMember extends Member {
                 + "_" + getNAME()
                 + "_" + getAge()
                 + "_" + getEMAIL()
-                + "_" + getDate();
+                + "_" + dateFormatted();
     }
 }

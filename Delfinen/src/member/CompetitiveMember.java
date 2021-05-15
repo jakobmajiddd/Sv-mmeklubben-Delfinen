@@ -58,7 +58,7 @@ public class CompetitiveMember extends Member {
                 + "_" + getNAME()
                 + "_" + getAge()
                 + "_" + getEMAIL()
-                + "_" + getDate()
+                + "_" + dateFormatted()
                 + "_" + nextCompetition;
     }
 

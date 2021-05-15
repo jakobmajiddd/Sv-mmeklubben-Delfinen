@@ -20,6 +20,6 @@ public class FitnessMember extends Member {
                 + "_" + getNAME()
                 + "_" + getAge()
                 + "_" + getEMAIL()
-                + "_" + getDate();
+                + "_" + dateFormatted();
     }
 }
