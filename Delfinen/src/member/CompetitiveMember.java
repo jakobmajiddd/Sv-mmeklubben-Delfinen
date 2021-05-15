@@ -58,7 +58,7 @@ public class CompetitiveMember extends Member {
                 + "_" + getNAME()
                 + "_" + getAge()
                 + "_" + getEMAIL()
-                + "_" + getLastPaymentDate()
+                + "_" + getDate()
                 + "_" + nextCompetition;
     }
 
@@ -66,7 +66,7 @@ public class CompetitiveMember extends Member {
         return    "ID: #" + getID()
                 + ", Name: " + getNAME()
                 + ", Age: " + getAge()
-                + " - Last payment date: " + getLastPaymentDate()
+                + " - Last payment date: " + getDate()
                 + " -> Type: " + getFILE_ID()
                 + ", Discipline: " + discipline
                 + ", Team: " + team.getTeamName();

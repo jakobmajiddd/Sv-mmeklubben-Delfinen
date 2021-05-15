@@ -1,6 +1,5 @@
 package main;
 
-import competition.Discipline;
 import competition.Team;
 import staff.Chairman;
 import staff.Coach;

@@ -5,6 +5,7 @@ package member;
  */
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,7 +15,7 @@ public abstract class Member {
     private final String NAME;
     private int age;
     private final String EMAIL;
-    private String lastPaymentDate;
+    private Date date;
     private final int ID;
     private static int count;
 
@@ -24,7 +25,7 @@ public abstract class Member {
         this.NAME = name;
         this.age = age;
         this.EMAIL = email;
-        setDateToday();
+        this.date = Calendar.getInstance().getTime();
         count++;
         ID = count;
     }
@@ -36,16 +37,23 @@ public abstract class Member {
         this.NAME = name;
         this.age = age;
         this.EMAIL = email;
-        this.lastPaymentDate = date;
+        this.date = convertStringToDate(date);
         count++;
     }
 
     public abstract String toFileFormat();
 
-    public void setDateToday() {
+    public String dateFormatted() {
         DateFormat df = new SimpleDateFormat("d/MM/y");
-        Date today = Calendar.getInstance().getTime();
-        lastPaymentDate = df.format(today);
+        return df.format(date);
+    }
+
+    public Date convertStringToDate(String sDate) {
+        try {
+            return new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
+        } catch (ParseException e) {
+            return Calendar.getInstance().getTime();
+        }
     }
 
     public String getFILE_ID() {
@@ -64,8 +72,8 @@ public abstract class Member {
         return EMAIL;
     }
 
-    public String getLastPaymentDate() {
-        return lastPaymentDate;
+    public Date getDate() {
+        return date;
     }
 
     public int getID() {
@@ -73,6 +81,6 @@ public abstract class Member {
     }
 
     public String toString() {
-        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + age + " - Last payment date: " + lastPaymentDate + " -> Type: " + FILE_ID;
+        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + age + " - Last payment date: " + dateFormatted() + " -> Type: " + FILE_ID;
     }
 }
