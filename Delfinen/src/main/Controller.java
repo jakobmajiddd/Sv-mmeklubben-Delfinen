@@ -19,11 +19,6 @@ public class Controller {
   public static Team junior = new Team(new Coach("XD"), "Junior Team");
   public static Team senior = new Team(new Coach("A1"), "Senior Team");
 
-  public void run() {
-    new Page();
-    mainMenu();
-  }
-
   public void mainMenu() {
     ui.display("");
     Page.mainMenu.printMenu();
