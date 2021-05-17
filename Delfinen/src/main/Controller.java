@@ -1,6 +1,7 @@
 package main;
 
 import competition.Competition;
+import competition.Discipline;
 import competition.Team;
 import staff.Chairman;
 import staff.Coach;
@@ -14,7 +15,7 @@ public class Controller {
   UI ui = new UI();
   private Chairman chairman = new Chairman();
   private Finance finance = new Finance();
-  private Competition competition = new Competition(ui.getString(), ui.getString(), ui.getDiscipline(ui.getString()));
+  private Competition competition = new Competition( "", "", Discipline.BACKCRAWL);
   public static Team junior = new Team(new Coach("XD"), "Junior Team");
   public static Team senior = new Team(new Coach("A1"), "Senior Team");
 
