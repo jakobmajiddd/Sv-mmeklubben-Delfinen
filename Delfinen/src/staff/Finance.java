@@ -31,7 +31,6 @@ public class Finance {
   private final LocalDateTime saleTime = LocalDateTime.now();
   DateTimeFormatter timeformat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-  Controller controller = new Controller();
   UI ui = new UI();
 
 
@@ -86,21 +85,7 @@ public class Finance {
     System.out.println("Yearly total revenue for senior members: " + seniorRevenue);
     System.out.println("Yearly total revenue for senior discounted members: " + seniorDiscountRevenue);
   }
-/*
-  public void yearlyJuniorRevenue() {
-    expectedRevenue();
-    System.out.println(juniorRevenue);
-  }
 
-  public void yearlySeniorRevenue() {
-    expectedRevenue();
-    System.out.println(seniorRevenue);
-  }
-
-  public void yearlySeniorDiscountRevenue() {
-    expectedRevenue();
-    System.out.println(seniorDiscountRevenue);
-  }*/
 
   public void sendReceiptPassive(String name, String email, String membershipType) {
     try {
