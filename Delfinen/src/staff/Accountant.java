@@ -1,7 +1,6 @@
 package staff;
 
 
-import main.Controller;
 import main.UI;
 
 // @author Silke
@@ -16,9 +15,9 @@ public class Accountant {
     do {
       isRunning = true;
 
-      ui.printFinanceMenu();
+      //ui.printFinanceMenu();
 
-      switch (ui.getInputNumber()) {
+      switch (ui.getInt()) {
 
         case 1:
           finance.expectedRevenue();

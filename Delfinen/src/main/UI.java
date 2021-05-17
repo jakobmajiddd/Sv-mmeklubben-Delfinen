@@ -1,68 +1,98 @@
 package main;
 // @author Alexander
+import competition.Discipline;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UI {
     Scanner scan = new Scanner(System.in);
 
-
-    public void incoraktOption(){
+    public void incorrectOption(){
         System.out.println("Not a vailed number/command");
         System.out.println("Pleas try agein");
     }
 
-    public int getInputNumber(){
-        int inputNumber = scan.nextInt();
-        scan.nextLine();
-        return inputNumber;
+    public int getInt(){
+        return scan.nextInt();
     }
-    public String getInputText(){
-        String inputText = scan.toString();
-        scan.nextLine();
-        return inputText;
+    public String getString(){
+        return scan.nextLine();
     }
 
-    public String getMessege(String msg){
+    public String getMessage(String msg){
         return msg;
     }
 
-    public void printMainMenu(){
-        System.out.println("Main menu -Exit with 9");
-        System.out.println("1. Adminestration");
-        System.out.println("2. Finanses");
-        System.out.println("9. Quit");
-    }
-    public void printAdminMenu(){
-        System.out.println("Adminestration Menu");
-        System.out.println("1. Add member");
-        System.out.println("2. Delete member");
-        System.out.println("3. Print memberlist");
-        System.out.println("9. Return to main menu");
+    public void displayAppend(String msg){
+        System.out.print(msg);
     }
 
-    public void printFinanceMenu(){
-        System.out.println("Finance Menu");
-        System.out.println("1. Access yearly expected revenue");
-        System.out.println("2. Access expected revenue for passive members");
-        System.out.println("3. Access expected revenue for junior members");
-        System.out.println("4. Access expected revenue for senior members");
-        System.out.println("5. Access expected revenue for discounted members");
-        System.out.println("6. Show members in arrears");
-        System.out.println("9. Return to main menu");
+    public void display(String msg){
+        System.out.println(msg);
     }
-    public void printCreatMemberMenu(){
-        System.out.println("What kind of menber would u like to create?");
-        System.out.println("1. Passiv member");
-        System.out.println("2. Fitness member");
-        System.out.println("3. Competitive member");
-        System.out.println("9. Return to main menu");
+
+    public void display(double msg) {
+        System.out.println(msg);
     }
-    public void printCoachMenu(){
-        System.out.println("Coach Menu");
-        System.out.println("1. Add swim time to member");
-        System.out.println("2. Pull top 5 senior swimmers for competition");
-        System.out.println("3. Pull top 5 junior swimmers for competition");
-        System.out.println("4. Add competition");
-        System.out.println("9. Return to main menu");
+
+    public void display(int msg) {
+        System.out.println(msg);
+    }
+
+    public Discipline getDiscipline(String input) {
+        switch (input) {
+            case "crawl" -> {
+                return Discipline.CRAWL;
+            }
+            case "backcrawl" -> {
+                return Discipline.BACKCRAWL;
+            }
+            case "butterfly" -> {
+                return Discipline.BUTTERFLY;
+            }
+            case "breaststroke" -> {
+                return Discipline.BREASTSTROKE;
+            }
+        }
+        return null;
+    }
+
+    public int getValidInt(String errorMsg) {
+        Scanner in = new Scanner(System.in);
+
+        boolean valid = false;
+        int choice = 0;
+        while (!valid) {
+            if (in.hasNextInt()) {
+                choice = in.nextInt();
+                valid = true;
+            } else {
+                in.next();
+                System.out.println(errorMsg);
+            }
+        }
+        return choice;
+    }
+
+    public static int validateChoice(int r1, int r2, int quit, String errorMsg) {
+        Scanner in = new Scanner(System.in);
+        int choice = 0;
+        boolean inRange = false;
+
+        while (!inRange) {
+            if (in.hasNextInt()) {
+                choice = in.nextInt();
+                if (choice >= r1 && choice <= r2 || choice == quit) {
+                    inRange = true;
+                } else {
+                    System.out.println(errorMsg);
+                }
+            } else {
+                System.out.println(errorMsg);
+                in.next();
+            }
+        }
+        return choice;
     }
 }

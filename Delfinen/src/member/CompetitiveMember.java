@@ -3,29 +3,33 @@ package member;
 
 import competition.Competition;
 import competition.Discipline;
+import competition.Team;
 import staff.Coach;
 
+/**
+ * @author Martin
+ */
 
 public class CompetitiveMember extends Member {
-    private Coach coach;
+    private Team team;
     private double bestTime;
     private Competition nextCompetition;
     private Discipline discipline;
 
     public CompetitiveMember(String name, int age, String email, Discipline discipline) {
-        super("cm", name, age, email);
+        super("CM", name, age, email);
         this.discipline = discipline;
     }
 
-    public CompetitiveMember(int ID, String name, int age, String email, String date, Coach coach, Competition nextCompetition, Discipline discipline) {
-        super(ID, "cm", name, age, email, date);
-        this.coach = coach;
+    // File loading
+    public CompetitiveMember(int ID, String name, int age, String email, String date, Competition nextCompetition, Discipline discipline) {
+        super(ID, "CM", name, age, email, date);
         this.nextCompetition = nextCompetition;
         this.discipline = discipline;
     }
 
-    public void assignCoach(Coach coach) {
-        this.coach = coach;
+    public void assignTeam(Team team) {
+        this.team = team;
     }
 
     public double getBestTime() {
@@ -44,19 +48,34 @@ public class CompetitiveMember extends Member {
         this.nextCompetition = nextCompetition;
     }
 
+    public Discipline getDiscipline() {
+        return discipline;
+    }
+
     @Override
     public String toFileFormat() {
-        return getFILE_ID()
+        return  getFILE_ID()
                 + "_" + getNAME()
-                + "_" + getAGE()
+                + "_" + getAge()
                 + "_" + getEMAIL()
-                + "_" + getLastPaymentDate()
-                + "_" + coach.toString()
+                + "_" + dateFormatted()
                 + "_" + nextCompetition;
     }
 
     public String toString() {
-        return getNAME() + ", " + "Best time: " + bestTime + ", " + coach;
+        return    "ID: #" + getID()
+                + ", Name: " + getNAME()
+                + ", Age: " + getAge()
+                + " - Last payment date: " + getDate()
+                + " -> Type: " + getFILE_ID()
+                + ", Discipline: " + discipline
+                + ", Team: " + team.getTeamName();
+    }
+
+    public String competitiveStats() {
+        return    "ID: #" + getID()
+                + ", Name: " + getNAME()
+                + ", Discipline: " + discipline
+                + ", Best time: " + bestTime;
     }
 }
-

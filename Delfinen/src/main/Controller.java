@@ -1,41 +1,43 @@
 package main;
 
+import competition.Team;
 import staff.Chairman;
+import staff.Coach;
+import staff.Finance;
+
+/**
+ * @author Martin
+ */
 
 public class Controller {
+  UI ui = new UI();
   private Chairman chairman = new Chairman();
+  private Finance finance = new Finance();
+  public static Team junior = new Team(new Coach("XD"), "Junior Team");
+  public static Team senior = new Team(new Coach("A1"), "Senior Team");
+
+  public void run() {
+    new Page();
+    mainMenu();
+  }
 
   public void mainMenu() {
-    String[] mainMenuItems = new String[4];
-    mainMenuItems[0] = "1. Administrative";
-    mainMenuItems[1] = "2. Finance";
-    mainMenuItems[2] = "3. Competitions";
-    mainMenuItems[3] = "9. Quit";
-    Menu mainMenu = new Menu("Main menu", "Choose: ", mainMenuItems);
-
-    System.out.println();
-    mainMenu.printMenu();
-    int choice = Menu.validateChoice(1, 3, 9, "Invalid input - Try again");
+    ui.display("");
+    Page.mainMenu.printMenu();
+    int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> administrativeMenu();
       case 2 -> financeMenu();
-      case 3 -> System.out.println("test3");
-      case 9 -> System.out.println("Quitting...");
+      case 3 -> competitiveMenu();
+      case 9 -> System.exit(0);
     }
   }
 
   public void administrativeMenu() {
-    String[] adminMenuItems = new String[4];
-    adminMenuItems[0] = "1. Add member";
-    adminMenuItems[1] = "2. Remove member";
-    adminMenuItems[2] = "3. Show members";
-    adminMenuItems[3] = "9. Back";
-    Menu adminMenu = new Menu("Admin menu", "Choose: ", adminMenuItems);
-
-    System.out.println();
-    adminMenu.printMenu();
-    int choice = Menu.validateChoice(1, 3, 9, "Invalid input - Try again");
+    ui.display("");
+    Page.adminMenu.printMenu();
+    int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> memberCreationMenu();
@@ -47,42 +49,57 @@ public class Controller {
   }
 
   public void financeMenu() {
-    String[] financeMenuItems = new String[4];
-    financeMenuItems[0] = "1. View yearly revenue";
-    financeMenuItems[1] = "2. X";
-    financeMenuItems[2] = "3. Y";
-    financeMenuItems[3] = "9. Back";
-    Menu financeMenu = new Menu("Finance menu", "Choose: ", financeMenuItems);
-
-    System.out.println();
-    financeMenu.printMenu();
-    int choice = Menu.validateChoice(1, 3, 9, "Invalid input - Try again");
+    ui.display("");
+    Page.financeMenu.printMenu();
+    int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
-      case 1 -> System.out.println("test1");
-      case 2 -> System.out.println("test2");
-      case 3 -> System.out.println("test3");
+      case 1 -> finance.expectedRevenue();
+      case 2 -> finance.yearlySplitRevenue();
+      case 3 -> System.out.println();//finance.findUnpaidMembers();
       case 9 -> mainMenu();
     }
   }
 
   public void memberCreationMenu() {
-    String[] memberCreationItems = new String[4];
-    memberCreationItems[0] = "1. Passive member";
-    memberCreationItems[1] = "2. Fitness member";
-    memberCreationItems[2] = "3. Competitive member";
-    memberCreationItems[3] = "9. Back";
-    Menu memberCreationMenu = new Menu("Creation menu", "Choose: ", memberCreationItems);
-
-    System.out.println();
-    memberCreationMenu.printMenu();
-    int choice = Menu.validateChoice(1, 3, 9, "Invalid input - Try again");
+    ui.display("");
+    Page.memberCreationMenu.printMenu();
+    int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> chairman.createPassiveMember();
       case 2 -> chairman.createFitnessMember();
       case 3 -> chairman.createCompetitiveMember();
+      case 9 -> administrativeMenu();
+    }
+  }
+
+  public void competitiveMenu() {
+    ui.display("");
+    Page.competitiveMenu.printMenu();
+    int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
+
+    switch (choice) {
+      case 1 -> teamMenu(junior);
+      case 2 -> teamMenu(senior);
+      case 3 -> System.out.println(); // Competitions
       case 9 -> mainMenu();
     }
+  }
+
+  public void teamMenu(Team team) {
+    ui.display("");
+    ui.display(team.getTeamName() + " - Coach: " + team.getCoach().getName());
+    Page.teamMenu.printMenu();
+    int choice = UI.validateChoice(1, 4, 9, "Invalid input - Try again");
+
+    switch (choice) {
+      case 1 -> team.viewStudents();
+      case 2 -> team.topStudents(5);
+      case 3 -> team.assignToCompetition();
+      case 4 -> team.changeBestTime();
+      case 9 -> competitiveMenu();
+    }
+    teamMenu(team);
   }
 }

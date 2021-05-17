@@ -1,6 +1,5 @@
 package staff;
 
-import main.Controller;
 import main.UI;
 import member.CompetitiveMember;
 import member.FitnessMember;
@@ -45,7 +44,7 @@ public class Finance {
   public double expectedRevenue() {
     over60Discount();
 
-    ArrayList<Member> members = null; // controller.getMembers();
+    ArrayList<Member> members = Chairman.members;
     members.add(new PassiveMember("Jens", 29, "jenner@gmail.com"));
     members.add(new PassiveMember("Jakob", 21, "j@gmail.com"));
 
@@ -55,18 +54,18 @@ public class Finance {
         passiveRevenue += passiveSubscription;
         System.out.println(passiveRevenue);
       } else if (m instanceof FitnessMember) {
-        if (m.getAGE() < 18) {
+        if (m.getAge() < 18) {
           juniorRevenue += juniorSubscription;
-        } else if (m.getAGE() < 60) {
+        } else if (m.getAge() < 60) {
           seniorDiscountRevenue += seniorDiscountedSubscription;
         } else {
           seniorRevenue += seniorSubscription;
         }
 
       } else if (m instanceof CompetitiveMember) {
-        if (m.getAGE() < 18) {
+        if (m.getAge() < 18) {
           juniorRevenue += juniorSubscription;
-        } else if (m.getAGE() < 60) {
+        } else if (m.getAge() < 60) {
           seniorDiscountRevenue += seniorDiscountedSubscription;
         } else {
           seniorRevenue += seniorSubscription;
@@ -74,16 +73,16 @@ public class Finance {
       }
     }
     yearlyRevenue = passiveRevenue + juniorRevenue + seniorRevenue + seniorDiscountRevenue;
-    System.out.println(yearlyRevenue);
+    ui.display(yearlyRevenue);
     return yearlyRevenue;
   }
 
   public void yearlySplitRevenue() {
     expectedRevenue();
-    System.out.println("Yearly total revenue for passive members: " + passiveRevenue);
-    System.out.println("Yearly total revenue for junior members: " + juniorRevenue);
-    System.out.println("Yearly total revenue for senior members: " + seniorRevenue);
-    System.out.println("Yearly total revenue for senior discounted members: " + seniorDiscountRevenue);
+    ui.display("Yearly total revenue for passive members: " + passiveRevenue);
+    ui.display("Yearly total revenue for junior members: " + juniorRevenue);
+    ui.display("Yearly total revenue for senior members: " + seniorRevenue);
+    ui.display("Yearly total revenue for senior discounted members: " + seniorDiscountRevenue);
   }
 
   public void sendReceiptPassive(String name, String email, String membershipType) {
@@ -106,7 +105,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incoraktOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
@@ -130,7 +129,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incoraktOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
   public void sendReceiptDiscountedSenior(String name, String email, String membershipType) {
@@ -153,7 +152,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incoraktOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
   public void sendReceiptSenior(String name, String email, String membershipType) {
@@ -176,7 +175,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incoraktOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 }

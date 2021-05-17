@@ -1,8 +1,11 @@
 package member;
 
-// @author Martin
+/**
+ * @author Martin
+ */
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,19 +13,19 @@ import java.util.Date;
 public abstract class Member {
     private final String FILE_ID;
     private final String NAME;
-    private final int AGE;
+    private int age;
     private final String EMAIL;
-    private String lastPaymentDate;
-    private int ID = count;
+    private Date date;
+    private final int ID;
     private static int count;
 
     // sets lastPaymentDate to the date object was created.
     Member(String fileID, String name, int age, String email) {
         this.FILE_ID = fileID;
         this.NAME = name;
-        this.AGE = age;
+        this.age = age;
         this.EMAIL = email;
-        setDateToday();
+        this.date = Calendar.getInstance().getTime();
         count++;
         ID = count;
     }
@@ -32,18 +35,25 @@ public abstract class Member {
         this.ID = ID;
         this.FILE_ID = fileID;
         this.NAME = name;
-        this.AGE = age;
+        this.age = age;
         this.EMAIL = email;
-        this.lastPaymentDate = date;
-
+        this.date = convertStringToDate(date);
+        count++;
     }
 
     public abstract String toFileFormat();
 
-    public void setDateToday() {
+    public String dateFormatted() {
         DateFormat df = new SimpleDateFormat("d/MM/y");
-        Date today = Calendar.getInstance().getTime();
-        lastPaymentDate = df.format(today);
+        return df.format(date);
+    }
+
+    public Date convertStringToDate(String sDate) {
+        try {
+            return new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
+        } catch (ParseException e) {
+            return Calendar.getInstance().getTime();
+        }
     }
 
     public String getFILE_ID() {
@@ -54,19 +64,23 @@ public abstract class Member {
         return NAME;
     }
 
-    public int getAGE() {
-        return AGE;
+    public int getAge() {
+        return age;
     }
 
     public String getEMAIL() {
         return EMAIL;
     }
 
-    public String getLastPaymentDate() {
-        return lastPaymentDate;
+    public Date getDate() {
+        return date;
     }
 
     public int getID() {
         return ID;
+    }
+
+    public String toString() {
+        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + age + " - Last payment date: " + dateFormatted() + " -> Type: " + FILE_ID;
     }
 }

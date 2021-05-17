@@ -2,10 +2,12 @@ package competition;
 
 import main.UI;
 import member.CompetitiveMember;
-import member.Member;
 
 import java.util.ArrayList;
-import java.util.Date;
+
+/**
+ * @author Martin
+ */
 
 public class Competition {
     private String date;
@@ -35,7 +37,7 @@ public class Competition {
 
     void viewCompetitors() {
         for (CompetitiveMember c : competitors) {
-            new UI().getMessege(c.toString());
+            new UI().display(c.toString());
         }
     }
 
