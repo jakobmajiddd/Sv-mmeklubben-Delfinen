@@ -34,13 +34,13 @@ public class Chairman {
     String email = ui.getString();
     members.add(new FitnessMember(name, age, email));
 
-    if (age >= 18) {
+   /* if (age >= 18) {
       finance.sendReceiptJunior(name, email, juniormember);
     } if (age > 60) {
       finance.sendReceiptDiscountedSenior(name, email, discountedmember);
     } else {
       finance.sendReceiptSenior(name, email, seniormember);
-    }
+    }*/
   }
 
   public void createPassiveMember() {
@@ -53,7 +53,7 @@ public class Chairman {
     ui.displayAppend("Email: ");
     String email = ui.getString();
     members.add(new PassiveMember(name, age, email));
-    finance.sendReceiptPassive(name, email, passivemember);
+    //finance.sendReceiptPassive(name, email, passivemember);
   }
 
   public void createCompetitiveMember() {
@@ -84,7 +84,7 @@ public class Chairman {
     CompetitiveMember member = new CompetitiveMember(name, age, email, discipline);
     members.add(member);
 
-    if (age >= 18) {
+   /* if (age >= 18) {
       Controller.senior.addStudent(member);
       member.assignTeam(Controller.senior);
       finance.sendReceiptJunior(name, email, juniormember);
@@ -92,7 +92,7 @@ public class Chairman {
       Controller.junior.addStudent(member);
       member.assignTeam(Controller.junior);
       finance.sendReceiptSenior(name, email, seniormember);
-    }
+    }*/
   }
 
   public void viewMembers() {

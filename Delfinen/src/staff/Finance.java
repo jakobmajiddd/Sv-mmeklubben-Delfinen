@@ -57,7 +57,7 @@ public class Finance {
     return total;
   }
 
-
+/*
   public void sendReceiptPassive(String name, String email, String membershipType) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPTFILE);
@@ -78,7 +78,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incorrectOption(); //måske lave om til decideret error-message
+      //ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
@@ -102,7 +102,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incorrectOption(); //måske lave om til decideret error-message
+     // ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
@@ -126,7 +126,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incorrectOption(); //måske lave om til decideret error-message
+     // ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
@@ -150,9 +150,11 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incorrectOption(); //måske lave om til decideret error-message
+    //  ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
+
+ */
 
   public void updatePayment() {
     ui.display("Enter member ID: ");
