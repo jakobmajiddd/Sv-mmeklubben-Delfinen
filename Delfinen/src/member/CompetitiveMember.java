@@ -4,7 +4,6 @@ package member;
 import competition.Competition;
 import competition.Discipline;
 import competition.Team;
-import staff.Coach;
 
 /**
  * @author Martin
@@ -66,7 +65,7 @@ public class CompetitiveMember extends Member {
         return    "ID: #" + getID()
                 + ", Name: " + getNAME()
                 + ", Age: " + getAge()
-                + " - Last payment date: " + getDate()
+                + " - Last payment date: " + getNextPaymentDate()
                 + " -> Type: " + getFILE_ID()
                 + ", Discipline: " + discipline
                 + ", Team: " + team.getTeamName();

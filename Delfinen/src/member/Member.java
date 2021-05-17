@@ -15,7 +15,7 @@ public abstract class Member {
     private final String NAME;
     private int age;
     private final String EMAIL;
-    private Date date;
+    private Date nextPaymentDate;
     private final int ID;
     private static int count;
 
@@ -25,7 +25,7 @@ public abstract class Member {
         this.NAME = name;
         this.age = age;
         this.EMAIL = email;
-        this.date = Calendar.getInstance().getTime();
+        this.nextPaymentDate = Calendar.getInstance().getTime();
         count++;
         ID = count;
     }
@@ -37,7 +37,7 @@ public abstract class Member {
         this.NAME = name;
         this.age = age;
         this.EMAIL = email;
-        this.date = convertStringToDate(date);
+        this.nextPaymentDate = convertStringToDate(date);
         count++;
     }
 
@@ -45,7 +45,7 @@ public abstract class Member {
 
     public String dateFormatted() {
         DateFormat df = new SimpleDateFormat("d/MM/y");
-        return df.format(date);
+        return df.format(nextPaymentDate);
     }
 
     public Date convertStringToDate(String sDate) {
@@ -72,8 +72,12 @@ public abstract class Member {
         return EMAIL;
     }
 
-    public Date getDate() {
-        return date;
+    public void setNextPaymentDate(Date nextPaymentDate) {
+        this.nextPaymentDate = nextPaymentDate;
+    }
+
+    public Date getNextPaymentDate() {
+        return nextPaymentDate;
     }
 
     public int getID() {

@@ -58,7 +58,8 @@ public class Controller {
     switch (choice) {
       case 1 -> finance.expectedRevenue();
       case 2 -> finance.yearlySplitRevenue();
-      case 3 -> System.out.println();//finance.findUnpaidMembers();
+      case 3 -> finance.updatePayment();
+      case 4 -> System.out.println("Hewwo");
       case 9 -> mainMenu();
     }
   }
