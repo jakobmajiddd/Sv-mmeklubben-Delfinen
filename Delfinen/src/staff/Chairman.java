@@ -16,6 +16,11 @@ import java.util.ArrayList;
 public class Chairman {
   private UI ui = new UI();
   public static ArrayList<Member> members = new ArrayList<>();
+  Finance finance = new Finance();
+  String juniormember = "junior membership";
+  String seniormember = "senior membership";
+  String discountedmember = "senior discounted membership";
+  String passivemember = "passive members";
 
 
   public void createFitnessMember() {
@@ -28,6 +33,14 @@ public class Chairman {
     ui.displayAppend("Email: ");
     String email = ui.getString();
     members.add(new FitnessMember(name, age, email));
+
+    if (age >= 18) {
+      finance.sendReceiptJunior(name, email, juniormember);
+    } if (age > 60) {
+      finance.sendReceiptDiscountedSenior(name, email, discountedmember);
+    } else {
+      finance.sendReceiptSenior(name, email, seniormember);
+    }
   }
 
   public void createPassiveMember() {
@@ -40,6 +53,7 @@ public class Chairman {
     ui.displayAppend("Email: ");
     String email = ui.getString();
     members.add(new PassiveMember(name, age, email));
+    finance.sendReceiptPassive(name, email, passivemember);
   }
 
   public void createCompetitiveMember() {
@@ -73,9 +87,11 @@ public class Chairman {
     if (age >= 18) {
       Controller.senior.addStudent(member);
       member.assignTeam(Controller.senior);
+      finance.sendReceiptJunior(name, email, juniormember);
     } else {
       Controller.junior.addStudent(member);
       member.assignTeam(Controller.junior);
+      finance.sendReceiptSenior(name, email, seniormember);
     }
   }
 

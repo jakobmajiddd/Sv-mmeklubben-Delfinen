@@ -9,9 +9,13 @@ import member.PassiveMember;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 // @author Silke
 public class Finance {
@@ -132,6 +136,7 @@ public class Finance {
       ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
+
   public void sendReceiptDiscountedSenior(String name, String email, String membershipType) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPTFILE);
@@ -155,6 +160,7 @@ public class Finance {
       ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
+
   public void sendReceiptSenior(String name, String email, String membershipType) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPTFILE);
@@ -177,6 +183,35 @@ public class Finance {
     } catch (IOException e) {
       ui.incorrectOption(); //måske lave om til decideret error-message
     }
+  }
+
+  public void updatePayment() {
+    ArrayList<Member> members = Chairman.members;
+    ui.display("Enter member ID: ");
+    int id = ui.getValidInt("Invalid ID");
+    if (new Chairman().inMembersList(id)) {
+      for (Member m : members) {
+        if (m.getID() == id) {
+          memberSetDate(m);
+          break;
+        }
+      }
+    } else {
+      ui.display("No matching ID");
+    }
+  }
+
+
+  public void memberSetDate(Member member) {
+    Calendar c = Calendar.getInstance();
+    c.setTime(Calendar.getInstance().getTime());
+    c.add(Calendar.DATE, 365);
+    member.setNextPaymentDate(c.getTime());
+  }
+
+  public boolean memberHasPaid(Member member) {
+    Date c = Calendar.getInstance().getTime();
+    return !c.after(member.getNextPaymentDate());
   }
 }
 
