@@ -76,4 +76,13 @@ public class Page {
         teamMenuItems[5] = "9. Back";
         teamMenu = new Menu("Team Menu", "Choose: ", teamMenuItems);
     }
+
+    static void setupCompetitionMenu() {
+        String[] competitionMenuItems = new String[4];
+        competitionMenuItems[0] = "1. View upcoming competitions";
+        competitionMenuItems[1] = "2. Remove competition";
+        competitionMenuItems[2] = "3. ";
+        competitionMenuItems[3] = "9. Back";
+        teamMenu = new Menu("Team Menu", "Choose: ", competitionMenuItems);
+    }
 }
