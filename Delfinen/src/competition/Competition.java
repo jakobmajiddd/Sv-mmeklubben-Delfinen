@@ -1,6 +1,6 @@
 package competition;
 
-import main.UI;
+import UI.UI;
 import member.CompetitiveMember;
 
 import java.util.ArrayList;
@@ -10,41 +10,86 @@ import java.util.ArrayList;
  */
 
 public class Competition {
+    private CompetitionType type;
     private String date;
     private String location;
     private Discipline discipline;
+    private final int ID;
+    private static int count;
 
-    private ArrayList<CompetitiveMember> competitors;
-    UI ui = new UI();
+    private ArrayList<CompetitiveMember> competitors = new ArrayList<>();
+    private UI ui = new UI();
 
-    public Competition(String date, String location, Discipline discipline) {
+    public Competition(CompetitionType type, String date, String location, Discipline discipline) {
+        this.type = type;
         this.date = date;
         this.location = location;
         this.discipline = discipline;
+        count++;
+        ID = count;
+    }
+
+    public CompetitionType getType() {
+        return type;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     void addCompetitor(CompetitiveMember competitor) {
         competitors.add(competitor);
     }
 
-    void removeCompetitor(String name) {
+    void removeCompetitor() {
+        ui.display("ID: ");
+        int id = ui.getValidInt("Invalid");
+
+        if (inCompetition(id)) {
+            for (CompetitiveMember c : competitors) {
+                if (c.getID() == id) {
+                    competitors.remove(c);
+                    break;
+                }
+            }
+        } else {
+            ui.display("ID not found");
+        }
+    }
+
+    boolean inCompetition(int id) {
         for (CompetitiveMember c : competitors) {
-            if (c.getNAME().equals(name)) {
-                competitors.remove(c);
-                break;
+            if (c.getID() == id) {
+                return true;
             }
         }
+        return false;
     }
 
     void viewCompetitors() {
         for (CompetitiveMember c : competitors) {
-            new UI().display(c.toString());
+           ui.display(c.toString());
         }
-
     }
 
+    public String fileCompetitorID() {
+        StringBuilder text = new StringBuilder();
+        for (CompetitiveMember c : competitors) {
+            text.append(c.getID());
+            text.append("_");
+        }
+        return text.toString();
+    }
+
+    public String toFileFormat() {
+        return type.toString()
+                + "_" + date
+                + "_" + location
+                + "_" + discipline
+                + "_" + fileCompetitorID();
+    }
 
     public String toString() {
-        return date + " : " + location + " -> " + discipline;
+        return date + " : " + location + " -> " + discipline + ", ID# " + getID();
     }
 }

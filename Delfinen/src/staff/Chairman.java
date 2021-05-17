@@ -1,8 +1,8 @@
 package staff;
 
 import competition.Discipline;
-import main.Controller;
-import main.UI;
+import controllers.MenuController;
+import UI.UI;
 import member.CompetitiveMember;
 import member.FitnessMember;
 import member.Member;
@@ -54,12 +54,6 @@ public class Chairman {
   }
 
   public void createCompetitiveMember() {
-    ArrayList<String> validWords = new ArrayList<>();
-    validWords.add("crawl");
-    validWords.add("backcrawl");
-    validWords.add("butterfly");
-    validWords.add("breaststroke");
-
     ui.displayAppend("Name: ");
     String name = ui.getString();
 
@@ -69,25 +63,19 @@ public class Chairman {
     ui.displayAppend("Email: ");
     String email = ui.getString();
 
-    ui.displayAppend("Discipline: ");
-    String d = ui.getString().toLowerCase();
-    while (!validWords.contains(d)) {
-      ui.display("Not a valid discipline");
-      d = ui.getString().toLowerCase();
-    }
-    Discipline discipline = ui.getDiscipline(d);
-
+    ui.displayAppend("Discipline (crawl, backcrawl, butterfly, breaststroke): ");
+    Discipline discipline = ui.getDiscipline();
 
     CompetitiveMember member = new CompetitiveMember(name, age, email, discipline);
     members.add(member);
 
     if (age <= 18) {
-      Controller.senior.addStudent(member);
-      member.assignTeam(Controller.senior);
+      MenuController.junior.addStudent(member);
+      member.assignTeam(MenuController.junior);
       finance.sendReceiptJunior(name, email);
     } else {
-      Controller.junior.addStudent(member);
-      member.assignTeam(Controller.junior);
+      MenuController.senior.addStudent(member);
+      member.assignTeam(MenuController.senior);
       finance.sendReceiptSenior(name, email);
     }
   }

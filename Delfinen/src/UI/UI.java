@@ -1,5 +1,6 @@
-package main;
+package UI;
 // @author Alexander
+import competition.CompetitionType;
 import competition.Discipline;
 
 import java.util.ArrayList;
@@ -40,8 +41,21 @@ public class UI {
         System.out.println(msg);
     }
 
-    public Discipline getDiscipline(String input) {
-        switch (input) {
+
+
+    public Discipline getDiscipline() {
+        ArrayList<String> validWords = new ArrayList<>();
+        validWords.add("crawl");
+        validWords.add("backcrawl");
+        validWords.add("butterfly");
+        validWords.add("breaststroke");
+
+        String d = getString().toLowerCase();
+        while (!validWords.contains(d)) {
+            display("Not a valid discipline");
+            d = getString().toLowerCase();
+        }
+        switch (d) {
             case "crawl" -> {
                 return Discipline.CRAWL;
             }
@@ -53,6 +67,35 @@ public class UI {
             }
             case "breaststroke" -> {
                 return Discipline.BREASTSTROKE;
+            }
+        }
+        return null;
+    }
+
+    public CompetitionType getCompetitionType(String input) {
+        switch (input) {
+            case "junior" -> {
+                return CompetitionType.JUNIOR;
+            }
+            case "senior" -> {
+                return CompetitionType.SENIOR;
+            }
+        }
+        return null;
+    }
+
+    public CompetitionType getCompetitionType() {
+        String s = getString().toLowerCase();
+        while (!s.equals("junior") && !s.equals("senior")) {
+            display("Not a valid competition type");
+            s = getString().toLowerCase();
+        }
+        switch (s) {
+            case "junior" -> {
+                return CompetitionType.JUNIOR;
+            }
+            case "senior" -> {
+                return CompetitionType.SENIOR;
             }
         }
         return null;

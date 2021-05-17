@@ -1,4 +1,6 @@
-package main;
+package menu;
+
+import UI.UI;
 
 public class Menu {
   UI ui = new UI();

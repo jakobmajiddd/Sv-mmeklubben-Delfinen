@@ -1,16 +1,12 @@
 package staff;
 
-import main.UI;
-import member.CompetitiveMember;
-import member.FitnessMember;
+import UI.UI;
 import member.Member;
 import member.PassiveMember;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

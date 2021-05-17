@@ -1,11 +1,14 @@
 package competition;
 
-import main.UI;
+import UI.UI;
+import controllers.CompetitionController;
+import controllers.MenuController;
 import member.CompetitiveMember;
 import staff.Coach;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Locale;
 
 /**
  * @author Martin
@@ -15,7 +18,6 @@ public class Team {
     private UI ui = new UI();
     private String teamName;
     private Coach coach;
-    private ArrayList<Competition> competitions = new ArrayList<>();
     private ArrayList<CompetitiveMember> students = new ArrayList<>();
 
     public Team(Coach coach, String teamName) {
@@ -95,8 +97,6 @@ public class Team {
         }
     }
 
-
-
     public boolean inStudentsList(int id) {
         for (CompetitiveMember c : students) {
             if (c.getID() == id) {
@@ -121,36 +121,65 @@ public class Team {
         }
     }
 
-    public void assignToCompetition() {
-        if (students.size() > 0) {
+    public boolean isValidCompetition(int id) {
+        for (Competition c : CompetitionController.competitions) {
+            if (c.getID() == id) {
+                if (ui.getCompetitionType(teamName.toLowerCase()).equals(c.getType())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+    public void displayValidCompetitions() {
+        for (Competition c : CompetitionController.competitions) {
+            if (ui.getCompetitionType(teamName.toLowerCase()).equals(c.getType())) {
+                ui.display(c.toString());
+            }
+        }
+    }
+
+    public CompetitiveMember getStudentByID(int id) {
+        for (CompetitiveMember m : students) {
+            if (m.getID() == id) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public void assignToCompetition() {
+        ui.display("");
+        if (students.size() > 0) {
+            displayValidCompetitions();
+
+            ui.display("Student ID: ");
+            int studentID = ui.getValidInt("Invalid");
+
+            ui.display("Competition ID: ");
+            int competitionID = ui.getValidInt("Invalid");
+
+            if (isValidCompetition(competitionID)) {
+                for (Competition c : CompetitionController.competitions) {
+                    if (c.getID() == competitionID) {
+                        c.addCompetitor(getStudentByID(studentID));
+                        break;
+                    }
+                }
+            } else {
+                ui.display("Invalid");
+            }
         } else {
             ui.display("No students to assign");
         }
-
     }
 
-    // @author Jakob
-    public void createCompetition() {
-        ui.displayAppend("Date: ");
-        String date = ui.getString();
-        ui.displayAppend("Location: ");
-        String location = ui.getString();
-        ui.displayAppend("Discipline: ");
-        Discipline discipline = ui.getDiscipline(ui.getString());
-
-        competitions.add(new Competition(date, location, discipline));
-
-
-    }
     public String getTeamName() {
         return teamName;
     }
 
     public Coach getCoach() {
         return coach;
-    }
-    public ArrayList<Competition> getCompetitions() {
-        return competitions;
     }
 }

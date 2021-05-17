@@ -1,25 +1,23 @@
-package main;
+package controllers;
 
-import competition.Competition;
-import competition.Discipline;
 import competition.Team;
+import main.Page;
+import UI.UI;
 import staff.Chairman;
 import staff.Coach;
 import staff.Finance;
-
-import java.util.ArrayList;
 
 /**
  * @author Martin
  */
 
-public class Controller {
-  UI ui = new UI();
+public class MenuController {
+  private UI ui = new UI();
   private Chairman chairman = new Chairman();
   private Finance finance = new Finance();
-  private Competition competition = new Competition("", "", Discipline.BACKCRAWL);
-  public static Team junior = new Team(new Coach("XD"), "Junior Team");
-  public static Team senior = new Team(new Coach("A1"), "Senior Team");
+  public static CompetitionController cc = new CompetitionController();
+  public static Team junior = new Team(new Coach("XD"), "Junior");
+  public static Team senior = new Team(new Coach("A1"), "Senior");
 
   public void mainMenu() {
     ui.display("");
@@ -83,8 +81,7 @@ public class Controller {
     switch (choice) {
       case 1 -> teamMenu(junior);
       case 2 -> teamMenu(senior);
-      case 3 -> viewCompetitions();
-
+      case 3 -> competitionMenu();
       case 9 -> mainMenu();
     }
     competitiveMenu();
@@ -94,30 +91,29 @@ public class Controller {
     ui.display("");
     ui.display(team.getTeamName() + " - Coach: " + team.getCoach().getName());
     Page.teamMenu.printMenu();
-    int choice = UI.validateChoice(1, 5, 9, "Invalid input - Try again");
+    int choice = UI.validateChoice(1, 4, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> team.viewStudents();
       case 2 -> team.topStudents(5);
       case 3 -> team.assignToCompetition();
       case 4 -> team.changeBestTime();
-      case 5 -> team.createCompetition();
       case 9 -> competitiveMenu();
     }
     teamMenu(team);
   }
 
-  // @author Jakob
-  public void viewCompetitions() {
+  public void competitionMenu() {
     ui.display("");
-    ui.display("Junior competitions: ");
-    for (Competition c : junior.getCompetitions()) {
-      ui.display(c.toString());
+    Page.competitionMenu.printMenu();
+    int choice = UI.validateChoice(1, 5, 9, "Invalid input - Try again");
+
+    switch (choice) {
+      case 1 -> cc.viewCompetitions();
+      case 2 -> cc.createCompetition();
+      case 3 -> cc.removeCompetition();
+      case 9 -> competitiveMenu();
     }
-    ui.display("");
-    ui.display("Senior competitions: ");
-    for (Competition c : senior.getCompetitions()) {
-      ui.display(c.toString());
-    }
+    competitionMenu();
   }
 }

@@ -1,8 +1,7 @@
 package staff;
 
 import competition.Competition;
-import competition.Discipline;
-import main.UI;
+import UI.UI;
 
 import java.util.ArrayList;
 

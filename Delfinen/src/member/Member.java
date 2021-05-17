@@ -57,7 +57,7 @@ public abstract class Member {
 
     public Date convertStringToDate(String sDate) {
         try {
-            return new SimpleDateFormat("dd/MM/yyyy").parse(sDate);
+            return new SimpleDateFormat("d/MM/y").parse(sDate);
         } catch (ParseException e) {
             return Calendar.getInstance().getTime();
         }

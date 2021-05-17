@@ -1,5 +1,7 @@
 package main;
 
+import menu.Menu;
+
 /**
  * @author Martin
  */
@@ -11,6 +13,7 @@ public class Page {
     public static Menu memberCreationMenu;
     public static Menu competitiveMenu;
     public static Menu teamMenu;
+    public static Menu competitionMenu;
 
     public Page() {
         setupMainMenu();
@@ -19,6 +22,7 @@ public class Page {
         setupCreationMenu();
         setupCompetitiveMenu();
         setupTeamMenu();
+        setupCompetitionMenu();
     }
 
     void setupMainMenu() {
@@ -67,22 +71,21 @@ public class Page {
     }
 
     static void setupTeamMenu() {
-        String[] teamMenuItems = new String[6];
+        String[] teamMenuItems = new String[5];
         teamMenuItems[0] = "1. View students";
         teamMenuItems[1] = "2. Top students";
         teamMenuItems[2] = "3. Assign student to competition";
         teamMenuItems[3] = "4. Change students best time";
-        teamMenuItems[4] = "5. Create competition";
-        teamMenuItems[5] = "9. Back";
+        teamMenuItems[4] = "9. Back";
         teamMenu = new Menu("Team Menu", "Choose: ", teamMenuItems);
     }
 
     static void setupCompetitionMenu() {
         String[] competitionMenuItems = new String[4];
-        competitionMenuItems[0] = "1. View upcoming competitions";
-        competitionMenuItems[1] = "2. Remove competition";
-        competitionMenuItems[2] = "3. ";
+        competitionMenuItems[0] = "1. View competitions";
+        competitionMenuItems[1] = "2. Create competition";
+        competitionMenuItems[2] = "3. Remove competition";
         competitionMenuItems[3] = "9. Back";
-        teamMenu = new Menu("Team Menu", "Choose: ", competitionMenuItems);
+        competitionMenu = new Menu("Competition Menu", "Choose: ", competitionMenuItems);
     }
 }
