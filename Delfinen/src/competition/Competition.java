@@ -42,12 +42,7 @@ public class Competition {
         }
 
     }
-    public void addCompatitions(){
 
-        Competition competition1 = new Competition(ui.getString(), ui.getString(), ui.getDiscipline(ui.getString()));
-        ui.display("Enter the date, location and discipline for the competition");
-        System.out.println(competition1);
-    }
 
     public String toString() {
         return date + " : " + location + " -> " + discipline;

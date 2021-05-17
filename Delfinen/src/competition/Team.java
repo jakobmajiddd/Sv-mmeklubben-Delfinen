@@ -15,6 +15,7 @@ public class Team {
     private UI ui = new UI();
     private String teamName;
     private Coach coach;
+    private ArrayList<Competition> competitions = new ArrayList<>();
     private ArrayList<CompetitiveMember> students = new ArrayList<>();
 
     public Team(Coach coach, String teamName) {
@@ -129,11 +130,26 @@ public class Team {
 
     }
 
+    public void createCompetition() {
+        ui.displayAppend("Date: ");
+        String date = ui.getString();
+        ui.displayAppend("Location: ");
+        String location = ui.getString();
+        ui.displayAppend("Discipline: ");
+        Discipline discipline = ui.getDiscipline(ui.getString());
+
+        competitions.add(new Competition(date, location, discipline));
+
+
+    }
     public String getTeamName() {
         return teamName;
     }
 
     public Coach getCoach() {
         return coach;
+    }
+    public ArrayList<Competition> getCompetitions() {
+        return competitions;
     }
 }

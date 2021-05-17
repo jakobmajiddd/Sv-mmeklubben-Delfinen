@@ -67,12 +67,13 @@ public class Page {
     }
 
     static void setupTeamMenu() {
-        String[] teamMenuItems = new String[5];
+        String[] teamMenuItems = new String[6];
         teamMenuItems[0] = "1. View students";
         teamMenuItems[1] = "2. Top students";
         teamMenuItems[2] = "3. Assign student to competition";
         teamMenuItems[3] = "4. Change students best time";
-        teamMenuItems[4] = "9. Back";
+        teamMenuItems[4] = "5. Create competition";
+        teamMenuItems[5] = "9. Back";
         teamMenu = new Menu("Team Menu", "Choose: ", teamMenuItems);
     }
 }
