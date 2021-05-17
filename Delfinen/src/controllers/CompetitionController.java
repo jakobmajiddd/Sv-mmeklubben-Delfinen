@@ -4,9 +4,7 @@ import UI.UI;
 import competition.Competition;
 import competition.CompetitionType;
 import competition.Discipline;
-
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class CompetitionController {
     public static ArrayList<Competition> competitions = new ArrayList<>();
@@ -36,7 +34,7 @@ public class CompetitionController {
     public void createCompetition() {
         ui.displayAppend("Junior / Senior: ");
         CompetitionType type = ui.getCompetitionType();
-        ui.displayAppend("Date: ");
+        ui.displayAppend("Date (d/MM/y): ");
         String date = ui.getString();
         ui.displayAppend("Location: ");
         String location = ui.getString();
