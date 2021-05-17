@@ -86,7 +86,6 @@ public class Finance {
     System.out.println("Yearly total revenue for senior discounted members: " + seniorDiscountRevenue);
   }
 
-
   public void sendReceiptPassive(String name, String email, String membershipType) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPTFILE);
