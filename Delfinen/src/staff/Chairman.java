@@ -17,10 +17,6 @@ public class Chairman {
   private UI ui = new UI();
   public static ArrayList<Member> members = new ArrayList<>();
   Finance finance = new Finance();
-  String juniormember = "junior membership";
-  String seniormember = "senior membership";
-  String discountedmember = "senior discounted membership";
-  String passivemember = "passive members";
 
 
   public void createFitnessMember() {
@@ -34,13 +30,14 @@ public class Chairman {
     String email = ui.getString();
     members.add(new FitnessMember(name, age, email));
 
-   /* if (age >= 18) {
-      finance.sendReceiptJunior(name, email, juniormember);
-    } if (age > 60) {
-      finance.sendReceiptDiscountedSenior(name, email, discountedmember);
+    if (age <= 18) {
+      finance.sendReceiptJunior(name, email);
+    }
+    if (age > 60) {
+      finance.sendReceiptDiscountedSenior(name, email);
     } else {
-      finance.sendReceiptSenior(name, email, seniormember);
-    }*/
+      finance.sendReceiptSenior(name, email);
+    }
   }
 
   public void createPassiveMember() {
@@ -53,7 +50,7 @@ public class Chairman {
     ui.displayAppend("Email: ");
     String email = ui.getString();
     members.add(new PassiveMember(name, age, email));
-    //finance.sendReceiptPassive(name, email, passivemember);
+    finance.sendReceiptPassive(name, email);
   }
 
   public void createCompetitiveMember() {
@@ -84,15 +81,15 @@ public class Chairman {
     CompetitiveMember member = new CompetitiveMember(name, age, email, discipline);
     members.add(member);
 
-   /* if (age >= 18) {
+    if (age <= 18) {
       Controller.senior.addStudent(member);
       member.assignTeam(Controller.senior);
-      finance.sendReceiptJunior(name, email, juniormember);
+      finance.sendReceiptJunior(name, email);
     } else {
       Controller.junior.addStudent(member);
       member.assignTeam(Controller.junior);
-      finance.sendReceiptSenior(name, email, seniormember);
-    }*/
+      finance.sendReceiptSenior(name, email);
+    }
   }
 
   public void viewMembers() {

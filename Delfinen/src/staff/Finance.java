@@ -57,8 +57,8 @@ public class Finance {
     return total;
   }
 
-/*
-  public void sendReceiptPassive(String name, String email, String membershipType) {
+
+  public void sendReceiptPassive(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPTFILE);
 
@@ -68,11 +68,11 @@ public class Finance {
               + email
               + "\nHello "
               + name
-              + "\nFind in this email your receipt for a "
-              + membershipType
+              + "\nFind in this email your receipt for a passive membership"
+              + "\n"
               + "\nPrice: "
               + passiveSubscription
-              + "\nTime of sale: "
+              + "kr \nTime of sale: "
               + saleTime.format(timeformat)
               + "\n------------------------------------"
       );
@@ -82,7 +82,7 @@ public class Finance {
     }
   }
 
-  public void sendReceiptJunior(String name, String email, String membershipType) {
+  public void sendReceiptJunior(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPTFILE);
 
@@ -92,21 +92,21 @@ public class Finance {
               + email
               + "\nHello "
               + name
-              + "\nFind in this email your receipt for a "
-              + membershipType
+              + "\nFind in this email your receipt for a junior membership"
+              + "\n"
               + "\nPrice: "
               + juniorSubscription
-              + "\nTime of sale: "
+              + "kr \nTime of sale: "
               + saleTime.format(timeformat)
               + "\n------------------------------------"
       );
       fileWriter.close();
     } catch (IOException e) {
-     // ui.incorrectOption(); //måske lave om til decideret error-message
+      //ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
-  public void sendReceiptDiscountedSenior(String name, String email, String membershipType) {
+  public void sendReceiptDiscountedSenior(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPTFILE);
 
@@ -116,21 +116,21 @@ public class Finance {
               + email
               + "\nHello "
               + name
-              + "\nFind in this email your receipt for a "
-              + membershipType
+              + "\nFind in this email your receipt for a discounted senior membership"
+              + "\n"
               + "\nPrice: "
               + seniorDiscountedSubscription
-              + "\nTime of sale: "
+              + "kr \nTime of sale: "
               + saleTime.format(timeformat)
               + "\n------------------------------------"
       );
       fileWriter.close();
     } catch (IOException e) {
-     // ui.incorrectOption(); //måske lave om til decideret error-message
+      // ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
-  public void sendReceiptSenior(String name, String email, String membershipType) {
+  public void sendReceiptSenior(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPTFILE);
 
@@ -140,21 +140,20 @@ public class Finance {
               + email
               + "\nHello "
               + name
-              + "\nFind in this email your receipt for a "
-              + membershipType
+              + "\nFind in this email your receipt for a senior membership"
+              + "\n"
               + "\nPrice: "
               + seniorSubscription
-              + "\nTime of sale: "
+              + "kr \nTime of sale: "
               + saleTime.format(timeformat)
               + "\n------------------------------------"
       );
       fileWriter.close();
     } catch (IOException e) {
-    //  ui.incorrectOption(); //måske lave om til decideret error-message
+      // ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
- */
 
   public void updatePayment() {
     ui.display("Enter member ID: ");
@@ -199,16 +198,4 @@ public class Finance {
     }
   }
 }
-
-
-
-
-
- /* public void arrears() { //skal tage ArrayListen som parameter
-    for (int i = 0; i < controller.getMembers().size(); i++) {
-      if (//lastPaymentDate == moreThanOneYearAgo) {
-        //flyt til betalingsstoppet-ArrayListe?
-        //+ send betalingspåmindelse ? fra fil?
-      }
-    }*/
 

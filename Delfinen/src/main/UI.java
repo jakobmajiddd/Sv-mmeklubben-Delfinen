@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class UI {
     Scanner scan = new Scanner(System.in);
 
-    /*public void incorrectOption(){
-        System.out.println("Not a vailed number/command");
+    public void incorrectOption(){
+        System.out.println("Not a valid number/command");
         System.out.println("Pleas try agein");
-    }*/
+    }
 
     public int getInt(){
         return scan.nextInt();
