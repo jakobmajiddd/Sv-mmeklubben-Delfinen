@@ -15,6 +15,7 @@ public class Competition {
     private Discipline discipline;
 
     private ArrayList<CompetitiveMember> competitors;
+    UI ui = new UI();
 
     public Competition(String date, String location, Discipline discipline) {
         this.date = date;
@@ -39,6 +40,13 @@ public class Competition {
         for (CompetitiveMember c : competitors) {
             new UI().display(c.toString());
         }
+
+    }
+    public void addCompatitions(){
+
+        Competition competition1 = new Competition(ui.getString(), ui.getString(), ui.getDiscipline(ui.getString()));
+        ui.display("Enter the date, location and discipline for the competition");
+        System.out.println(competition1);
     }
 
     public String toString() {
