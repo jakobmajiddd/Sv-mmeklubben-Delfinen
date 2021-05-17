@@ -130,6 +130,7 @@ public class Team {
 
     }
 
+    // @author Martin + Jakob
     public void createCompetition() {
         ui.displayAppend("Date: ");
         String date = ui.getString();
