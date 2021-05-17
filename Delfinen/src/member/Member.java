@@ -25,7 +25,7 @@ public abstract class Member {
         this.NAME = name;
         this.age = age;
         this.EMAIL = email;
-        this.nextPaymentDate = Calendar.getInstance().getTime();
+        setDate();
         count++;
         ID = count;
     }
@@ -42,6 +42,13 @@ public abstract class Member {
     }
 
     public abstract String toFileFormat();
+
+    public void setDate() {
+        Calendar c = Calendar.getInstance();
+        c.setTime(Calendar.getInstance().getTime());
+        c.add(Calendar.DATE, 365);
+        setNextPaymentDate(c.getTime());
+    }
 
     public String dateFormatted() {
         DateFormat df = new SimpleDateFormat("d/MM/y");
@@ -85,6 +92,6 @@ public abstract class Member {
     }
 
     public String toString() {
-        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + age + " - Last payment date: " + dateFormatted() + " -> Type: " + FILE_ID;
+        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + age + " - Next payment date: " + dateFormatted() + " -> Type: " + FILE_ID;
     }
 }

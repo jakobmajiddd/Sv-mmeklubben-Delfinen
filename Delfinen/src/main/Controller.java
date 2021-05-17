@@ -54,12 +54,12 @@ public class Controller {
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
-      case 1 -> finance.expectedRevenue();
-      case 2 -> finance.yearlySplitRevenue();
-      case 3 -> finance.updatePayment();
-      case 4 -> System.out.println("Hewwo");
+      case 1 -> ui.display(finance.expectedRevenue() + "kr.");
+      case 2 -> finance.updatePayment();
+      case 3 -> finance.unpaidMembers();
       case 9 -> mainMenu();
     }
+    financeMenu();
   }
 
   public void memberCreationMenu() {

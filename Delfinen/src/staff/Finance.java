@@ -22,72 +22,41 @@ public class Finance {
   private int passiveSubscription = 500;
   private int juniorSubscription = 1000;
   private double seniorSubscription = 1600;
-  private double over60DiscountPercentage = 0.25;
-  private double yearlyRevenue;
-  private int passiveRevenue;
-  private int juniorRevenue;
-  private double seniorRevenue;
-  private double seniorDiscountRevenue;
-  private double seniorDiscountedSubscription;
+  private double seniorDiscountedSubscription = 1600 * 0.75;
 
   private File RECEIPTFILE = new File("src/files/Receipt.txt");
   private final LocalDateTime saleTime = LocalDateTime.now();
   DateTimeFormatter timeformat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
   UI ui = new UI();
+  ArrayList<Member> members = Chairman.members;
 
-
-  public double over60Discount() {
-    double discount = seniorSubscription * over60DiscountPercentage;
-    seniorDiscountedSubscription = seniorSubscription - discount;
-    System.out.println(seniorDiscountedSubscription);
-    return seniorDiscountedSubscription;
+  public double getType(Member member) {
+    if (member instanceof PassiveMember) {
+      return passiveSubscription;
+    }
+    if (member.getAge() < 18) {
+      return juniorSubscription;
+    }
+    if (member.getAge() >= 60) {
+      return seniorDiscountedSubscription;
+    }
+    if (member.getAge() >= 18 && member.getAge() < 60) {
+      return seniorSubscription;
+    }
+    return 0;
   }
 
 
   public double expectedRevenue() {
-    over60Discount();
-
-    ArrayList<Member> members = Chairman.members;
-    members.add(new PassiveMember("Jens", 29, "jenner@gmail.com"));
-    members.add(new PassiveMember("Jakob", 21, "j@gmail.com"));
-
-
+    ui.display("");
+    double total = 0;
     for (Member m : members) {
-      if (m instanceof PassiveMember) {
-        passiveRevenue += passiveSubscription;
-        System.out.println(passiveRevenue);
-      } else if (m instanceof FitnessMember) {
-        if (m.getAge() < 18) {
-          juniorRevenue += juniorSubscription;
-        } else if (m.getAge() < 60) {
-          seniorDiscountRevenue += seniorDiscountedSubscription;
-        } else {
-          seniorRevenue += seniorSubscription;
-        }
-
-      } else if (m instanceof CompetitiveMember) {
-        if (m.getAge() < 18) {
-          juniorRevenue += juniorSubscription;
-        } else if (m.getAge() < 60) {
-          seniorDiscountRevenue += seniorDiscountedSubscription;
-        } else {
-          seniorRevenue += seniorSubscription;
-        }
-      }
+      total += getType(m);
     }
-    yearlyRevenue = passiveRevenue + juniorRevenue + seniorRevenue + seniorDiscountRevenue;
-    ui.display(yearlyRevenue);
-    return yearlyRevenue;
+    return total;
   }
 
-  public void yearlySplitRevenue() {
-    expectedRevenue();
-    ui.display("Yearly total revenue for passive members: " + passiveRevenue);
-    ui.display("Yearly total revenue for junior members: " + juniorRevenue);
-    ui.display("Yearly total revenue for senior members: " + seniorRevenue);
-    ui.display("Yearly total revenue for senior discounted members: " + seniorDiscountRevenue);
-  }
 
   public void sendReceiptPassive(String name, String email, String membershipType) {
     try {
@@ -186,7 +155,6 @@ public class Finance {
   }
 
   public void updatePayment() {
-    ArrayList<Member> members = Chairman.members;
     ui.display("Enter member ID: ");
     int id = ui.getValidInt("Invalid ID");
     if (new Chairman().inMembersList(id)) {
@@ -212,6 +180,21 @@ public class Finance {
   public boolean memberHasPaid(Member member) {
     Date c = Calendar.getInstance().getTime();
     return !c.after(member.getNextPaymentDate());
+  }
+
+  public void unpaidMembers() {
+    ui.display("");
+    boolean hasPaid = false;
+    ui.display("Unpaid members: ");
+    for (Member m : members) {
+      hasPaid = !memberHasPaid(m);
+      if (hasPaid) {
+        ui.display(m.toString());
+      }
+    }
+    if (!hasPaid) {
+      ui.display("None");
+    }
   }
 }
 

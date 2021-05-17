@@ -40,12 +40,11 @@ public class Page {
     }
 
     void setupFinanceMenu() {
-        String[] financeMenuItems = new String[5];
+        String[] financeMenuItems = new String[4];
         financeMenuItems[0] = "1. View total yearly revenue";
-        financeMenuItems[1] = "2. View subtotal revenue from every member type";
-        financeMenuItems[2] = "3. Update members payment date";
-        financeMenuItems[3] = "4. Find unpaid members";
-        financeMenuItems[4] = "9. Back";
+        financeMenuItems[1] = "2. Update members payment date";
+        financeMenuItems[2] = "3. Find unpaid members";
+        financeMenuItems[3] = "9. Back";
         financeMenu = new Menu("Finance menu", "Choose: ", financeMenuItems);
     }
 
