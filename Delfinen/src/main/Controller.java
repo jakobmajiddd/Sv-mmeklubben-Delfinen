@@ -107,7 +107,7 @@ public class Controller {
     teamMenu(team);
   }
 
-  // @author Martin + Jakob
+  // @author Jakob
   public void viewCompetitions() {
     ui.display("");
     ui.display("Junior competitions: ");
