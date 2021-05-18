@@ -4,6 +4,7 @@ import UI.UI;
 import competition.Competition;
 import competition.CompetitionType;
 import competition.Discipline;
+import controllers.MenuController;
 import member.CompetitiveMember;
 import member.FitnessMember;
 import member.Member;
@@ -22,10 +23,10 @@ public class FileHandler {
 
   public void saveMembers() {
     try {
-      PrintStream ps = new PrintStream(new FileOutputStream("members.txt", true));
+      PrintStream ps = new PrintStream(new FileOutputStream("members.txt", false));
       for (Member m : Chairman.members) {
-        ps.append(m.toFileFormat());
-        ps.append("\n");
+        ps.print(m.toFileFormat());
+        ps.print("\n");
       }
       ps.close();
     } catch (FileNotFoundException e) {
@@ -61,16 +62,18 @@ public class FileHandler {
           String mail = temp[4];
           String date = temp[5];
           Discipline discipline = ui.getDiscipline(temp[6]);
-          Chairman.members.add(new CompetitiveMember(id, name, age, mail, date, discipline));
+          CompetitiveMember member = new CompetitiveMember(id, name, age, mail, date, discipline);
+
+          if (age <= 18) {
+            MenuController.junior.addStudent(member);
+            member.assignTeam(MenuController.junior);
+          } else {
+            MenuController.senior.addStudent(member);
+            member.assignTeam(MenuController.senior);
+          }
         }
-
-
-
       }
-
     }
-
-
   }
 
   public ArrayList<String> reader(String fileName) {
