@@ -11,20 +11,23 @@ public class CompetitionController {
     private UI ui = new UI();
 
     public void viewCompetitions() {
-        ui.display("");
-        ui.display("Junior competitions: ");
-        for (Competition c : competitions) {
-            if (c.getType().equals(CompetitionType.JUNIOR)) {
-                ui.display(c.toString());
+        if (competitions.size() > 0) {
+            ui.display("");
+            ui.display("Junior competitions: ");
+            for (Competition c : competitions) {
+                if (c.getType().equals(CompetitionType.JUNIOR)) {
+                    ui.display(c.toString());
+                }
             }
-        }
-
-        ui.display("");
-        ui.display("Senior competitions: ");
-        for (Competition c : competitions) {
-            if (c.getType().equals(CompetitionType.SENIOR)) {
-                ui.display(c.toString());
+            ui.display("");
+            ui.display("Senior competitions: ");
+            for (Competition c : competitions) {
+                if (c.getType().equals(CompetitionType.SENIOR)) {
+                    ui.display(c.toString());
+                }
             }
+        } else {
+            ui.display("No competitions found");
         }
     }
 
@@ -44,18 +47,26 @@ public class CompetitionController {
     }
 
     public void removeCompetition() {
-        ui.display("ID: ");
-        int id = ui.getValidInt("Invalid");
+        if (competitions.size() > 0) {
+            viewCompetitions();
+            ui.display("");
+            ui.display("ID: ");
+            int id = ui.getValidInt("Invalid");
 
-        if (competitionExist(id)) {
-            for (Competition c : competitions) {
-                if (c.getID() == id) {
-                    competitions.remove(c);
-                    break;
+            if (competitionExist(id)) {
+                for (Competition c : competitions) {
+                    if (c.getID() == id) {
+                        competitions.remove(c);
+                        break;
+                    }
                 }
+            } else {
+                ui.display("");
+                ui.display("ID not found");
             }
         } else {
-            ui.display("ID not found");
+            ui.display("");
+            ui.display("No competitions found");
         }
     }
 
