@@ -2,7 +2,7 @@ package controllers;
 
 import competition.Team;
 import files.FileHandler;
-import main.Page;
+import menu.Page;
 import UI.UI;
 import staff.Chairman;
 import staff.Coach;
