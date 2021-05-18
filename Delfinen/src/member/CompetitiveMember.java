@@ -21,9 +21,8 @@ public class CompetitiveMember extends Member {
     }
 
     // File loading
-    public CompetitiveMember(int ID, String name, int age, String email, String date, Competition nextCompetition, Discipline discipline) {
+    public CompetitiveMember(int ID, String name, int age, String email, String date,Discipline discipline) {
         super(ID, "CM", name, age, email, date);
-        this.nextCompetition = nextCompetition;
         this.discipline = discipline;
     }
 
@@ -53,12 +52,13 @@ public class CompetitiveMember extends Member {
 
     @Override
     public String toFileFormat() {
-        return  getFILE_ID()
+        return getID()
+          + "_" + getFILE_ID()
                 + "_" + getNAME()
                 + "_" + getAge()
                 + "_" + getEMAIL()
                 + "_" + dateFormatted()
-                + "_" + nextCompetition;
+                + "_" + discipline;
     }
 
     public String toString() {
@@ -67,8 +67,8 @@ public class CompetitiveMember extends Member {
                 + ", Age: " + getAge()
                 + " - Next payment date: " + getNextPaymentDate()
                 + " -> Type: " + getFILE_ID()
-                + ", Discipline: " + discipline
-                + ", Team: " + team.getTeamName();
+                + ", Discipline: " + discipline;
+               // + ", Team: " + team.getTeamName();
     }
 
     public String competitiveStats() {
