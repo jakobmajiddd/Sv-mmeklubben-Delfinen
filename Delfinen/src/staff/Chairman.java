@@ -3,10 +3,13 @@ package staff;
 import competition.Discipline;
 import controllers.MenuController;
 import UI.UI;
+import files.FileHandler;
 import member.CompetitiveMember;
 import member.FitnessMember;
 import member.Member;
 import member.PassiveMember;
+
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +17,7 @@ import java.util.ArrayList;
  */
 
 public class Chairman {
+  private FileHandler fileHandler = new FileHandler();
   private UI ui = new UI();
   public static ArrayList<Member> members = new ArrayList<>();
   Finance finance = new Finance();
@@ -38,6 +42,7 @@ public class Chairman {
     } else {
       finance.sendReceiptSenior(name, email);
     }
+    fileHandler.saveMembers();
   }
 
   public void createPassiveMember() {
@@ -51,6 +56,7 @@ public class Chairman {
     String email = ui.getString();
     members.add(new PassiveMember(name, age, email));
     finance.sendReceiptPassive(name, email);
+    fileHandler.saveMembers();
   }
 
   public void createCompetitiveMember() {
@@ -78,6 +84,7 @@ public class Chairman {
       member.assignTeam(MenuController.senior);
       finance.sendReceiptSenior(name, email);
     }
+    fileHandler.saveMembers();
   }
 
   public void viewMembers() {
