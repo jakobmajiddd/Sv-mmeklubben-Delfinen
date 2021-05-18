@@ -4,11 +4,19 @@ import UI.UI;
 import competition.Competition;
 import competition.CompetitionType;
 import competition.Discipline;
+import files.FileHandler;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CompetitionController {
     public static ArrayList<Competition> competitions = new ArrayList<>();
     private UI ui = new UI();
+    private FileHandler fileHandler = new FileHandler();
 
     public void viewCompetitions() {
         if (competitions.size() > 0) {
@@ -27,23 +35,35 @@ public class CompetitionController {
                 }
             }
         } else {
+            ui.display("");
             ui.display("No competitions found");
         }
+    }
+
+    public void viewCompetitors() {
+
     }
 
     /**
      * @author Jacob
      */
+
     public void createCompetition() {
         ui.displayAppend("Junior / Senior: ");
         CompetitionType type = ui.getCompetitionType();
+
         ui.displayAppend("Date (d/MM/y): ");
         String date = ui.getString();
+        while (!isValidDate(date)) {
+            date = ui.getString();
+        }
+
         ui.displayAppend("Location: ");
         String location = ui.getString();
         ui.displayAppend("Discipline (crawl, backcrawl, butterfly, breaststroke): ");
         Discipline discipline = ui.getDiscipline();
         competitions.add(new Competition(type,date, location, discipline));
+        fileHandler.saveCompetitions();
     }
 
     public void removeCompetition() {
@@ -68,6 +88,7 @@ public class CompetitionController {
             ui.display("");
             ui.display("No competitions found");
         }
+        fileHandler.saveCompetitions();
     }
 
     boolean competitionExist(int id) {
@@ -77,5 +98,17 @@ public class CompetitionController {
             }
         }
         return false;
+    }
+
+    private boolean isValidDate(String d) {
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        formatter.setLenient(false);
+        try {
+            formatter.parse(d);
+            return true;
+        } catch (ParseException e) {
+            ui.display("Invalid date format. Example: 04/04/2020");
+            return false;
+        }
     }
 }

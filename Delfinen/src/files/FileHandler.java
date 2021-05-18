@@ -4,6 +4,7 @@ import UI.UI;
 import competition.Competition;
 import competition.CompetitionType;
 import competition.Discipline;
+import controllers.CompetitionController;
 import controllers.MenuController;
 import member.CompetitiveMember;
 import member.FitnessMember;
@@ -32,11 +33,35 @@ public class FileHandler {
     } catch (FileNotFoundException e) {
       ui.display("File not found");
     }
+  }
 
+  public void saveCompetitions() {
+    try {
+      PrintStream ps = new PrintStream(new FileOutputStream("competitions.txt", false));
+      for (Competition c : CompetitionController.competitions) {
+        ps.print(c.toFileFormat());
+        ps.print("\n");
+      }
+      ps.close();
+    } catch (FileNotFoundException e) {
+      ui.display("File not found");
+    }
+  }
+
+  public void loadCompetitions() {
+    for (String s : fileToList("competitions.txt")) {
+      String[] temp = s.split("_");
+      int id = Integer.parseInt(temp[0]);
+      CompetitionType type = ui.getCompetitionType(temp[1].toLowerCase());
+      String date = temp[2];
+      String location = temp[3];
+      Discipline discipline = ui.getDiscipline(temp[4]);
+      CompetitionController.competitions.add(new Competition(id, type, date, location, discipline));
+    }
   }
 
   public void loadMembers() {
-    for (String s : reader("members.txt")) {
+    for (String s : fileToList("members.txt")) {
       String[] temp = s.split("_");
       switch (temp[1]) {
         case "PM" -> {
@@ -62,7 +87,9 @@ public class FileHandler {
           String mail = temp[4];
           String date = temp[5];
           Discipline discipline = ui.getDiscipline(temp[6]);
-          CompetitiveMember member = new CompetitiveMember(id, name, age, mail, date, discipline);
+          double bestTime = Double.parseDouble(temp[7]);
+          CompetitiveMember member = new CompetitiveMember(id, name, age, mail, date, discipline, bestTime);
+          Chairman.members.add(member);
 
           if (age <= 18) {
             MenuController.junior.addStudent(member);
@@ -76,7 +103,7 @@ public class FileHandler {
     }
   }
 
-  public ArrayList<String> reader(String fileName) {
+  public ArrayList<String> fileToList(String fileName) {
     ArrayList<String> storage = new ArrayList<>();
 
     try {

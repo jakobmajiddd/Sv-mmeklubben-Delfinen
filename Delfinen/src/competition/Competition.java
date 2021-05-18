@@ -3,7 +3,12 @@ package competition;
 import UI.UI;
 import member.CompetitiveMember;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author Martin
@@ -11,7 +16,7 @@ import java.util.ArrayList;
 
 public class Competition {
     private CompetitionType type;
-    private String date;
+    private Date date;
     private String location;
     private Discipline discipline;
     private final int ID;
@@ -22,11 +27,28 @@ public class Competition {
 
     public Competition(CompetitionType type, String date, String location, Discipline discipline) {
         this.type = type;
-        this.date = date;
+        this.date = convertStringToDate(date);
         this.location = location;
         this.discipline = discipline;
         count++;
         ID = count;
+    }
+
+    public Competition(int ID, CompetitionType type, String date, String location, Discipline discipline) {
+        this.ID = ID;
+        this.type = type;
+        this.date = convertStringToDate(date);
+        this.location = location;
+        this.discipline = discipline;
+        count++;
+    }
+
+    public Date convertStringToDate(String sDate) {
+        try {
+            return new SimpleDateFormat("d/MM/y").parse(sDate);
+        } catch (ParseException e) {
+            return Calendar.getInstance().getTime();
+        }
     }
 
     public CompetitionType getType() {
@@ -81,15 +103,21 @@ public class Competition {
         return text.toString();
     }
 
+    public String dateFormatted() {
+        DateFormat df = new SimpleDateFormat("d/MM/y");
+        return df.format(date);
+    }
+
     public String toFileFormat() {
-        return type.toString()
-                + "_" + date
+        return  ID
+                + "_" + type.toString()
+                + "_" + dateFormatted()
                 + "_" + location
                 + "_" + discipline
                 + "_" + fileCompetitorID();
     }
 
     public String toString() {
-        return date + " : " + location + " -> " + discipline + ", ID# " + getID();
+        return dateFormatted() + " : " + location + " -> " + discipline + ", ID# " + getID();
     }
 }

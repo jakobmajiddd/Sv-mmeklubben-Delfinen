@@ -1,6 +1,5 @@
 package member;
 
-
 import competition.Competition;
 import competition.Discipline;
 import competition.Team;
@@ -21,9 +20,10 @@ public class CompetitiveMember extends Member {
     }
 
     // File loading
-    public CompetitiveMember(int ID, String name, int age, String email, String date,Discipline discipline) {
+    public CompetitiveMember(int ID, String name, int age, String email, String date, Discipline discipline, double bestTime) {
         super(ID, "CM", name, age, email, date);
         this.discipline = discipline;
+        this.bestTime = bestTime;
     }
 
     public void assignTeam(Team team) {
@@ -58,16 +58,18 @@ public class CompetitiveMember extends Member {
                 + "_" + getAge()
                 + "_" + getEMAIL()
                 + "_" + dateFormatted()
-                + "_" + discipline;
+                + "_" + discipline
+                + "_" + bestTime;
     }
 
     public String toString() {
         return    "ID: #" + getID()
                 + ", Name: " + getNAME()
                 + ", Age: " + getAge()
-                + " - Next payment date: " + getNextPaymentDate()
+                + " - Next payment date: " + dateFormatted()
                 + " -> Type: " + getFILE_ID()
                 + ", Discipline: " + discipline;
+
                // + ", Team: " + team.getTeamName();
     }
 

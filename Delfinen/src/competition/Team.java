@@ -70,21 +70,25 @@ public class Team {
                 ui.display(discipline.toString() + ":");
                 if (occurrenceOfDiscipline(discipline) > range) {
                     for (CompetitiveMember student : students) {
-                        if (student.getDiscipline().equals(discipline)) {
-                            ui.display(student.competitiveStats());
-                            count++;
-                            if (count == range) {
-                                break;
+                        if (student.getBestTime() > 0) {
+                            if (student.getDiscipline().equals(discipline)) {
+                                ui.display(student.competitiveStats());
+                                count++;
+                                if (count == range) {
+                                    break;
+                                }
                             }
                         }
                     }
                 } else {
                     for (CompetitiveMember student : students) {
                         if (student.getDiscipline().equals(discipline)) {
-                            ui.display(student.competitiveStats());
-                            count++;
-                            if (count == occurrenceOfDiscipline(discipline)) {
-                                break;
+                            if (student.getBestTime() > 0) {
+                                ui.display(student.competitiveStats());
+                                count++;
+                                if (count == occurrenceOfDiscipline(discipline)) {
+                                    break;
+                                }
                             }
                         }
                     }

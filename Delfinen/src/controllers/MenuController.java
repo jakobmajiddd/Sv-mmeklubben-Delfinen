@@ -22,6 +22,8 @@ public class MenuController {
   public static Team senior = new Team(new Coach("A1"), "Senior");
 
   public void run() {
+    new Page();
+    fileHandler.loadCompetitions();
     fileHandler.loadMembers();
     mainMenu();
   }
@@ -113,12 +115,13 @@ public class MenuController {
   public void competitionMenu() {
     ui.display("");
     Page.competitionMenu.printMenu();
-    int choice = UI.validateChoice(1, 5, 9, "Invalid input - Try again");
+    int choice = UI.validateChoice(1, 4, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> cc.viewCompetitions();
-      case 2 -> cc.createCompetition();
-      case 3 -> cc.removeCompetition();
+      case 2 -> cc.viewCompetitors();
+      case 3 -> cc.createCompetition();
+      case 4 -> cc.removeCompetition();
       case 9 -> competitiveMenu();
     }
     competitionMenu();
