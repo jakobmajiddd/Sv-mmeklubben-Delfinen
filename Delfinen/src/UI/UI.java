@@ -4,6 +4,7 @@ import competition.CompetitionType;
 import competition.Discipline;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UI {
@@ -56,6 +57,23 @@ public class UI {
             d = getString().toLowerCase();
         }
         switch (d) {
+            case "crawl" -> {
+                return Discipline.CRAWL;
+            }
+            case "backcrawl" -> {
+                return Discipline.BACKCRAWL;
+            }
+            case "butterfly" -> {
+                return Discipline.BUTTERFLY;
+            }
+            case "breaststroke" -> {
+                return Discipline.BREASTSTROKE;
+            }
+        }
+        return null;
+    }
+    public Discipline getDiscipline(String input) {
+        switch (input.toLowerCase()) {
             case "crawl" -> {
                 return Discipline.CRAWL;
             }
@@ -138,4 +156,6 @@ public class UI {
         }
         return choice;
     }
+
+
 }
