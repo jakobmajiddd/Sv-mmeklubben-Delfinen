@@ -20,7 +20,6 @@ public class Competition {
     private String location;
     private Discipline discipline;
     private final int ID;
-    private static int count;
 
     private ArrayList<CompetitiveMember> competitors = new ArrayList<>();
     private UI ui = new UI();
@@ -30,8 +29,8 @@ public class Competition {
         this.date = convertStringToDate(date);
         this.location = location;
         this.discipline = discipline;
-        count++;
-        ID = count;
+        this.ID = ui.getValidCompetitionID();
+
     }
 
     public Competition(int ID, CompetitionType type, String date, String location, Discipline discipline) {
@@ -40,7 +39,6 @@ public class Competition {
         this.date = convertStringToDate(date);
         this.location = location;
         this.discipline = discipline;
-        count++;
     }
 
     public Date convertStringToDate(String sDate) {
@@ -57,6 +55,10 @@ public class Competition {
 
     public int getID() {
         return ID;
+    }
+
+    public ArrayList<CompetitiveMember> getCompetitors() {
+        return competitors;
     }
 
     void addCompetitor(CompetitiveMember competitor) {
@@ -86,12 +88,6 @@ public class Competition {
             }
         }
         return false;
-    }
-
-    void viewCompetitors() {
-        for (CompetitiveMember c : competitors) {
-           ui.display(c.toString());
-        }
     }
 
     public String fileCompetitorID() {

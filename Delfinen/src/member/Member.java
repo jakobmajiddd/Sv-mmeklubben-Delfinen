@@ -4,6 +4,9 @@ package member;
  * @author Martin
  */
 
+import UI.UI;
+import staff.Chairman;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,13 +14,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 public abstract class Member {
+    private UI ui = new UI();
     private final String FILE_ID;
     private final String NAME;
     private int age;
     private final String EMAIL;
     private Date nextPaymentDate;
-    private final int ID;
-    private static int count;
+    private int ID;
 
     // sets lastPaymentDate to the date object was created.
     Member(String fileID, String name, int age, String email) {
@@ -26,8 +29,7 @@ public abstract class Member {
         this.age = age;
         this.EMAIL = email;
         setDate();
-        count++;
-        ID = count;
+        ID = ui.getValidMemberID();
     }
 
     // used when loading from file
@@ -38,7 +40,6 @@ public abstract class Member {
         this.age = age;
         this.EMAIL = email;
         this.nextPaymentDate = convertStringToDate(date);
-        count++;
     }
 
     public abstract String toFileFormat();

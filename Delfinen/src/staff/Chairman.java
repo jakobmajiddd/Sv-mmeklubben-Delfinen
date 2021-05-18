@@ -20,7 +20,7 @@ public class Chairman {
   private FileHandler fileHandler = new FileHandler();
   private UI ui = new UI();
   public static ArrayList<Member> members = new ArrayList<>();
-  Finance finance = new Finance();
+  private Finance finance = new Finance();
 
 
   public void createFitnessMember() {
@@ -42,6 +42,7 @@ public class Chairman {
     } else {
       finance.sendReceiptSenior(name, email);
     }
+    System.out.println("HERE");
     fileHandler.saveMembers();
   }
 
@@ -54,8 +55,11 @@ public class Chairman {
 
     ui.displayAppend("Email: ");
     String email = ui.getString();
+
     members.add(new PassiveMember(name, age, email));
+
     finance.sendReceiptPassive(name, email);
+
     fileHandler.saveMembers();
   }
 
@@ -88,6 +92,7 @@ public class Chairman {
   }
 
   public void viewMembers() {
+    ui.display("");
     if (members.size() > 0) {
       for (Member m : members) {
         ui.display(m.toString());
@@ -107,6 +112,10 @@ public class Chairman {
   }
 
   public void removeMember() {
+    ui.display("");
+    viewMembers();
+    ui.display("");
+    ui.displayAppend("Member ID: ");
     int id = ui.getValidInt("Invalid input - Try again");
     if (inMembersList(id)) {
       for (Member m : members) {
@@ -118,6 +127,7 @@ public class Chairman {
     } else {
       ui.display("No member with the ID #" + id + " was found.");
     }
+    fileHandler.saveMembers();
   }
 
   public ArrayList<Member> getMembers() {

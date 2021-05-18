@@ -5,6 +5,7 @@ import competition.Competition;
 import competition.CompetitionType;
 import competition.Discipline;
 import files.FileHandler;
+import member.CompetitiveMember;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -41,6 +42,23 @@ public class CompetitionController {
     }
 
     public void viewCompetitors() {
+        ui.display("");
+        viewCompetitions();
+        ui.display("");
+        ui.displayAppend("Competition ID: ");
+        int id = ui.getValidInt("Not a valid number");
+        for (Competition c : competitions) {
+            if (c.getID() == id) {
+                if (c.getCompetitors().size() > 0) {
+                    ui.display("");
+                    for (CompetitiveMember m : c.getCompetitors()) {
+                        ui.display(m.competitiveStats());
+                    }
+                } else {
+                    ui.display("No competitors assigned to this competition");
+                }
+            }
+        }
 
     }
 
@@ -70,7 +88,7 @@ public class CompetitionController {
         if (competitions.size() > 0) {
             viewCompetitions();
             ui.display("");
-            ui.display("ID: ");
+            ui.displayAppend("Competition ID: ");
             int id = ui.getValidInt("Invalid");
 
             if (competitionExist(id)) {

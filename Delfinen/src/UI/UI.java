@@ -1,9 +1,15 @@
 package UI;
 // @author Alexander
+import competition.Competition;
 import competition.CompetitionType;
 import competition.Discipline;
+import controllers.CompetitionController;
+import member.CompetitiveMember;
+import member.Member;
+import staff.Chairman;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -42,7 +48,23 @@ public class UI {
         System.out.println(msg);
     }
 
+    public int getValidMemberID() {
+        if (Chairman.members.size() > 0) {
+            Chairman.members.sort(Comparator.comparingInt(Member::getID));
+            return Chairman.members.get(Chairman.members.size() - 1).getID() + 1;
+        } else {
+            return 1;
+        }
+    }
 
+    public int getValidCompetitionID() {
+        if (CompetitionController.competitions.size() > 0) {
+            CompetitionController.competitions.sort(Comparator.comparingInt(Competition::getID));
+            return CompetitionController.competitions.get(CompetitionController.competitions.size() - 1).getID() + 1;
+        } else {
+            return 1;
+        }
+    }
 
     public Discipline getDiscipline() {
         ArrayList<String> validWords = new ArrayList<>();
