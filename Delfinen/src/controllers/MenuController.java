@@ -1,6 +1,7 @@
 package controllers;
 
 import competition.Team;
+import files.FileHandler;
 import main.Page;
 import UI.UI;
 import staff.Chairman;
@@ -12,12 +13,18 @@ import staff.Finance;
  */
 
 public class MenuController {
+  private FileHandler fileHandler = new FileHandler();
   private UI ui = new UI();
   private Chairman chairman = new Chairman();
   private Finance finance = new Finance();
   public static CompetitionController cc = new CompetitionController();
   public static Team junior = new Team(new Coach("XD"), "Junior");
   public static Team senior = new Team(new Coach("A1"), "Senior");
+
+  public void run() {
+    fileHandler.loadMembers();
+    mainMenu();
+  }
 
   public void mainMenu() {
     ui.display("");

@@ -16,7 +16,8 @@ public class FitnessMember extends Member {
 
     @Override
     public String toFileFormat() {
-        return getFILE_ID()
+        return getID()
+        + "_" + getFILE_ID()
                 + "_" + getNAME()
                 + "_" + getAge()
                 + "_" + getEMAIL()
