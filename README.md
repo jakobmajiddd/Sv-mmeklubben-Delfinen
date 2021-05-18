@@ -8,4 +8,4 @@ Jakob Majid - https://github.com/jakobmajiddd
 
 Martin Steen Laursen - https://github.com/martinlaursen97
 
-Silkemarie  - https://github.com/silkemarie
+Silke Marie Wallin Jensen  - https://github.com/silkemarie
