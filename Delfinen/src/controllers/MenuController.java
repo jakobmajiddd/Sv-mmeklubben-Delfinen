@@ -18,13 +18,13 @@ public class MenuController {
   private Chairman chairman = new Chairman();
   private Finance finance = new Finance();
   public static CompetitionController cc = new CompetitionController();
-  public static Team junior = new Team(new Coach("XD"), "Junior");
-  public static Team senior = new Team(new Coach("A1"), "Senior");
+  public static Team junior = new Team(new Coach("Patrick"), "Junior");
+  public static Team senior = new Team(new Coach("Tina"), "Senior");
 
   public void run() {
     new Page();
-    fileHandler.loadCompetitions();
     fileHandler.loadMembers();
+    fileHandler.loadCompetitions();
     mainMenu();
   }
 

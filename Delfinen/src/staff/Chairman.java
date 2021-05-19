@@ -81,11 +81,9 @@ public class Chairman {
 
     if (age <= 18) {
       MenuController.junior.addStudent(member);
-      member.assignTeam(MenuController.junior);
       finance.sendReceiptJunior(name, email);
     } else {
       MenuController.senior.addStudent(member);
-      member.assignTeam(MenuController.senior);
       finance.sendReceiptSenior(name, email);
     }
     fileHandler.saveMembers();

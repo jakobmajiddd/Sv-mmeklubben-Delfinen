@@ -4,15 +4,16 @@ import competition.Competition;
 import competition.Discipline;
 import competition.Team;
 
+import java.util.ArrayList;
+
 /**
  * @author Martin
  */
 
 public class CompetitiveMember extends Member {
-    private Team team;
     private double bestTime;
-    private Competition nextCompetition;
     private Discipline discipline;
+    private ArrayList<Integer> competitionPlacements = new ArrayList<>();
 
     public CompetitiveMember(String name, int age, String email, Discipline discipline) {
         super("CM", name, age, email);
@@ -26,8 +27,16 @@ public class CompetitiveMember extends Member {
         this.bestTime = bestTime;
     }
 
-    public void assignTeam(Team team) {
-        this.team = team;
+    public void addPlacement(int placement) {
+        competitionPlacements.add(placement);
+    }
+
+    public double averagePlacement() {
+        double sum = 0;
+        for (int i : competitionPlacements) {
+            sum += i;
+        }
+        return sum / competitionPlacements.size();
     }
 
     public double getBestTime() {
@@ -38,16 +47,17 @@ public class CompetitiveMember extends Member {
         this.bestTime = bestTime;
     }
 
-    public Competition getNextCompetition() {
-        return nextCompetition;
-    }
-
-    public void setNextCompetition(Competition nextCompetition) {
-        this.nextCompetition = nextCompetition;
-    }
-
     public Discipline getDiscipline() {
         return discipline;
+    }
+
+    public String getPlacements() {
+        StringBuilder placements = new StringBuilder();
+        for (int i : competitionPlacements) {
+            placements.append(i);
+            placements.append("_");
+        }
+        return placements.toString();
     }
 
     @Override
@@ -59,7 +69,9 @@ public class CompetitiveMember extends Member {
                 + "_" + getEMAIL()
                 + "_" + dateFormatted()
                 + "_" + discipline
-                + "_" + bestTime;
+                + "_" + bestTime
+                + "_" + getPlacements();
+
     }
 
     public String toString() {
@@ -77,6 +89,7 @@ public class CompetitiveMember extends Member {
         return    "ID: #" + getID()
                 + ", Name: " + getNAME()
                 + ", Discipline: " + discipline
-                + ", Best time: " + bestTime;
+                + ", Best time: " + bestTime
+                + ", Average competition placement: " + averagePlacement();
     }
 }

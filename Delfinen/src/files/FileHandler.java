@@ -4,6 +4,7 @@ import UI.UI;
 import competition.Competition;
 import competition.CompetitionType;
 import competition.Discipline;
+import competition.Team;
 import controllers.CompetitionController;
 import controllers.MenuController;
 import member.CompetitiveMember;
@@ -17,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FileHandler {
@@ -56,7 +58,17 @@ public class FileHandler {
       String date = temp[2];
       String location = temp[3];
       Discipline discipline = ui.getDiscipline(temp[4]);
-      CompetitionController.competitions.add(new Competition(id, type, date, location, discipline));
+      Competition competition = new Competition(id, type, date, location, discipline);
+
+      if (temp.length > 5) {
+        for (int i = 5; i < temp.length; i++) {
+          switch (type.toString()) {
+            case "JUNIOR" -> competition.addCompetitor(MenuController.junior.getStudentByID(Integer.parseInt(temp[i])));
+            case "SENIOR" -> competition.addCompetitor(MenuController.senior.getStudentByID(Integer.parseInt(temp[i])));
+          }
+        }
+      }
+      CompetitionController.competitions.add(competition);
     }
   }
 
@@ -89,14 +101,20 @@ public class FileHandler {
           Discipline discipline = ui.getDiscipline(temp[6]);
           double bestTime = Double.parseDouble(temp[7]);
           CompetitiveMember member = new CompetitiveMember(id, name, age, mail, date, discipline, bestTime);
+
+          // Add placements
+          if (temp.length > 8) {
+            for (int i = 8; i < temp.length; i++) {
+              member.addPlacement(Integer.parseInt(temp[i]));
+            }
+          }
+
           Chairman.members.add(member);
 
           if (age <= 18) {
             MenuController.junior.addStudent(member);
-            member.assignTeam(MenuController.junior);
           } else {
             MenuController.senior.addStudent(member);
-            member.assignTeam(MenuController.senior);
           }
         }
       }

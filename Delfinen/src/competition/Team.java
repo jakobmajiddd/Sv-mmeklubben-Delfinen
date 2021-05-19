@@ -3,6 +3,7 @@ package competition;
 import UI.UI;
 import controllers.CompetitionController;
 import controllers.MenuController;
+import files.FileHandler;
 import member.CompetitiveMember;
 import staff.Coach;
 
@@ -19,6 +20,7 @@ public class Team {
     private String teamName;
     private Coach coach;
     private ArrayList<CompetitiveMember> students = new ArrayList<>();
+    private FileHandler fileHandler = new FileHandler();
 
     public Team(Coach coach, String teamName) {
         this.coach = coach;
@@ -46,7 +48,7 @@ public class Team {
     }
 
     public void sortByID() {
-        students.sort(Comparator.comparingDouble(CompetitiveMember::getID));
+        students.sort(Comparator.comparingInt(CompetitiveMember::getID));
     }
 
     public int occurrenceOfDiscipline(Discipline discipline) {
@@ -156,19 +158,31 @@ public class Team {
     public void assignToCompetition() {
         ui.display("");
         if (students.size() > 0) {
+            ui.displayAppend("Students:");
+            viewStudents();
+            ui.display("");
+            ui.display("Competitions");
             displayValidCompetitions();
+            ui.display("");
 
-            ui.display("Student ID: ");
+            ui.displayAppend("Student ID: ");
             int studentID = ui.getValidInt("Invalid");
 
-            ui.display("Competition ID: ");
+            ui.displayAppend("Competition ID: ");
             int competitionID = ui.getValidInt("Invalid");
 
             if (isValidCompetition(competitionID)) {
                 for (Competition c : CompetitionController.competitions) {
                     if (c.getID() == competitionID) {
-                        c.addCompetitor(getStudentByID(studentID));
-                        break;
+                        if (c.getDiscipline().equals(getStudentByID(studentID).getDiscipline()))
+                            if (!c.inCompetition(studentID)) {
+                                c.addCompetitor(getStudentByID(studentID));
+                                break;
+                            } else {
+                                ui.display("Already assigned to this competition");
+                        } else {
+                            ui.display("Incompatible disciplines");
+                        }
                     }
                 }
             } else {
@@ -177,6 +191,7 @@ public class Team {
         } else {
             ui.display("No students to assign");
         }
+        fileHandler.saveCompetitions();
     }
 
     public String getTeamName() {

@@ -6,6 +6,7 @@ import competition.CompetitionType;
 import competition.Discipline;
 import files.FileHandler;
 import member.CompetitiveMember;
+import staff.Chairman;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -17,6 +18,7 @@ import java.util.Date;
 public class CompetitionController {
     public static ArrayList<Competition> competitions = new ArrayList<>();
     private UI ui = new UI();
+    private Chairman chairman = new Chairman();
     private FileHandler fileHandler = new FileHandler();
 
     public void viewCompetitions() {

@@ -39,6 +39,7 @@ public class Competition {
         this.date = convertStringToDate(date);
         this.location = location;
         this.discipline = discipline;
+        this.competitors = competitors;
     }
 
     public Date convertStringToDate(String sDate) {
@@ -61,11 +62,11 @@ public class Competition {
         return competitors;
     }
 
-    void addCompetitor(CompetitiveMember competitor) {
+    public void addCompetitor(CompetitiveMember competitor) {
         competitors.add(competitor);
     }
 
-    void removeCompetitor() {
+    public void removeCompetitor() {
         ui.display("ID: ");
         int id = ui.getValidInt("Invalid");
 
@@ -102,6 +103,10 @@ public class Competition {
     public String dateFormatted() {
         DateFormat df = new SimpleDateFormat("d/MM/y");
         return df.format(date);
+    }
+
+    public Discipline getDiscipline() {
+        return discipline;
     }
 
     public String toFileFormat() {

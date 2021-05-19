@@ -34,7 +34,7 @@ class FinanceTest {
 
     @org.junit.jupiter.api.Test
     void expectedRevenue() {
-        //Act
+        // Act
         ArrayList<Member> members = new ArrayList<>();
         PassiveMember passiveMember = new PassiveMember("jabok",22,"!dhdgd");
         FitnessMember fitnessMember = new FitnessMember("alex",33,"gwstgeg");
@@ -42,16 +42,18 @@ class FinanceTest {
         members.add(passiveMember);
         members.add(fitnessMember);
         members.add(competitiveMember);
-        //ui.display("");
+
+        // Actual
         double total = 0;
         for (Member m : members) {
             total += getType(m);
         }
-        //Arrange
-        double Expekted = 3700;
 
-        //Assert
-        assertEquals(Expekted,total);
+        // Arrange
+        double expected = 3700;
+
+        // Assert
+        assertEquals(expected, total);
 
 
 
