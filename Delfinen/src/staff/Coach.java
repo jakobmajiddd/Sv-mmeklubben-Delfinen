@@ -5,14 +5,13 @@ package staff;
  */
 
 public class Coach {
-
-  private String name;
+  private final String NAME;
 
   public Coach(String name) {
-    this.name = name;
+    this.NAME = name;
   }
 
-  public String getName() {
-    return name;
+  public String getNAME() {
+    return NAME;
   }
 }

@@ -1,6 +1,7 @@
 package controllers;
 
 import competition.Team;
+import competition.Type;
 import files.FileHandler;
 import menu.*;
 import UI.UI;
@@ -13,31 +14,32 @@ import staff.Finance;
  */
 
 public class MenuController {
-  private FileHandler fileHandler = new FileHandler();
-  private UI ui = new UI();
-  private Chairman chairman = new Chairman();
-  private Finance finance = new Finance();
-  private CompetitionController cc = new CompetitionController();
-  public static Team junior = new Team(new Coach("Patrick"), "Junior");
-  public static Team senior = new Team(new Coach("Tina"), "Senior");
+  public static Team junior = new Team(new Coach("Patrick"), Type.JUNIOR);
+  public static Team senior = new Team(new Coach("Tina"), Type.SENIOR);
 
-  private Menu mainMenu = new MainMenu();
-  private Menu adminMenu = new AdminMenu();
-  private Menu financeMenu = new FinanceMenu();
-  private Menu creationMenu = new CreationMenu();
-  private Menu competitiveMenu = new CompetitiveMenu();
-  private Menu teamMenu = new TeamMenu();
-  private Menu competitionMenu = new CompetitionMenu();
+  private final FileHandler FILE_HANDLER = new FileHandler();
+  private final UI UI = new UI();
+  private final Chairman CHAIRMAN = new Chairman();
+  private final Finance FINANCE = new Finance();
+  private final CompetitionController CC = new CompetitionController();
+
+  private final Menu MAIN_MENU = new MainMenu();
+  private final Menu ADMIN_MENU = new AdminMenu();
+  private final Menu FINANCE_MENU = new FinanceMenu();
+  private final Menu CREATION_MENU = new CreationMenu();
+  private final Menu COMPETITIVE_MENU = new CompetitiveMenu();
+  private final Menu TEAM_MENU = new TeamMenu();
+  private final Menu COMPETITION_MENU = new CompetitionMenu();
 
   public void run() {
-    fileHandler.loadMembers();
-    fileHandler.loadCompetitions();
+    FILE_HANDLER.loadMembers();
+    FILE_HANDLER.loadCompetitions();
     mainMenu();
   }
 
   public void mainMenu() {
-    ui.display("");
-    mainMenu.printMenu();
+    UI.display("");
+    MAIN_MENU.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
@@ -49,49 +51,49 @@ public class MenuController {
   }
 
   public void administrativeMenu() {
-    ui.display("");
-    adminMenu.printMenu();
+    UI.display("");
+    ADMIN_MENU.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> memberCreationMenu();
-      case 2 -> chairman.removeMember();
-      case 3 -> chairman.viewMembers();
+      case 2 -> CHAIRMAN.removeMember();
+      case 3 -> CHAIRMAN.viewMembers();
       case 9 -> mainMenu();
     }
     administrativeMenu();
   }
 
   public void financeMenu() {
-    ui.display("");
-    financeMenu.printMenu();
+    UI.display("");
+    FINANCE_MENU.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
-      case 1 -> ui.display(finance.expectedRevenue() + "kr.");
-      case 2 -> finance.updatePayment();
-      case 3 -> finance.unpaidMembers();
+      case 1 -> UI.display(FINANCE.expectedRevenue() + "kr.");
+      case 2 -> FINANCE.updatePayment();
+      case 3 -> FINANCE.unpaidMembers();
       case 9 -> mainMenu();
     }
     financeMenu();
   }
 
   public void memberCreationMenu() {
-    ui.display("");
-    creationMenu.printMenu();
+    UI.display("");
+    CREATION_MENU.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
-      case 1 -> chairman.createPassiveMember();
-      case 2 -> chairman.createFitnessMember();
-      case 3 -> chairman.createCompetitiveMember();
+      case 1 -> CHAIRMAN.createPassiveMember();
+      case 2 -> CHAIRMAN.createFitnessMember();
+      case 3 -> CHAIRMAN.createCompetitiveMember();
       case 9 -> administrativeMenu();
     }
   }
 
   public void competitiveMenu() {
-    ui.display("");
-    competitiveMenu.printMenu();
+    UI.display("");
+    COMPETITIVE_MENU.printMenu();
     int choice = UI.validateChoice(1, 3, 9, "Invalid input - Try again");
 
     switch (choice) {
@@ -104,9 +106,9 @@ public class MenuController {
   }
 
   public void teamMenu(Team team) {
-    ui.display("");
-    ui.display(team.getTeamName() + " - Coach: " + team.getCoach().getName());
-    teamMenu.printMenu();
+    UI.display("");
+    UI.display(team.getTEAM_TYPE() + " - Coach: " + team.getCOACH().getNAME());
+    TEAM_MENU.printMenu();
     int choice = UI.validateChoice(1, 4, 9, "Invalid input - Try again");
 
     switch (choice) {
@@ -120,16 +122,16 @@ public class MenuController {
   }
 
   public void competitionMenu() {
-    ui.display("");
-    competitionMenu.printMenu();
+    UI.display("");
+    COMPETITION_MENU.printMenu();
     int choice = UI.validateChoice(1, 5, 9, "Invalid input - Try again");
 
     switch (choice) {
-      case 1 -> cc.viewCompetitions();
-      case 2 -> cc.viewCompetitors();
-      case 3 -> cc.createCompetition();
-      case 4 -> cc.removeCompetition();
-      case 5 -> cc.evaluateCompetition();
+      case 1 -> CC.viewCompetitions();
+      case 2 -> CC.viewCompetitors();
+      case 3 -> CC.createCompetition();
+      case 4 -> CC.removeCompetition();
+      case 5 -> CC.evaluateCompetition();
       case 9 -> competitiveMenu();
     }
     competitionMenu();

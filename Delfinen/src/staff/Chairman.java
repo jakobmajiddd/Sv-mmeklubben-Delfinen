@@ -15,84 +15,84 @@ import java.util.ArrayList;
  */
 
 public class Chairman {
-  private FileHandler fileHandler = new FileHandler();
-  private UI ui = new UI();
+  private final FileHandler FILE_HANDLER = new FileHandler();
+  private final UI UI = new UI();
+  private final Finance FINANCE = new Finance();
   public static ArrayList<Member> members = new ArrayList<>();
-  private Finance finance = new Finance();
 
 
   public void createFitnessMember() {
-    ui.displayAppend("Name: ");
-    String name = ui.getString();
+    UI.displayAppend("Name: ");
+    String name = UI.getString();
 
-    ui.displayAppend("Age: ");
-    int age = ui.getValidInt("Invalid");
+    UI.displayAppend("Age: ");
+    int age = UI.getValidInt("Invalid");
 
-    ui.displayAppend("Email: ");
-    String email = ui.getString();
+    UI.displayAppend("Email: ");
+    String email = UI.getString();
     members.add(new FitnessMember(name, age, email));
 
     if (age <= 18) {
-      finance.sendReceiptJunior(name, email);
+      FINANCE.sendReceiptJunior(name, email);
     }
     if (age > 60) {
-      finance.sendReceiptDiscountedSenior(name, email);
+      FINANCE.sendReceiptDiscountedSenior(name, email);
     } else {
-      finance.sendReceiptSenior(name, email);
+      FINANCE.sendReceiptSenior(name, email);
     }
     System.out.println("HERE");
-    fileHandler.saveMembers();
+    FILE_HANDLER.saveMembers();
   }
 
   public void createPassiveMember() {
-    ui.displayAppend("Name: ");
-    String name = ui.getString();
+    UI.displayAppend("Name: ");
+    String name = UI.getString();
 
-    ui.displayAppend("Age: ");
-    int age = ui.getValidInt("Invalid");
+    UI.displayAppend("Age: ");
+    int age = UI.getValidInt("Invalid");
 
-    ui.displayAppend("Email: ");
-    String email = ui.getString();
+    UI.displayAppend("Email: ");
+    String email = UI.getString();
 
     members.add(new PassiveMember(name, age, email));
-    finance.sendReceiptPassive(name, email);
-    fileHandler.saveMembers();
+    FINANCE.sendReceiptPassive(name, email);
+    FILE_HANDLER.saveMembers();
   }
 
   public void createCompetitiveMember() {
-    ui.displayAppend("Name: ");
-    String name = ui.getString();
+    UI.displayAppend("Name: ");
+    String name = UI.getString();
 
-    ui.displayAppend("Age: ");
-    int age = ui.getValidInt("Invalid");
+    UI.displayAppend("Age: ");
+    int age = UI.getValidInt("Invalid");
 
-    ui.displayAppend("Email: ");
-    String email = ui.getString();
+    UI.displayAppend("Email: ");
+    String email = UI.getString();
 
-    ui.displayAppend("Discipline (crawl, backcrawl, butterfly, breaststroke): ");
-    Discipline discipline = ui.getDiscipline();
+    UI.displayAppend("Discipline (crawl, backcrawl, butterfly, breaststroke): ");
+    Discipline discipline = UI.getDiscipline();
 
     CompetitiveMember member = new CompetitiveMember(name, age, email, discipline);
     members.add(member);
 
     if (age <= 18) {
       MenuController.junior.addStudent(member);
-      finance.sendReceiptJunior(name, email);
+      FINANCE.sendReceiptJunior(name, email);
     } else {
       MenuController.senior.addStudent(member);
-      finance.sendReceiptSenior(name, email);
+      FINANCE.sendReceiptSenior(name, email);
     }
-    fileHandler.saveMembers();
+    FILE_HANDLER.saveMembers();
   }
 
   public void viewMembers() {
-    ui.display("");
+    UI.display("");
     if (members.size() > 0) {
       for (Member m : members) {
-        ui.display(m.toString());
+        UI.display(m.toString());
       }
     } else {
-      ui.display("There are currently 0 members.");
+      UI.display("There are currently 0 members.");
     }
   }
 
@@ -106,11 +106,11 @@ public class Chairman {
   }
 
   public void removeMember() {
-    ui.display("");
+    UI.display("");
     viewMembers();
-    ui.display("");
-    ui.displayAppend("Member ID: ");
-    int id = ui.getValidInt("Invalid input - Try again");
+    UI.display("");
+    UI.displayAppend("Member ID: ");
+    int id = UI.getValidInt("Invalid input - Try again");
     if (inMembersList(id)) {
       for (Member m : members) {
         if (m.getID() == id) {
@@ -119,9 +119,9 @@ public class Chairman {
         }
       }
     } else {
-      ui.display("No member with the ID #" + id + " was found.");
+      UI.display("No member with the ID #" + id + " was found.");
     }
-    fileHandler.saveMembers();
+    FILE_HANDLER.saveMembers();
   }
 }
 

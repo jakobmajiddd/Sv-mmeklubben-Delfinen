@@ -2,9 +2,8 @@ package files;
 
 import UI.UI;
 import competition.Competition;
-import competition.CompetitionType;
+import competition.Type;
 import competition.Discipline;
-import competition.Team;
 import controllers.CompetitionController;
 import controllers.MenuController;
 import member.CompetitiveMember;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileHandler {
-  UI ui = new UI();
+  private final UI UI = new UI();
 
   public void saveMembers() {
     try {
@@ -31,7 +30,7 @@ public class FileHandler {
       }
       ps.close();
     } catch (FileNotFoundException e) {
-      ui.display("File not found");
+      UI.display("File not found");
     }
   }
 
@@ -44,7 +43,7 @@ public class FileHandler {
       }
       ps.close();
     } catch (FileNotFoundException e) {
-      ui.display("File not found");
+      UI.display("File not found");
     }
   }
 
@@ -52,10 +51,10 @@ public class FileHandler {
     for (String s : fileToList("competitions.txt")) {
       String[] temp = s.split("_");
       int id = Integer.parseInt(temp[0]);
-      CompetitionType type = ui.getCompetitionType(temp[1].toLowerCase());
+      Type type = UI.getCompetitionType(temp[1].toLowerCase());
       String date = temp[2];
       String location = temp[3];
-      Discipline discipline = ui.getDiscipline(temp[4]);
+      Discipline discipline = UI.getDiscipline(temp[4]);
       Competition competition = new Competition(id, type, date, location, discipline);
 
       if (temp.length > 5) {
@@ -96,7 +95,7 @@ public class FileHandler {
           int age = Integer.parseInt(temp[3]);
           String mail = temp[4];
           String date = temp[5];
-          Discipline discipline = ui.getDiscipline(temp[6]);
+          Discipline discipline = UI.getDiscipline(temp[6]);
           double bestTime = Double.parseDouble(temp[7]);
           CompetitiveMember member = new CompetitiveMember(id, name, age, mail, date, discipline, bestTime);
 
@@ -130,7 +129,7 @@ public class FileHandler {
       }
       scanner.close();
     } catch (FileNotFoundException e) {
-      ui.display("File not found");
+      UI.display("File not found");
     }
     return storage;
   }

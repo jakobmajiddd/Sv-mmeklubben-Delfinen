@@ -20,13 +20,13 @@ class FinanceTest {
         if (member instanceof PassiveMember) {
             return passiveSubscription;
         }
-        if (member.getAge() < 18) {
+        if (member.getAGE() < 18) {
             return juniorSubscription;
         }
-        if (member.getAge() >= 60) {
+        if (member.getAGE() >= 60) {
             return seniorDiscountedSubscription;
         }
-        if (member.getAge() >= 18 && member.getAge() < 60) {
+        if (member.getAGE() >= 18 && member.getAGE() < 60) {
             return seniorSubscription;
         }
         return 0;

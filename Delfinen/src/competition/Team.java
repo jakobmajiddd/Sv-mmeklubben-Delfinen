@@ -13,15 +13,15 @@ import java.util.Comparator;
  */
 
 public class Team {
-    private UI ui = new UI();
-    private String teamName;
-    private Coach coach;
+    private final UI UI = new UI();
+    private final Type TEAM_TYPE;
+    private final Coach COACH;
     private ArrayList<CompetitiveMember> students = new ArrayList<>();
-    private FileHandler fileHandler = new FileHandler();
+    private final FileHandler FILE_HANDLER = new FileHandler();
 
-    public Team(Coach coach, String teamName) {
-        this.coach = coach;
-        this.teamName = teamName;
+    public Team(Coach coach, Type type) {
+        this.COACH = coach;
+        this.TEAM_TYPE = type;
     }
 
     public void addStudent(CompetitiveMember student) {
@@ -29,14 +29,14 @@ public class Team {
     }
 
     public void viewStudents() {
-        ui.display("");
+        UI.display("");
         if (students.size() > 0) {
             sortByID();
             for (CompetitiveMember c : students) {
-                ui.display(c.competitiveStats());
+                UI.display(c.competitiveStats());
             }
         } else {
-            ui.display("There are no members on this team");
+            UI.display("There are no members on this team");
         }
     }
 
@@ -51,7 +51,7 @@ public class Team {
     public int occurrenceOfDiscipline(Discipline discipline) {
         int count = 0;
         for (CompetitiveMember student : students) {
-            if (student.getDiscipline().equals(discipline)) {
+            if (student.getDISCIPLINE().equals(discipline)) {
                 count ++;
             }
         }
@@ -62,16 +62,16 @@ public class Team {
         Discipline[] disciplines = {Discipline.CRAWL, Discipline.BUTTERFLY, Discipline.BACKCRAWL, Discipline.BREASTSTROKE};
         int count = 0;
 
-        ui.display("");
+        UI.display("");
         if (students.size() > 0) {
             sortByTime();
             for (Discipline discipline : disciplines) {
-                ui.display(discipline.toString() + ":");
+                UI.display(discipline.toString() + ":");
                 if (occurrenceOfDiscipline(discipline) > range) {
                     for (CompetitiveMember student : students) {
                         if (student.getBestTime() > 0) {
-                            if (student.getDiscipline().equals(discipline)) {
-                                ui.display(student.competitiveStats());
+                            if (student.getDISCIPLINE().equals(discipline)) {
+                                UI.display(student.competitiveStats());
                                 count++;
                                 if (count == range) {
                                     break;
@@ -81,9 +81,9 @@ public class Team {
                     }
                 } else {
                     for (CompetitiveMember student : students) {
-                        if (student.getDiscipline().equals(discipline)) {
+                        if (student.getDISCIPLINE().equals(discipline)) {
                             if (student.getBestTime() > 0) {
-                                ui.display(student.competitiveStats());
+                                UI.display(student.competitiveStats());
                                 count++;
                                 if (count == occurrenceOfDiscipline(discipline)) {
                                     break;
@@ -92,11 +92,11 @@ public class Team {
                         }
                     }
                 }
-                ui.display("");
+                UI.display("");
                 count = 0;
             }
         } else {
-            ui.display("There are no members on this team");
+            UI.display("There are no members on this team");
         }
     }
 
@@ -111,25 +111,25 @@ public class Team {
 
     public void changeBestTime() {
         viewStudents();
-        ui.display("");
-        ui.displayAppend("Student ID: ");
-        int id = ui.getValidInt("Invalid input - Try again");
+        UI.display("");
+        UI.displayAppend("Student ID: ");
+        int id = UI.getValidInt("Invalid input - Try again");
         if (inStudentsList(id)) {
             for (CompetitiveMember c : students) {
                 if (c.getID() == id) {
-                    c.setBestTime(ui.getValidInt("Invalid input"));
+                    c.setBestTime(UI.getValidInt("Invalid input"));
                     break;
                 }
             }
         } else {
-            ui.display("No student with the ID #" + id + " was found.");
+            UI.display("No student with the ID #" + id + " was found.");
         }
     }
 
     public boolean isValidCompetition(int id) {
         for (Competition c : CompetitionController.competitions) {
             if (c.getID() == id) {
-                if (ui.getCompetitionType(teamName.toLowerCase()).equals(c.getType())) {
+                if (TEAM_TYPE.equals(c.getCOMPETITION_TYPE())) {
                     return true;
                 }
             }
@@ -139,8 +139,8 @@ public class Team {
 
     public void displayValidCompetitions() {
         for (Competition c : CompetitionController.competitions) {
-            if (ui.getCompetitionType(teamName.toLowerCase()).equals(c.getType())) {
-                ui.display(c.toString());
+            if (TEAM_TYPE.equals(c.getCOMPETITION_TYPE())) {
+                UI.display(c.toString());
             }
         }
     }
@@ -155,49 +155,49 @@ public class Team {
     }
 
     public void assignToCompetition() {
-        ui.display("");
+        UI.display("");
         if (students.size() > 0) {
-            ui.displayAppend("Students:");
+            UI.displayAppend("Students:");
             viewStudents();
-            ui.display("");
-            ui.display("Competitions");
+            UI.display("");
+            UI.display("Competitions");
             displayValidCompetitions();
-            ui.display("");
+            UI.display("");
 
-            ui.displayAppend("Student ID: ");
-            int studentID = ui.getValidInt("Invalid");
+            UI.displayAppend("Student ID: ");
+            int studentID = UI.getValidInt("Invalid");
 
-            ui.displayAppend("Competition ID: ");
-            int competitionID = ui.getValidInt("Invalid");
+            UI.displayAppend("Competition ID: ");
+            int competitionID = UI.getValidInt("Invalid");
 
             if (isValidCompetition(competitionID)) {
                 for (Competition c : CompetitionController.competitions) {
                     if (c.getID() == competitionID) {
-                        if (c.getDiscipline().equals(getStudentByID(studentID).getDiscipline()))
+                        if (c.getDISCIPLINE().equals(getStudentByID(studentID).getDISCIPLINE()))
                             if (!c.inCompetition(studentID)) {
                                 c.addCompetitor(getStudentByID(studentID));
                                 break;
                             } else {
-                                ui.display("Already assigned to this competition");
+                                UI.display("Already assigned to this competition");
                         } else {
-                            ui.display("Incompatible disciplines");
+                            UI.display("Incompatible disciplines");
                         }
                     }
                 }
             } else {
-                ui.display("Invalid");
+                UI.display("Invalid");
             }
         } else {
-            ui.display("No students to assign");
+            UI.display("No students to assign");
         }
-        fileHandler.saveCompetitions();
+        FILE_HANDLER.saveCompetitions();
     }
 
-    public String getTeamName() {
-        return teamName;
+    public Type getTEAM_TYPE() {
+        return TEAM_TYPE;
     }
 
-    public Coach getCoach() {
-        return coach;
+    public Coach getCOACH() {
+        return COACH;
     }
 }

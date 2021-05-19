@@ -12,29 +12,29 @@ import java.util.*;
  */
 
 public class Competition {
-    private CompetitionType type;
-    private Date date;
-    private String location;
-    private Discipline discipline;
+    private final Type COMPETITION_TYPE;
+    private final Date DATE;
+    private final String LOCATION;
+    private final Discipline DISCIPLINE;
     private final int ID;
-    private ArrayList<CompetitiveMember> competitors = new ArrayList<>();
-    private UI ui = new UI();
+    private final ArrayList<CompetitiveMember> competitors = new ArrayList<>();
+    private final UI UI = new UI();
 
-    public Competition(CompetitionType type, String date, String location, Discipline discipline) {
-        this.type = type;
-        this.date = convertStringToDate(date);
-        this.location = location;
-        this.discipline = discipline;
-        this.ID = ui.getValidCompetitionID();
+    public Competition(Type type, String date, String location, Discipline discipline) {
+        this.COMPETITION_TYPE = type;
+        this.DATE = convertStringToDate(date);
+        this.LOCATION = location;
+        this.DISCIPLINE = discipline;
+        this.ID = UI.getValidCompetitionID();
 
     }
 
-    public Competition(int ID, CompetitionType type, String date, String location, Discipline discipline) {
+    public Competition(int ID, Type type, String date, String location, Discipline discipline) {
         this.ID = ID;
-        this.type = type;
-        this.date = convertStringToDate(date);
-        this.location = location;
-        this.discipline = discipline;
+        this.COMPETITION_TYPE = type;
+        this.DATE = convertStringToDate(date);
+        this.LOCATION = location;
+        this.DISCIPLINE = discipline;
     }
 
     public Date convertStringToDate(String sDate) {
@@ -45,8 +45,8 @@ public class Competition {
         }
     }
 
-    public CompetitionType getType() {
-        return type;
+    public Type getCOMPETITION_TYPE() {
+        return COMPETITION_TYPE;
     }
 
     public int getID() {
@@ -81,15 +81,15 @@ public class Competition {
 
     public String dateFormatted() {
         DateFormat df = new SimpleDateFormat("d/MM/y");
-        return df.format(date);
+        return df.format(DATE);
     }
 
-    public Discipline getDiscipline() {
-        return discipline;
+    public Discipline getDISCIPLINE() {
+        return DISCIPLINE;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDATE() {
+        return DATE;
     }
 
     public void assignPlacements() {
@@ -108,14 +108,14 @@ public class Competition {
 
     public String toFileFormat() {
         return  ID
-                + "_" + type.toString()
+                + "_" + COMPETITION_TYPE.toString()
                 + "_" + dateFormatted()
-                + "_" + location
-                + "_" + discipline
+                + "_" + LOCATION
+                + "_" + DISCIPLINE
                 + "_" + fileCompetitorID();
     }
 
     public String toString() {
-        return dateFormatted() + " : " + location + " -> " + discipline + ", ID# " + getID();
+        return dateFormatted() + " : " + LOCATION + " -> " + DISCIPLINE + ", ID# " + getID();
     }
 }

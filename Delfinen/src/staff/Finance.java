@@ -4,51 +4,52 @@ import UI.UI;
 import files.FileHandler;
 import member.Member;
 import member.PassiveMember;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-// @author Silke
-public class Finance {
-  private int passiveSubscription = 500;
-  private int juniorSubscription = 1000;
-  private double seniorSubscription = 1600;
-  private double seniorDiscountedSubscription = 1600 * 0.75;
+/**
+ * @author Silke
+ */
 
-  private FileHandler fileHandler = new FileHandler();
-  private File RECEIPTFILE = new File("Delfinen/Receipt.txt");
-  private final LocalDateTime saleTime = LocalDateTime.now();
-  private DateTimeFormatter timeformat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-  private UI ui = new UI();
-  private ArrayList<Member> members = Chairman.members;
+public class Finance {
+  private final int PASSIVE_SUBSCRIPTION = 500;
+  private final int JUNIOR_SUBSCRIPTION = 1000;
+  private final double SENIOR_SUBSCRIPTION = 1600;
+  private final double DISCOUNT_SUBSCRIPTION = 1600 * 0.75;
+
+  private final FileHandler fileHandler = new FileHandler();
+  private final File RECEIPT_FILE = new File("Delfinen/Receipt.txt");
+  private final LocalDateTime SALE_TIME = LocalDateTime.now();
+  private final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+  private final UI UI = new UI();
+
 
   public double getType(Member member) {
     if (member instanceof PassiveMember) {
-      return passiveSubscription;
+      return PASSIVE_SUBSCRIPTION;
     }
-    if (member.getAge() < 18) {
-      return juniorSubscription;
+    if (member.getAGE() < 18) {
+      return JUNIOR_SUBSCRIPTION;
     }
-    if (member.getAge() >= 60) {
-      return seniorDiscountedSubscription;
+    if (member.getAGE() >= 60) {
+      return DISCOUNT_SUBSCRIPTION;
     }
-    if (member.getAge() >= 18 && member.getAge() < 60) {
-      return seniorSubscription;
+    if (member.getAGE() >= 18 && member.getAGE() < 60) {
+      return SENIOR_SUBSCRIPTION;
     }
     return 0;
   }
 
 
   public double expectedRevenue() {
-    ui.display("");
+    UI.display("");
     double total = 0;
-    for (Member m : members) {
+    for (Member m : Chairman.members) {
       total += getType(m);
     }
     return total;
@@ -57,7 +58,7 @@ public class Finance {
 
   public void sendReceiptPassive(String name, String email) {
     try {
-      FileWriter fileWriter = new FileWriter(RECEIPTFILE);
+      FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
       fileWriter.write(
           "\n------------------------------------"
@@ -68,20 +69,20 @@ public class Finance {
               + "\nFind in this email your receipt for a passive membership"
               + "\n"
               + "\nPrice: "
-              + passiveSubscription
+              + PASSIVE_SUBSCRIPTION
               + "kr \nTime of sale: "
-              + saleTime.format(timeformat)
+              + SALE_TIME.format(TIME_FORMAT)
               + "\n------------------------------------"
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incorrectOption(); //måske lave om til decideret error-message
+      UI.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
   public void sendReceiptJunior(String name, String email) {
     try {
-      FileWriter fileWriter = new FileWriter(RECEIPTFILE);
+      FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
       fileWriter.write(
           "\n------------------------------------"
@@ -92,20 +93,20 @@ public class Finance {
               + "\nFind in this email your receipt for a junior membership"
               + "\n"
               + "\nPrice: "
-              + juniorSubscription
+              + JUNIOR_SUBSCRIPTION
               + "kr \nTime of sale: "
-              + saleTime.format(timeformat)
+              + SALE_TIME.format(TIME_FORMAT)
               + "\n------------------------------------"
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incorrectOption(); //måske lave om til decideret error-message
+      UI.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
   public void sendReceiptDiscountedSenior(String name, String email) {
     try {
-      FileWriter fileWriter = new FileWriter(RECEIPTFILE);
+      FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
       fileWriter.write(
           "\n------------------------------------"
@@ -116,20 +117,20 @@ public class Finance {
               + "\nFind in this email your receipt for a discounted senior membership"
               + "\n"
               + "\nPrice: "
-              + seniorDiscountedSubscription
+              + DISCOUNT_SUBSCRIPTION
               + "kr \nTime of sale: "
-              + saleTime.format(timeformat)
+              + SALE_TIME.format(TIME_FORMAT)
               + "\n------------------------------------"
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incorrectOption(); //måske lave om til decideret error-message
+      UI.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
   public void sendReceiptSenior(String name, String email) {
     try {
-      FileWriter fileWriter = new FileWriter(RECEIPTFILE);
+      FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
       fileWriter.write(
           "\n------------------------------------"
@@ -140,34 +141,33 @@ public class Finance {
               + "\nFind in this email your receipt for a senior membership"
               + "\n"
               + "\nPrice: "
-              + seniorSubscription
+              + SENIOR_SUBSCRIPTION
               + "kr \nTime of sale: "
-              + saleTime.format(timeformat)
+              + SALE_TIME.format(TIME_FORMAT)
               + "\n------------------------------------"
       );
       fileWriter.close();
     } catch (IOException e) {
-      ui.incorrectOption(); //måske lave om til decideret error-message
+      UI.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
 
   public void updatePayment() {
-    ui.display("Enter member ID: ");
-    int id = ui.getValidInt("Invalid ID");
+    UI.display("Enter member ID: ");
+    int id = UI.getValidInt("Invalid ID");
     if (new Chairman().inMembersList(id)) {
-      for (Member m : members) {
+      for (Member m : Chairman.members) {
         if (m.getID() == id) {
           memberSetDate(m);
           break;
         }
       }
     } else {
-      ui.display("No matching ID");
+      UI.display("No matching ID");
     }
     fileHandler.saveMembers();
   }
-
 
   public void memberSetDate(Member member) {
     Calendar c = Calendar.getInstance();
@@ -182,15 +182,14 @@ public class Finance {
   }
 
   public void unpaidMembers() {
-    ui.display("");
+    UI.display("");
     boolean hasPaid = false;
-    ui.display("Unpaid members: ");
-    for (Member m : members) {
+    UI.display("Unpaid members: ");
+    for (Member m : Chairman.members) {
       hasPaid = !memberHasPaid(m);
       if (hasPaid) {
-        ui.display(m.toString());
+        UI.display(m.toString());
       }
     }
   }
 }
-

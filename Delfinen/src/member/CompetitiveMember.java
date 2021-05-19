@@ -1,9 +1,6 @@
 package member;
 
-import competition.Competition;
 import competition.Discipline;
-import competition.Team;
-
 import java.util.ArrayList;
 
 /**
@@ -12,18 +9,18 @@ import java.util.ArrayList;
 
 public class CompetitiveMember extends Member {
     private double bestTime;
-    private Discipline discipline;
+    private final Discipline DISCIPLINE;
     private ArrayList<Integer> competitionPlacements = new ArrayList<>();
 
     public CompetitiveMember(String name, int age, String email, Discipline discipline) {
         super("CM", name, age, email);
-        this.discipline = discipline;
+        this.DISCIPLINE = discipline;
     }
 
     // File loading
     public CompetitiveMember(int ID, String name, int age, String email, String date, Discipline discipline, double bestTime) {
         super(ID, "CM", name, age, email, date);
-        this.discipline = discipline;
+        this.DISCIPLINE = discipline;
         this.bestTime = bestTime;
     }
 
@@ -47,8 +44,8 @@ public class CompetitiveMember extends Member {
         this.bestTime = bestTime;
     }
 
-    public Discipline getDiscipline() {
-        return discipline;
+    public Discipline getDISCIPLINE() {
+        return DISCIPLINE;
     }
 
     public String getPlacements() {
@@ -65,10 +62,10 @@ public class CompetitiveMember extends Member {
         return getID()
           + "_" + getFILE_ID()
                 + "_" + getNAME()
-                + "_" + getAge()
+                + "_" + getAGE()
                 + "_" + getEMAIL()
                 + "_" + dateFormatted()
-                + "_" + discipline
+                + "_" + DISCIPLINE
                 + "_" + bestTime
                 + "_" + getPlacements();
 
@@ -77,10 +74,10 @@ public class CompetitiveMember extends Member {
     public String toString() {
         return    "ID: #" + getID()
                 + ", Name: " + getNAME()
-                + ", Age: " + getAge()
+                + ", Age: " + getAGE()
                 + " - Next payment date: " + dateFormatted()
                 + " -> Type: " + getFILE_ID()
-                + ", Discipline: " + discipline;
+                + ", Discipline: " + DISCIPLINE;
 
                // + ", Team: " + team.getTeamName();
     }
@@ -88,7 +85,7 @@ public class CompetitiveMember extends Member {
     public String competitiveStats() {
         return    "ID: #" + getID()
                 + ", Name: " + getNAME()
-                + ", Discipline: " + discipline
+                + ", Discipline: " + DISCIPLINE
                 + ", Best time: " + bestTime
                 + ", Average competition placement: " + averagePlacement();
     }

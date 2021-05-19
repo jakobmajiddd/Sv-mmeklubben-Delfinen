@@ -1,20 +1,21 @@
 package UI;
-// @author Alexander
+
 import competition.Competition;
-import competition.CompetitionType;
+import competition.Type;
 import competition.Discipline;
 import controllers.CompetitionController;
-import member.CompetitiveMember;
 import member.Member;
 import staff.Chairman;
-
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * @author Alexander
+ */
+
 public class UI {
-    Scanner scan = new Scanner(System.in);
+    private final Scanner SCANNER = new Scanner(System.in);
 
     public void incorrectOption(){
         System.out.println("Not a valid number/command");
@@ -22,14 +23,10 @@ public class UI {
     }
 
     public int getInt(){
-        return scan.nextInt();
+        return SCANNER.nextInt();
     }
     public String getString(){
-        return scan.nextLine();
-    }
-
-    public String getMessage(String msg){
-        return msg;
+        return SCANNER.nextLine();
     }
 
     public void displayAppend(String msg){
@@ -37,14 +34,6 @@ public class UI {
     }
 
     public void display(String msg){
-        System.out.println(msg);
-    }
-
-    public void display(double msg) {
-        System.out.println(msg);
-    }
-
-    public void display(int msg) {
         System.out.println(msg);
     }
 
@@ -112,19 +101,19 @@ public class UI {
         return null;
     }
 
-    public CompetitionType getCompetitionType(String input) {
+    public Type getCompetitionType(String input) {
         switch (input) {
             case "junior" -> {
-                return CompetitionType.JUNIOR;
+                return Type.JUNIOR;
             }
             case "senior" -> {
-                return CompetitionType.SENIOR;
+                return Type.SENIOR;
             }
         }
         return null;
     }
 
-    public CompetitionType getCompetitionType() {
+    public Type getCompetitionType() {
         String s = getString().toLowerCase();
         while (!s.equals("junior") && !s.equals("senior")) {
             display("Not a valid competition type");
@@ -132,10 +121,10 @@ public class UI {
         }
         switch (s) {
             case "junior" -> {
-                return CompetitionType.JUNIOR;
+                return Type.JUNIOR;
             }
             case "senior" -> {
-                return CompetitionType.SENIOR;
+                return Type.SENIOR;
             }
         }
         return null;
@@ -158,7 +147,7 @@ public class UI {
         return choice;
     }
 
-    public static int validateChoice(int r1, int r2, int quit, String errorMsg) {
+    public int validateChoice(int r1, int r2, int quit, String errorMsg) {
         Scanner in = new Scanner(System.in);
         int choice = 0;
         boolean inRange = false;

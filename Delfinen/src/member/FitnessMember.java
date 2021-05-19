@@ -19,7 +19,7 @@ public class FitnessMember extends Member {
         return getID()
         + "_" + getFILE_ID()
                 + "_" + getNAME()
-                + "_" + getAge()
+                + "_" + getAGE()
                 + "_" + getEMAIL()
                 + "_" + dateFormatted();
     }

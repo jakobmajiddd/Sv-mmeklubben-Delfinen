@@ -12,22 +12,22 @@ import java.util.Calendar;
 import java.util.Date;
 
 public abstract class Member {
-    private UI ui = new UI();
+    private final UI UI = new UI();
     private final String FILE_ID;
     private final String NAME;
-    private int age;
+    private final int AGE;
     private final String EMAIL;
     private Date nextPaymentDate;
-    private int ID;
+    private final int ID;
 
     // sets nextPaymentDate to the date object was created.
     Member(String fileID, String name, int age, String email) {
         this.FILE_ID = fileID;
         this.NAME = name;
-        this.age = age;
+        this.AGE = age;
         this.EMAIL = email;
         setDate();
-        ID = ui.getValidMemberID();
+        ID = UI.getValidMemberID();
     }
 
     // used when loading from file
@@ -35,7 +35,7 @@ public abstract class Member {
         this.ID = ID;
         this.FILE_ID = fileID;
         this.NAME = name;
-        this.age = age;
+        this.AGE = age;
         this.EMAIL = email;
         this.nextPaymentDate = convertStringToDate(date);
     }
@@ -70,8 +70,8 @@ public abstract class Member {
         return NAME;
     }
 
-    public int getAge() {
-        return age;
+    public int getAGE() {
+        return AGE;
     }
 
     public String getEMAIL() {
@@ -91,6 +91,6 @@ public abstract class Member {
     }
 
     public String toString() {
-        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + age + " - Next payment date: " + dateFormatted() + " -> Type: " + FILE_ID;
+        return "ID: #" + ID + ", Name: " + NAME + ", Age: " + AGE + " - Next payment date: " + dateFormatted() + " -> Type: " + FILE_ID;
     }
 }
