@@ -134,8 +134,6 @@ public class FileHandler {
     } catch (FileNotFoundException e) {
       ui.display("File not found");
     }
-
     return storage;
   }
-
 }

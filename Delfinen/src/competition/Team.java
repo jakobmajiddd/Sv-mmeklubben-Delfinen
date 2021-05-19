@@ -2,14 +2,11 @@ package competition;
 
 import UI.UI;
 import controllers.CompetitionController;
-import controllers.MenuController;
 import files.FileHandler;
 import member.CompetitiveMember;
 import staff.Coach;
-
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Locale;
 
 /**
  * @author Martin

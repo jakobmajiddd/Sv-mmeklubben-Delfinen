@@ -2,13 +2,10 @@ package competition;
 
 import UI.UI;
 import member.CompetitiveMember;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 /**
  * @author Martin
@@ -20,7 +17,6 @@ public class Competition {
     private String location;
     private Discipline discipline;
     private final int ID;
-
     private ArrayList<CompetitiveMember> competitors = new ArrayList<>();
     private UI ui = new UI();
 
@@ -39,7 +35,6 @@ public class Competition {
         this.date = convertStringToDate(date);
         this.location = location;
         this.discipline = discipline;
-        this.competitors = competitors;
     }
 
     public Date convertStringToDate(String sDate) {
@@ -64,22 +59,6 @@ public class Competition {
 
     public void addCompetitor(CompetitiveMember competitor) {
         competitors.add(competitor);
-    }
-
-    public void removeCompetitor() {
-        ui.display("ID: ");
-        int id = ui.getValidInt("Invalid");
-
-        if (inCompetition(id)) {
-            for (CompetitiveMember c : competitors) {
-                if (c.getID() == id) {
-                    competitors.remove(c);
-                    break;
-                }
-            }
-        } else {
-            ui.display("ID not found");
-        }
     }
 
     boolean inCompetition(int id) {
@@ -107,6 +86,24 @@ public class Competition {
 
     public Discipline getDiscipline() {
         return discipline;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void assignPlacements() {
+        ArrayList<Integer> nums = new ArrayList<>();
+
+        for (int i = 0; i < competitors.size(); i++) {
+            nums.add(i+1);
+        }
+
+        Collections.shuffle(nums);
+
+        for (int i = 0; i < competitors.size(); i++) {
+            competitors.get(i).addPlacement(nums.get(i));
+        }
     }
 
     public String toFileFormat() {

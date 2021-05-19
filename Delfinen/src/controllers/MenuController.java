@@ -115,13 +115,14 @@ public class MenuController {
   public void competitionMenu() {
     ui.display("");
     Page.competitionMenu.printMenu();
-    int choice = UI.validateChoice(1, 4, 9, "Invalid input - Try again");
+    int choice = UI.validateChoice(1, 5, 9, "Invalid input - Try again");
 
     switch (choice) {
       case 1 -> cc.viewCompetitions();
       case 2 -> cc.viewCompetitors();
       case 3 -> cc.createCompetition();
       case 4 -> cc.removeCompetition();
+      case 5 -> cc.evaluateCompetition();
       case 9 -> competitiveMenu();
     }
     competitionMenu();

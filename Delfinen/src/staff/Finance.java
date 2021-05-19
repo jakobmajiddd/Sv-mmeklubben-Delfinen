@@ -24,10 +24,9 @@ public class Finance {
   private FileHandler fileHandler = new FileHandler();
   private File RECEIPTFILE = new File("Delfinen/Receipt.txt");
   private final LocalDateTime saleTime = LocalDateTime.now();
-  DateTimeFormatter timeformat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
-  UI ui = new UI();
-  ArrayList<Member> members = Chairman.members;
+  private DateTimeFormatter timeformat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+  private UI ui = new UI();
+  private ArrayList<Member> members = Chairman.members;
 
   public double getType(Member member) {
     if (member instanceof PassiveMember) {

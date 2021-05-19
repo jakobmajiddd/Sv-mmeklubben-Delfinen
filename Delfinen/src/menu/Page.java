@@ -81,12 +81,13 @@ public class Page {
     }
 
     static void setupCompetitionMenu() {
-        String[] competitionMenuItems = new String[5];
+        String[] competitionMenuItems = new String[6];
         competitionMenuItems[0] = "1. View competitions";
         competitionMenuItems[1] = "2. View competitors";
         competitionMenuItems[2] = "3. Create competition";
         competitionMenuItems[3] = "4. Remove competition";
-        competitionMenuItems[4] = "9. Back";
+        competitionMenuItems[4] = "5. Evaluate competition";
+        competitionMenuItems[5] = "9. Back";
         competitionMenu = new Menu("Competition Menu", "Choose: ", competitionMenuItems);
     }
 }

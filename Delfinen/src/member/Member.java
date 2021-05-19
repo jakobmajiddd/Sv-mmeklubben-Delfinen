@@ -5,8 +5,6 @@ package member;
  */
 
 import UI.UI;
-import staff.Chairman;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,7 +20,7 @@ public abstract class Member {
     private Date nextPaymentDate;
     private int ID;
 
-    // sets lastPaymentDate to the date object was created.
+    // sets nextPaymentDate to the date object was created.
     Member(String fileID, String name, int age, String email) {
         this.FILE_ID = fileID;
         this.NAME = name;

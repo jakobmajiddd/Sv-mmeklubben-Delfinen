@@ -8,8 +8,6 @@ import member.CompetitiveMember;
 import member.FitnessMember;
 import member.Member;
 import member.PassiveMember;
-
-import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -57,9 +55,7 @@ public class Chairman {
     String email = ui.getString();
 
     members.add(new PassiveMember(name, age, email));
-
     finance.sendReceiptPassive(name, email);
-
     fileHandler.saveMembers();
   }
 
@@ -126,10 +122,6 @@ public class Chairman {
       ui.display("No member with the ID #" + id + " was found.");
     }
     fileHandler.saveMembers();
-  }
-
-  public ArrayList<Member> getMembers() {
-    return members;
   }
 }
 

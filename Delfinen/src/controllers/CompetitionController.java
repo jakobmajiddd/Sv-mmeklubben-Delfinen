@@ -6,19 +6,15 @@ import competition.CompetitionType;
 import competition.Discipline;
 import files.FileHandler;
 import member.CompetitiveMember;
-import staff.Chairman;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 public class CompetitionController {
     public static ArrayList<Competition> competitions = new ArrayList<>();
     private UI ui = new UI();
-    private Chairman chairman = new Chairman();
     private FileHandler fileHandler = new FileHandler();
 
     public void viewCompetitions() {
@@ -61,7 +57,6 @@ public class CompetitionController {
                 }
             }
         }
-
     }
 
     /**
@@ -111,6 +106,38 @@ public class CompetitionController {
         fileHandler.saveCompetitions();
     }
 
+    // Assigns competitors random placements, and removes the tournament.
+    public void evaluateCompetition() {
+        if (competitions.size() > 0) {
+            viewCompetitions();
+            ui.display("");
+            ui.displayAppend("Competition ID: ");
+            int id = ui.getValidInt("Invalid");
+
+            if (competitionExist(id)) {
+                for (Competition c : competitions) {
+                    if (c.getID() == id) {
+                        if (Calendar.getInstance().getTime().after(c.getDate())) {
+                            c.assignPlacements();
+                            competitions.remove(c);
+                            break;
+                        } else {
+                            ui.display("Cannot evaluate a competition before the competition date");
+                        }
+                    }
+                }
+            } else {
+                ui.display("");
+                ui.display("ID not found");
+            }
+        } else {
+            ui.display("");
+            ui.display("No competitions found");
+        }
+        fileHandler.saveMembers();
+        fileHandler.saveCompetitions();
+    }
+
     boolean competitionExist(int id) {
         for (Competition c : competitions) {
             if (c.getID() == id) {
@@ -121,7 +148,7 @@ public class CompetitionController {
     }
 
     private boolean isValidDate(String d) {
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat formatter = new SimpleDateFormat("d/MM/y");
         formatter.setLenient(false);
         try {
             formatter.parse(d);
