@@ -2,23 +2,29 @@ package menu;
 
 import UI.UI;
 
-public class Menu {
-  UI ui = new UI();
+public abstract class Menu {
+  private final UI UI = new UI();
   private String menuHeader;
   private String leadText;
   private String[] menuItems;
 
-  public Menu(String menuHeader, String leadText, String[] menuItems) {
-    this.menuHeader = menuHeader;
-    this.leadText = leadText;
-    this.menuItems = menuItems;
+  public void printMenu() {
+    UI.display(menuHeader);
+    for (String s : menuItems) {
+     UI.display(s);
+    }
+    UI.displayAppend(leadText);
   }
 
-  public void printMenu() {
-    ui.display(menuHeader);
-    for (String s : menuItems) {
-     ui.display(s);
-    }
-    ui.displayAppend(leadText);
+  void setMenuHeader(String menuHeader) {
+    this.menuHeader = menuHeader;
+  }
+
+  void setLeadText(String leadText) {
+    this.leadText = leadText;
+  }
+
+  void setMenuItems(String[] menuItems) {
+    this.menuItems = menuItems;
   }
 }

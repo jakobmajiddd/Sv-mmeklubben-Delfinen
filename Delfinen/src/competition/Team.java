@@ -110,6 +110,8 @@ public class Team {
     }
 
     public void changeBestTime() {
+        viewStudents();
+        ui.display("");
         ui.displayAppend("Student ID: ");
         int id = ui.getValidInt("Invalid input - Try again");
         if (inStudentsList(id)) {

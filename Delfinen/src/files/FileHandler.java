@@ -15,10 +15,8 @@ import staff.Chairman;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class FileHandler {
@@ -26,7 +24,7 @@ public class FileHandler {
 
   public void saveMembers() {
     try {
-      PrintStream ps = new PrintStream(new FileOutputStream("members.txt", false));
+      PrintStream ps = new PrintStream("members.txt");
       for (Member m : Chairman.members) {
         ps.print(m.toFileFormat());
         ps.print("\n");
@@ -39,7 +37,7 @@ public class FileHandler {
 
   public void saveCompetitions() {
     try {
-      PrintStream ps = new PrintStream(new FileOutputStream("competitions.txt", false));
+      PrintStream ps = new PrintStream("competitions.txt");
       for (Competition c : CompetitionController.competitions) {
         ps.print(c.toFileFormat());
         ps.print("\n");
