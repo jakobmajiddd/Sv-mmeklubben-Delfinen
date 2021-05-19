@@ -1,4 +1,8 @@
-Send to: 
-Hello 
-Find in this email your receipt for a 
-Price: 
+
+------------------------------------Send to: 1
+Hello 1
+Find in this email your receipt for a junior membership
+
+Price: 1000kr 
+Time of sale: 18-05-2021 22:21
+------------------------------------

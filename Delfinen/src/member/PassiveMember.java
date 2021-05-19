@@ -16,9 +16,8 @@ public class PassiveMember extends Member {
 
     @Override
     public String toFileFormat() {
-
         return getID()
-        + "_" + getFILE_ID()
+                + "_" + getFILE_ID()
                 + "_" + getNAME()
                 + "_" + getAge()
                 + "_" + getEMAIL()

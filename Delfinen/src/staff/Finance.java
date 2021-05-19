@@ -1,6 +1,7 @@
 package staff;
 
 import UI.UI;
+import files.FileHandler;
 import member.Member;
 import member.PassiveMember;
 
@@ -20,7 +21,8 @@ public class Finance {
   private double seniorSubscription = 1600;
   private double seniorDiscountedSubscription = 1600 * 0.75;
 
-  private File RECEIPTFILE = new File("src/files/Receipt.txt");
+  private FileHandler fileHandler = new FileHandler();
+  private File RECEIPTFILE = new File("Delfinen/Receipt.txt");
   private final LocalDateTime saleTime = LocalDateTime.now();
   DateTimeFormatter timeformat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
@@ -74,7 +76,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      //ui.incorrectOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
@@ -98,7 +100,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      //ui.incorrectOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
@@ -122,7 +124,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      // ui.incorrectOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
@@ -146,7 +148,7 @@ public class Finance {
       );
       fileWriter.close();
     } catch (IOException e) {
-      // ui.incorrectOption(); //måske lave om til decideret error-message
+      ui.incorrectOption(); //måske lave om til decideret error-message
     }
   }
 
@@ -164,6 +166,7 @@ public class Finance {
     } else {
       ui.display("No matching ID");
     }
+    fileHandler.saveMembers();
   }
 
 
@@ -188,9 +191,6 @@ public class Finance {
       if (hasPaid) {
         ui.display(m.toString());
       }
-    }
-    if (!hasPaid) {
-      ui.display("None");
     }
   }
 }

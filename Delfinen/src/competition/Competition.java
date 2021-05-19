@@ -3,7 +3,12 @@ package competition;
 import UI.UI;
 import member.CompetitiveMember;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author Martin
@@ -11,22 +16,37 @@ import java.util.ArrayList;
 
 public class Competition {
     private CompetitionType type;
-    private String date;
+    private Date date;
     private String location;
     private Discipline discipline;
     private final int ID;
-    private static int count;
 
     private ArrayList<CompetitiveMember> competitors = new ArrayList<>();
     private UI ui = new UI();
 
     public Competition(CompetitionType type, String date, String location, Discipline discipline) {
         this.type = type;
-        this.date = date;
+        this.date = convertStringToDate(date);
         this.location = location;
         this.discipline = discipline;
-        count++;
-        ID = count;
+        this.ID = ui.getValidCompetitionID();
+
+    }
+
+    public Competition(int ID, CompetitionType type, String date, String location, Discipline discipline) {
+        this.ID = ID;
+        this.type = type;
+        this.date = convertStringToDate(date);
+        this.location = location;
+        this.discipline = discipline;
+    }
+
+    public Date convertStringToDate(String sDate) {
+        try {
+            return new SimpleDateFormat("d/MM/y").parse(sDate);
+        } catch (ParseException e) {
+            return Calendar.getInstance().getTime();
+        }
     }
 
     public CompetitionType getType() {
@@ -35,6 +55,10 @@ public class Competition {
 
     public int getID() {
         return ID;
+    }
+
+    public ArrayList<CompetitiveMember> getCompetitors() {
+        return competitors;
     }
 
     void addCompetitor(CompetitiveMember competitor) {
@@ -66,12 +90,6 @@ public class Competition {
         return false;
     }
 
-    void viewCompetitors() {
-        for (CompetitiveMember c : competitors) {
-           ui.display(c.toString());
-        }
-    }
-
     public String fileCompetitorID() {
         StringBuilder text = new StringBuilder();
         for (CompetitiveMember c : competitors) {
@@ -81,15 +99,21 @@ public class Competition {
         return text.toString();
     }
 
+    public String dateFormatted() {
+        DateFormat df = new SimpleDateFormat("d/MM/y");
+        return df.format(date);
+    }
+
     public String toFileFormat() {
-        return type.toString()
-                + "_" + date
+        return  ID
+                + "_" + type.toString()
+                + "_" + dateFormatted()
                 + "_" + location
                 + "_" + discipline
                 + "_" + fileCompetitorID();
     }
 
     public String toString() {
-        return date + " : " + location + " -> " + discipline + ", ID# " + getID();
+        return dateFormatted() + " : " + location + " -> " + discipline + ", ID# " + getID();
     }
 }
