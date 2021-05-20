@@ -50,13 +50,13 @@ public abstract class Member {
     }
 
     public String dateFormatted() {
-        DateFormat df = new SimpleDateFormat("d/MM/y");
+        DateFormat df = new SimpleDateFormat("dd/MM/y");
         return df.format(nextPaymentDate);
     }
 
     public Date convertStringToDate(String sDate) {
         try {
-            return new SimpleDateFormat("d/MM/y").parse(sDate);
+            return new SimpleDateFormat("dd/MM/y").parse(sDate);
         } catch (ParseException e) {
             return Calendar.getInstance().getTime();
         }

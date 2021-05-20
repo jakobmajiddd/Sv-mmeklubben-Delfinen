@@ -39,7 +39,7 @@ public class Competition {
 
     public Date convertStringToDate(String sDate) {
         try {
-            return new SimpleDateFormat("d/MM/y").parse(sDate);
+            return new SimpleDateFormat("dd/MM/y").parse(sDate);
         } catch (ParseException e) {
             return Calendar.getInstance().getTime();
         }
@@ -80,7 +80,7 @@ public class Competition {
     }
 
     public String dateFormatted() {
-        DateFormat df = new SimpleDateFormat("d/MM/y");
+        DateFormat df = new SimpleDateFormat("dd/MM/y");
         return df.format(DATE);
     }
 

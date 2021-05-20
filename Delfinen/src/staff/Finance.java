@@ -25,7 +25,7 @@ public class Finance {
   private final FileHandler fileHandler = new FileHandler();
   private final File RECEIPT_FILE = new File("Delfinen/Receipt.txt");
   private final LocalDateTime SALE_TIME = LocalDateTime.now();
-  private final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+  private final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("dd/MM/y");
   private final UI UI = new UI();
 
   public double getType(Member member) {

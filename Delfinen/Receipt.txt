@@ -1,8 +1,8 @@
 
-------------------------------------Send to: 2
-Hello -
-Find in this email your receipt for a passive membership
+------------------------------------Send to: 1
+Hello 1
+Find in this email your receipt for a junior membership
 
-Price: 500kr 
-Time of sale: 20-05-2021 09:48
+Price: 1000kr 
+Time of sale: 20/05/2021
 ------------------------------------

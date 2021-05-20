@@ -75,7 +75,7 @@ public class CompetitionController {
         UI.displayAppend("Junior / Senior: ");
         Type type = UI.getCompetitionType();
 
-        UI.displayAppend("Date (d/MM/y): ");
+        UI.displayAppend("Date (dd/MM/y): ");
         String date = UI.getString();
         while (!isValidDate(date)) {
             date = UI.getString();
@@ -160,7 +160,7 @@ public class CompetitionController {
     }
 
     private boolean isValidDate(String d) {
-        DateFormat formatter = new SimpleDateFormat("d/MM/y");
+        DateFormat formatter = new SimpleDateFormat("dd/MM/y");
         formatter.setLenient(false);
         try {
             formatter.parse(d);
