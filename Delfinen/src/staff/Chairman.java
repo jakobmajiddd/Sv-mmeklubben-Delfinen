@@ -22,6 +22,7 @@ public class Chairman {
 
 
   public void createFitnessMember() {
+    UI.display("");
     UI.displayAppend("Name: ");
     String name = UI.getString();
 
@@ -45,6 +46,7 @@ public class Chairman {
   }
 
   public void createPassiveMember() {
+    UI.display("");
     UI.displayAppend("Name: ");
     String name = UI.getString();
 
@@ -60,6 +62,7 @@ public class Chairman {
   }
 
   public void createCompetitiveMember() {
+    UI.display("");
     UI.displayAppend("Name: ");
     String name = UI.getString();
 
