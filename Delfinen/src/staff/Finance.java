@@ -28,7 +28,6 @@ public class Finance {
   private final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
   private final UI UI = new UI();
 
-
   public double getType(Member member) {
     if (member instanceof PassiveMember) {
       return PASSIVE_SUBSCRIPTION;
@@ -154,17 +153,23 @@ public class Finance {
 
 
   public void updatePayment() {
-    UI.display("Enter member ID: ");
-    int id = UI.getValidInt("Invalid ID");
-    if (new Chairman().inMembersList(id)) {
-      for (Member m : Chairman.members) {
-        if (m.getID() == id) {
-          memberSetDate(m);
-          break;
+    UI.display("");
+    if (Chairman.members.size() > 0) {
+      new Chairman().viewMembers();
+      UI.displayAppend("Enter member ID: ");
+      int id = UI.getValidInt("Invalid ID");
+      if (new Chairman().inMembersList(id)) {
+        for (Member m : Chairman.members) {
+          if (m.getID() == id) {
+            memberSetDate(m);
+            break;
+          }
         }
+      } else {
+        UI.display("No matching ID");
       }
     } else {
-      UI.display("No matching ID");
+      UI.display("No members in the members list");
     }
     fileHandler.saveMembers();
   }
@@ -183,13 +188,18 @@ public class Finance {
 
   public void unpaidMembers() {
     UI.display("");
-    boolean hasPaid = false;
-    UI.display("Unpaid members: ");
-    for (Member m : Chairman.members) {
-      hasPaid = !memberHasPaid(m);
-      if (hasPaid) {
-        UI.display(m.toString());
+
+    if (Chairman.members.size() > 0) {
+      boolean hasPaid;
+      UI.display("Unpaid members: ");
+      for (Member m : Chairman.members) {
+        hasPaid = !memberHasPaid(m);
+        if (hasPaid) {
+          UI.display(m.toString());
+        }
       }
+    } else {
+      UI.display("No members in the members list");
     }
   }
 }

@@ -110,19 +110,23 @@ public class Team {
     }
 
     public void changeBestTime() {
-        viewStudents();
         UI.display("");
-        UI.displayAppend("Student ID: ");
-        int id = UI.getValidInt("Invalid input - Try again");
-        if (inStudentsList(id)) {
-            for (CompetitiveMember c : students) {
-                if (c.getID() == id) {
-                    c.setBestTime(UI.getValidInt("Invalid input"));
-                    break;
+        if (students.size() > 0) {
+            viewStudents();
+            UI.displayAppend("Student ID: ");
+            int id = UI.getValidInt("Invalid input - Try again");
+            if (inStudentsList(id)) {
+                for (CompetitiveMember c : students) {
+                    if (c.getID() == id) {
+                        c.setBestTime(UI.getValidInt("Invalid input"));
+                        break;
+                    }
                 }
+            } else {
+                UI.display("No student with the ID #" + id + " was found.");
             }
         } else {
-            UI.display("No student with the ID #" + id + " was found.");
+            UI.display("There are no members on this team");
         }
     }
 
