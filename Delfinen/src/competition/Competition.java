@@ -1,6 +1,7 @@
 package competition;
 
 import UI.UI;
+import files.FileFormat;
 import member.CompetitiveMember;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,7 +12,7 @@ import java.util.*;
  * @author Martin
  */
 
-public class Competition {
+public class Competition implements FileFormat {
     private final Type COMPETITION_TYPE;
     private final Date DATE;
     private final String LOCATION;
@@ -106,6 +107,7 @@ public class Competition {
         }
     }
 
+    @Override
     public String toFileFormat() {
         return  ID
                 + "_" + COMPETITION_TYPE.toString()

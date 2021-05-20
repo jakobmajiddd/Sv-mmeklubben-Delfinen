@@ -5,13 +5,15 @@ package member;
  */
 
 import UI.UI;
+import files.FileFormat;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public abstract class Member {
+public abstract class Member implements FileFormat {
     private final UI UI = new UI();
     private final String FILE_ID;
     private final String NAME;
@@ -40,7 +42,8 @@ public abstract class Member {
         this.nextPaymentDate = convertStringToDate(date);
     }
 
-    public abstract String toFileFormat();
+    @Override
+    abstract public String toFileFormat();
 
     public void setDate() {
         Calendar c = Calendar.getInstance();

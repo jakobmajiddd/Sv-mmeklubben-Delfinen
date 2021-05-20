@@ -19,7 +19,7 @@ public class UI {
 
     public void incorrectOption(){
         System.out.println("Not a valid number/command");
-        System.out.println("Pleas try agein");
+        System.out.println("Please try again");
     }
 
     public int getInt(){
@@ -153,7 +153,7 @@ public class UI {
         return choice;
     }
 
-    public int validateChoice(int r1, int r2, int quit, String errorMsg) {
+    public int validRange(int r1, int r2, int quit, String errorMsg) {
         Scanner in = new Scanner(System.in);
         int choice = 0;
         boolean inRange = false;
