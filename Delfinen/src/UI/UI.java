@@ -25,8 +25,14 @@ public class UI {
     public int getInt(){
         return SCANNER.nextInt();
     }
+
     public String getString(){
-        return SCANNER.nextLine();
+        String text = SCANNER.nextLine();
+        while (text.contains("_")) {
+            System.out.print("ERROR: \"_\" is a banned character. Try again: ");
+            text = SCANNER.nextLine();
+        }
+        return text;
     }
 
     public void displayAppend(String msg){
