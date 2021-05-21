@@ -153,7 +153,6 @@ public class Finance {
 
 
   public void updatePayment() {
-    UI.display("");
     if (Chairman.members.size() > 0) {
       new Chairman().viewMembers();
       UI.displayAppend("Enter member ID: ");
@@ -188,7 +187,6 @@ public class Finance {
 
   public void unpaidMembers() {
     UI.display("");
-
     if (Chairman.members.size() > 0) {
       boolean hasPaid;
       UI.display("Unpaid members: ");

@@ -1,8 +1,8 @@
 
-------------------------------------Send to: 312
-Hello 12
-Find in this email your receipt for a senior membership
+------------------------------------Send to: 1
+Hello 1
+Find in this email your receipt for a junior membership
 
-Price: 1600.0kr 
+Price: 1000kr 
 Time of sale: 21/05/2021
 ------------------------------------

@@ -20,7 +20,6 @@ public class Chairman {
   private final Finance FINANCE = new Finance();
   public static ArrayList<Member> members = new ArrayList<>();
 
-
   public void createFitnessMember() {
     UI.display("");
     UI.displayAppend("Name: ");
