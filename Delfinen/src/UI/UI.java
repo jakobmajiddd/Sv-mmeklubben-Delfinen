@@ -136,40 +136,28 @@ public class UI {
         return null;
     }
 
-    public int getValidInt(String errorMsg) {
-        Scanner in = new Scanner(System.in);
-
+    public int getValidInt(String error) {
         boolean valid = false;
-        int choice = 0;
+        int choice = -1;
         while (!valid) {
-            if (in.hasNextInt()) {
-                choice = in.nextInt();
+            if (SCANNER.hasNextInt()) {
+                choice = getInt();
                 valid = true;
             } else {
-                in.next();
-                System.out.println(errorMsg);
+                display(error);
             }
+            getString();
         }
         return choice;
     }
 
-    public int validRange(int r1, int r2, int quit, String errorMsg) {
-        Scanner in = new Scanner(System.in);
-        int choice = 0;
-        boolean inRange = false;
-
+    public int validRange(int r1 , int r2, int quit, String error) {
+        int choice = getValidInt(error);
+        boolean inRange = choice >= r1 && choice <= r2 || choice == quit;
         while (!inRange) {
-            if (in.hasNextInt()) {
-                choice = in.nextInt();
-                if (choice >= r1 && choice <= r2 || choice == quit) {
-                    inRange = true;
-                } else {
-                    System.out.println(errorMsg);
-                }
-            } else {
-                System.out.println(errorMsg);
-                in.next();
-            }
+            display(error);
+            choice = getValidInt(error);
+            inRange = choice >= r1 && choice <= r2 || choice == quit;
         }
         return choice;
     }

@@ -109,7 +109,6 @@ public class Chairman {
   }
 
   public void removeMember() {
-    UI.display("");
     viewMembers();
     UI.display("");
     UI.displayAppend("Member ID: ");
@@ -131,5 +130,3 @@ public class Chairman {
     return members;
   }
 }
-
-
