@@ -26,6 +26,10 @@ public class UI {
         return SCANNER.nextInt();
     }
 
+    public double getDouble(){
+        return SCANNER.nextDouble();
+    }
+
     public String getString(){
         String text = SCANNER.nextLine();
         while (text.contains("_")) {
@@ -136,9 +140,24 @@ public class UI {
         return null;
     }
 
+    public double getValidDouble(String error) {
+        boolean valid = false;
+        double choice = 0.0;
+        while (!valid) {
+            if (SCANNER.hasNextDouble()) {
+                choice = getDouble();
+                valid = true;
+            } else {
+                display(error);
+            }
+            getString();
+        }
+        return choice;
+    }
+
     public int getValidInt(String error) {
         boolean valid = false;
-        int choice = -1;
+        int choice = 0;
         while (!valid) {
             if (SCANNER.hasNextInt()) {
                 choice = getInt();

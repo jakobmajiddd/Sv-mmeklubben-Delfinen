@@ -110,7 +110,6 @@ public class Team {
     }
 
     public void changeBestTime() {
-        UI.display("");
         if (students.size() > 0) {
             viewStudents();
             UI.displayAppend("Student ID: ");
@@ -118,7 +117,8 @@ public class Team {
             if (inStudentsList(id)) {
                 for (CompetitiveMember c : students) {
                     if (c.getID() == id) {
-                        c.setBestTime(UI.getValidInt("Invalid input"));
+                        UI.displayAppend("Set best time: ");
+                        c.setBestTime(UI.getValidDouble("Invalid input"));
                         break;
                     }
                 }
@@ -126,8 +126,10 @@ public class Team {
                 UI.display("No student with the ID #" + id + " was found.");
             }
         } else {
+            UI.display("");
             UI.display("There are no members on this team");
         }
+        FILE_HANDLER.saveMembers();
     }
 
     public boolean isValidCompetition(int id) {
@@ -171,28 +173,32 @@ public class Team {
             UI.displayAppend("Student ID: ");
             int studentID = UI.getValidInt("Invalid");
 
-            UI.displayAppend("Competition ID: ");
-            int competitionID = UI.getValidInt("Invalid");
+            if (inStudentsList(studentID)) {
 
-            if (isValidCompetition(competitionID)) {
-                for (Competition c : CompetitionController.competitions) {
-                    if (c.getID() == competitionID) {
-                        if (c.getDISCIPLINE().equals(getStudentByID(studentID).getDISCIPLINE()))
-                            if (!c.inCompetition(studentID)) {
-                                c.addCompetitor(getStudentByID(studentID));
-                                break;
-                            } else {
-                                UI.display("Already assigned to this competition");
-                        } else {
-                            UI.display("Incompatible disciplines");
+                UI.displayAppend("Competition ID: ");
+                int competitionID = UI.getValidInt("Invalid");
+
+                if (isValidCompetition(competitionID)) {
+                    for (Competition c : CompetitionController.competitions) {
+                        if (c.getID() == competitionID) {
+                            if (c.getDISCIPLINE().equals(getStudentByID(studentID).getDISCIPLINE()))
+                                if (!c.inCompetition(studentID)) {
+                                    c.addCompetitor(getStudentByID(studentID));
+                                    break;
+                                } else {
+                                    UI.display("Already assigned to this competition");
+                                }
+                            else {
+                                UI.display("Incompatible disciplines");
+                            }
                         }
                     }
+                } else {
+                    UI.display("Invalid");
                 }
             } else {
-                UI.display("Invalid");
+                UI.display("No students to assign");
             }
-        } else {
-            UI.display("No students to assign");
         }
         FILE_HANDLER.saveCompetitions();
     }
