@@ -124,8 +124,4 @@ public class Chairman {
     }
     FILE_HANDLER.saveMembers();
   }
-
-  public ArrayList<Member> getMembers() {
-    return members;
-  }
 }

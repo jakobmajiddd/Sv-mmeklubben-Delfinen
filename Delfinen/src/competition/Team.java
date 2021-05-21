@@ -197,7 +197,7 @@ public class Team {
                     UI.display("Invalid");
                 }
             } else {
-                UI.display("No students to assign");
+                UI.display("Invalid");
             }
         }
         FILE_HANDLER.saveCompetitions();
