@@ -118,7 +118,7 @@ public class FileHandler {
     }
   }
 
-  public ArrayList<String> fileToList(String fileName) {
+  private ArrayList<String> fileToList(String fileName) {
     ArrayList<String> storage = new ArrayList<>();
 
     try {

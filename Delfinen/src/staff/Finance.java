@@ -28,7 +28,7 @@ public class Finance {
   private final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("dd/MM/y");
   private final UI UI = new UI();
 
-  public double getType(Member member) {
+  private double getType(Member member) {
     if (member instanceof PassiveMember) {
       return PASSIVE_SUBSCRIPTION;
     }
@@ -55,7 +55,7 @@ public class Finance {
   }
 
 
-  public void sendReceiptPassive(String name, String email) {
+  protected void sendReceiptPassive(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
@@ -79,7 +79,7 @@ public class Finance {
     }
   }
 
-  public void sendReceiptJunior(String name, String email) {
+  protected void sendReceiptJunior(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
@@ -103,7 +103,7 @@ public class Finance {
     }
   }
 
-  public void sendReceiptDiscountedSenior(String name, String email) {
+  protected void sendReceiptDiscountedSenior(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
@@ -127,7 +127,7 @@ public class Finance {
     }
   }
 
-  public void sendReceiptSenior(String name, String email) {
+  protected void sendReceiptSenior(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
@@ -173,14 +173,14 @@ public class Finance {
     fileHandler.saveMembers();
   }
 
-  public void memberSetDate(Member member) {
+  private void memberSetDate(Member member) {
     Calendar c = Calendar.getInstance();
     c.setTime(Calendar.getInstance().getTime());
     c.add(Calendar.DATE, 365);
     member.setNextPaymentDate(c.getTime());
   }
 
-  public boolean memberHasPaid(Member member) {
+  private boolean memberHasPaid(Member member) {
     Date c = Calendar.getInstance().getTime();
     return !c.after(member.getNextPaymentDate());
   }

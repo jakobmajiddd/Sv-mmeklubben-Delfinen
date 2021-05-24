@@ -28,7 +28,7 @@ public class CompetitiveMember extends Member {
         competitionPlacements.add(placement);
     }
 
-    public double averagePlacement() {
+    private double averagePlacement() {
         double sum = 0;
         for (int i : competitionPlacements) {
             sum += i;
@@ -48,7 +48,7 @@ public class CompetitiveMember extends Member {
         return DISCIPLINE;
     }
 
-    public String getPlacements() {
+    private String getPlacements() {
         StringBuilder placements = new StringBuilder();
         for (int i : competitionPlacements) {
             placements.append(i);

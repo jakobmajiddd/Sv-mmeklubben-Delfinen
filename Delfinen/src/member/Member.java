@@ -57,7 +57,7 @@ public abstract class Member implements FileFormat {
         return df.format(nextPaymentDate);
     }
 
-    public Date convertStringToDate(String sDate) {
+    private Date convertStringToDate(String sDate) {
         try {
             return new SimpleDateFormat("dd/MM/y").parse(sDate);
         } catch (ParseException e) {

@@ -37,7 +37,7 @@ public class MenuController {
     mainMenu();
   }
 
-  public void mainMenu() {
+  private void mainMenu() {
     UI.display("");
     MAIN_MENU.printMenu();
     int choice = UI.validRange(1, 3, 9, "Invalid input. Try again:");
@@ -50,7 +50,7 @@ public class MenuController {
     }
   }
 
-  public void administrativeMenu() {
+  private void administrativeMenu() {
     UI.display("");
     ADMIN_MENU.printMenu();
     int choice = UI.validRange(1, 3, 9, "Invalid input. Try again:");
@@ -64,7 +64,7 @@ public class MenuController {
     administrativeMenu();
   }
 
-  public void financeMenu() {
+  private void financeMenu() {
     UI.display("");
     FINANCE_MENU.printMenu();
     int choice = UI.validRange(1, 3, 9, "Invalid input. Try again:");
@@ -78,7 +78,7 @@ public class MenuController {
     financeMenu();
   }
 
-  public void memberCreationMenu() {
+  private void memberCreationMenu() {
     UI.display("");
     CREATION_MENU.printMenu();
     int choice = UI.validRange(1, 3, 9, "Invalid input. Try again:");
@@ -91,7 +91,7 @@ public class MenuController {
     }
   }
 
-  public void competitiveMenu() {
+  private void competitiveMenu() {
     UI.display("");
     COMPETITIVE_MENU.printMenu();
     int choice = UI.validRange(1, 3, 9, "Invalid input. Try again:");
@@ -105,7 +105,7 @@ public class MenuController {
     competitiveMenu();
   }
 
-  public void teamMenu(Team team) {
+  private void teamMenu(Team team) {
     UI.display("");
     UI.display(team.getTEAM_TYPE() + " - Coach: " + team.getCOACH().getNAME());
     TEAM_MENU.printMenu();
@@ -121,7 +121,7 @@ public class MenuController {
     teamMenu(team);
   }
 
-  public void competitionMenu() {
+  private void competitionMenu() {
     UI.display("");
     COMPETITION_MENU.printMenu();
     int choice = UI.validRange(1, 5, 9, "Invalid input. Try again:");

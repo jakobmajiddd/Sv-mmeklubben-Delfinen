@@ -16,15 +16,15 @@ public abstract class Menu {
     UI.displayAppend(leadText);
   }
 
-  void setMenuHeader(String menuHeader) {
+  public void setMenuHeader(String menuHeader) {
     this.menuHeader = menuHeader;
   }
 
-  void setLeadText(String leadText) {
+  public void setLeadText(String leadText) {
     this.leadText = leadText;
   }
 
-  void setMenuItems(String[] menuItems) {
+  public void setMenuItems(String[] menuItems) {
     this.menuItems = menuItems;
   }
 }

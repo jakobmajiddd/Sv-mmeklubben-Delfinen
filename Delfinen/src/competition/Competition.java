@@ -62,7 +62,7 @@ public class Competition implements FileFormat {
         competitors.add(competitor);
     }
 
-    boolean inCompetition(int id) {
+    public boolean inCompetition(int id) {
         for (CompetitiveMember c : competitors) {
             if (c.getID() == id) {
                 return true;
@@ -71,7 +71,7 @@ public class Competition implements FileFormat {
         return false;
     }
 
-    public String fileCompetitorID() {
+    private String fileCompetitorID() {
         StringBuilder text = new StringBuilder();
         for (CompetitiveMember c : competitors) {
             text.append(c.getID());
@@ -80,7 +80,7 @@ public class Competition implements FileFormat {
         return text.toString();
     }
 
-    public String dateFormatted() {
+    private String dateFormatted() {
         DateFormat df = new SimpleDateFormat("dd/MM/y");
         return df.format(DATE);
     }

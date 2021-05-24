@@ -40,15 +40,15 @@ public class Team {
         }
     }
 
-    public void sortByTime() {
+    private void sortByTime() {
         students.sort(Comparator.comparingDouble(CompetitiveMember::getBestTime));
     }
 
-    public void sortByID() {
+    private void sortByID() {
         students.sort(Comparator.comparingInt(CompetitiveMember::getID));
     }
 
-    public int occurrenceOfDiscipline(Discipline discipline) {
+    private int occurrenceOfDiscipline(Discipline discipline) {
         int count = 0;
         for (CompetitiveMember student : students) {
             if (student.getDISCIPLINE().equals(discipline)) {
@@ -100,7 +100,7 @@ public class Team {
         }
     }
 
-    public boolean inStudentsList(int id) {
+    private boolean inStudentsList(int id) {
         for (CompetitiveMember c : students) {
             if (c.getID() == id) {
                 return true;
@@ -132,7 +132,7 @@ public class Team {
         FILE_HANDLER.saveMembers();
     }
 
-    public boolean isValidCompetition(int id) {
+    private boolean isValidCompetition(int id) {
         for (Competition c : CompetitionController.competitions) {
             if (c.getID() == id) {
                 if (TEAM_TYPE.equals(c.getCOMPETITION_TYPE())) {
@@ -143,7 +143,7 @@ public class Team {
         return false;
     }
 
-    public void displayValidCompetitions() {
+    private void displayValidCompetitions() {
         for (Competition c : CompetitionController.competitions) {
             if (TEAM_TYPE.equals(c.getCOMPETITION_TYPE())) {
                 UI.display(c.toString());
