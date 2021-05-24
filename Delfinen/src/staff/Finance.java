@@ -54,8 +54,7 @@ public class Finance {
     return total;
   }
 
-
-  protected void sendReceiptPassive(String name, String email) {
+  void sendReceiptPassive(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
@@ -79,7 +78,7 @@ public class Finance {
     }
   }
 
-  protected void sendReceiptJunior(String name, String email) {
+  void sendReceiptJunior(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
@@ -103,7 +102,7 @@ public class Finance {
     }
   }
 
-  protected void sendReceiptDiscountedSenior(String name, String email) {
+  void sendReceiptDiscountedSenior(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
@@ -127,7 +126,7 @@ public class Finance {
     }
   }
 
-  protected void sendReceiptSenior(String name, String email) {
+  void sendReceiptSenior(String name, String email) {
     try {
       FileWriter fileWriter = new FileWriter(RECEIPT_FILE);
 
@@ -150,7 +149,6 @@ public class Finance {
       UI.incorrectOption(); //måske lave om til decideret error-message
     }
   }
-
 
   public void updatePayment() {
     if (Chairman.members.size() > 0) {

@@ -52,11 +52,6 @@ public abstract class Member implements FileFormat {
         setNextPaymentDate(c.getTime());
     }
 
-    public String dateFormatted() {
-        DateFormat df = new SimpleDateFormat("dd/MM/y");
-        return df.format(nextPaymentDate);
-    }
-
     private Date convertStringToDate(String sDate) {
         try {
             return new SimpleDateFormat("dd/MM/y").parse(sDate);
@@ -65,20 +60,25 @@ public abstract class Member implements FileFormat {
         }
     }
 
-    public String getFILE_ID() {
+    String dateFormatted() {
+        DateFormat df = new SimpleDateFormat("dd/MM/y");
+        return df.format(nextPaymentDate);
+    }
+
+    String getFILE_ID() {
         return FILE_ID;
     }
 
-    public String getNAME() {
+    String getNAME() {
         return NAME;
+    }
+
+    String getEMAIL() {
+        return EMAIL;
     }
 
     public int getAGE() {
         return AGE;
-    }
-
-    public String getEMAIL() {
-        return EMAIL;
     }
 
     public void setNextPaymentDate(Date nextPaymentDate) {

@@ -98,7 +98,7 @@ public class Chairman {
     }
   }
 
-  protected boolean inMembersList(int id) {
+  boolean inMembersList(int id) {
     for (Member m : members) {
       if (m.getID() == id) {
         return true;

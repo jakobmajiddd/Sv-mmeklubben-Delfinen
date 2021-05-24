@@ -21,7 +21,7 @@ public class CompetitionController {
     private final UI UI = new UI();
     private final FileHandler FILE_HANDLER = new FileHandler();
 
-    public void viewCompetitions() {
+    void viewCompetitions() {
         if (competitions.size() > 0) {
             UI.display("");
             UI.display("Junior competitions: ");
@@ -43,7 +43,7 @@ public class CompetitionController {
         }
     }
 
-    public void viewCompetitors() {
+    void viewCompetitors() {
         if (competitions.size() > 0) {
             viewCompetitions();
             UI.display("");
@@ -71,7 +71,7 @@ public class CompetitionController {
      * @author Jacob
      */
 
-    public void createCompetition() {
+    void createCompetition() {
         UI.displayAppend("Junior / Senior: ");
         Type type = UI.getCompetitionType();
 
@@ -93,7 +93,7 @@ public class CompetitionController {
      * @author Martin
      */
 
-    public void removeCompetition() {
+    void removeCompetition() {
         if (competitions.size() > 0) {
             viewCompetitions();
             UI.display("");
@@ -119,7 +119,7 @@ public class CompetitionController {
     }
 
     // Assigns competitors random placements, and removes the tournament.
-    public void evaluateCompetition() {
+    void evaluateCompetition() {
         if (competitions.size() > 0) {
             viewCompetitions();
             UI.display("");
